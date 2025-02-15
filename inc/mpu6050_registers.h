@@ -1,0 +1,6 @@
+#ifndef MPU6050_REGISTERS_H
+#define MPU6050_REGISTERS_H
+
+
+
+#endif // MPU6050_REGISTERS_H

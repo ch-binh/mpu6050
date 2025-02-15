@@ -1,0 +1,54 @@
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"mpu6050.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "../../../src/mpu6050.c"
+  18              		.section	.text.test_func,"ax",%progbits
+  19              		.align	1
+  20              		.global	test_func
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	test_func:
+  26              	.LFB0:
+   1:../../../src/mpu6050.c **** #include "../inc/mpu6050.h"
+   2:../../../src/mpu6050.c **** 
+   3:../../../src/mpu6050.c **** void test_func(void){
+  27              		.loc 1 3 21 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   4:../../../src/mpu6050.c ****     return 2;
+  32              		.loc 1 4 5 view .LVU1
+   5:../../../src/mpu6050.c **** }...
+  33              		.loc 1 5 1 is_stmt 0 view .LVU2
+  34 0000 7047     		bx	lr
+  35              		.cfi_endproc
+  36              	.LFE0:
+  38              		.text
+  39              	.Letext0:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu6050.c
+C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s:19     .text.test_func:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s:25     .text.test_func:00000000 test_func
+
+NO UNDEFINED SYMBOLS
