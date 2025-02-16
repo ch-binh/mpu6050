@@ -22,7 +22,8 @@ build/main.o: Src/main.c Src/../Inc/main.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h Src/../Inc/i2c.h \
  Src/../Inc/main.h Src/../Inc/usart.h Src/../Inc/gpio.h \
- Src/../Inc/board_config.h
+ Src/../Inc/board_config.h Src/../../../../inc/mpu6050_i2c.h \
+ Src/../../../../inc/mpu6050.h
 Src/../Inc/main.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 Inc/stm32f1xx_hal_conf.h:
@@ -53,3 +54,5 @@ Src/../Inc/main.h:
 Src/../Inc/usart.h:
 Src/../Inc/gpio.h:
 Src/../Inc/board_config.h:
+Src/../../../../inc/mpu6050_i2c.h:
+Src/../../../../inc/mpu6050.h:

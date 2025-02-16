@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccs7rW4m.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -18,37 +18,77 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.file 1 "../../../src/mpu6050.c"
-  18              		.section	.text.test_func,"ax",%progbits
+  18              		.section	.text.mpu6050_get_chip_id,"ax",%progbits
   19              		.align	1
-  20              		.global	test_func
+  20              		.global	mpu6050_get_chip_id
   21              		.syntax unified
   22              		.thumb
   23              		.thumb_func
-  25              	test_func:
+  25              	mpu6050_get_chip_id:
   26              	.LFB0:
    1:../../../src/mpu6050.c **** #include "../inc/mpu6050.h"
-   2:../../../src/mpu6050.c **** 
-   3:../../../src/mpu6050.c **** void test_func(void){
-  27              		.loc 1 3 21 view -0
+   2:../../../src/mpu6050.c **** #include "../inc/mpu6050_registers.h"
+   3:../../../src/mpu6050.c **** #include "../inc/mpu6050_i2c.h"
+   4:../../../src/mpu6050.c **** 
+   5:../../../src/mpu6050.c **** /*======================== SETUP FUNCTIONS ===========================*/
+   6:../../../src/mpu6050.c **** 
+   7:../../../src/mpu6050.c **** /*======================== GET DATA FUNCTIONS ===========================*/
+   8:../../../src/mpu6050.c **** 
+   9:../../../src/mpu6050.c **** void mpu6050_get_chip_id(void)
+  10:../../../src/mpu6050.c **** {
+  27              		.loc 1 10 1 view -0
   28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 0
+  29              		@ args = 0, pretend = 0, frame = 8
   30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              		@ link register save eliminated.
-   4:../../../src/mpu6050.c ****     return 2;
-  32              		.loc 1 4 5 view .LVU1
-   5:../../../src/mpu6050.c **** }...
-  33              		.loc 1 5 1 is_stmt 0 view .LVU2
-  34 0000 7047     		bx	lr
-  35              		.cfi_endproc
-  36              	.LFE0:
-  38              		.text
-  39              	.Letext0:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s 			page 2
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 83B0     		sub	sp, sp, #12
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 16
+  11:../../../src/mpu6050.c ****     uint8_t size = 1;
+  38              		.loc 1 11 5 view .LVU1
+  39              	.LVL0:
+  12:../../../src/mpu6050.c ****     uint8_t values[size];
+  40              		.loc 1 12 5 view .LVU2
+  13:../../../src/mpu6050.c **** 
+  14:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_WHO_AM_I, values, size);
+  41              		.loc 1 14 5 view .LVU3
+  42 0004 0122     		movs	r2, #1
+  43 0006 01A9     		add	r1, sp, #4
+  44              	.LVL1:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccs7rW4m.s 			page 2
+
+
+  45              		.loc 1 14 5 is_stmt 0 view .LVU4
+  46 0008 7520     		movs	r0, #117
+  47 000a FFF7FEFF 		bl	mpu6050_i2c_read_reg
+  48              	.LVL2:
+  15:../../../src/mpu6050.c ****     return values[1];
+  49              		.loc 1 15 5 is_stmt 1 view .LVU5
+  16:../../../src/mpu6050.c **** }...
+  50              		.loc 1 16 1 is_stmt 0 view .LVU6
+  51 000e 03B0     		add	sp, sp, #12
+  52              	.LCFI2:
+  53              		.cfi_def_cfa_offset 4
+  54              		@ sp needed
+  55 0010 5DF804FB 		ldr	pc, [sp], #4
+  56              		.loc 1 16 1 view .LVU7
+  57              		.cfi_endproc
+  58              	.LFE0:
+  60              		.text
+  61              	.Letext0:
+  62              		.file 2 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+  63              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+  64              		.file 4 "../../../src/../inc/mpu6050_i2c.h"
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccs7rW4m.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mpu6050.c
-C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s:19     .text.test_func:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccwOYPeH.s:25     .text.test_func:00000000 test_func
+C:\Users\binhp\AppData\Local\Temp\ccs7rW4m.s:19     .text.mpu6050_get_chip_id:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccs7rW4m.s:25     .text.mpu6050_get_chip_id:00000000 mpu6050_get_chip_id
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+mpu6050_i2c_read_reg

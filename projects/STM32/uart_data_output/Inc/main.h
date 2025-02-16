@@ -23,7 +23,7 @@
 #include <stm32f1xx_hal.h>
 
 #define LED_BLINK_DELAY 1000
-#define I2C1_ADDRESS 0x00
+#define I2C1_ADDRESS (0x68 << 1)
 
 void Error_Handler(void);
 

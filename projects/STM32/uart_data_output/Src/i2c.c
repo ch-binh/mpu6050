@@ -21,6 +21,7 @@
 #include "../Inc/i2c.h"
 #include "../Inc/board_config.h"
 
+
 I2C_HandleTypeDef hi2c1;
 
 /* I2C1 init function */
@@ -89,12 +90,13 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *i2cHandle)
   }
 }
 
-void I2C_Send_Data(uint8_t *data, uint16_t size)
-{
-  if (HAL_I2C_Master_Transmit(&hi2c1, I2C1_ADDRESS, data, size, HAL_MAX_DELAY) != HAL_OK)
-  {
-  }
-  else
-  {
-  }
+void stm32_i2c_write_reg(uint8_t reg, uint8_t value) {
+  uint8_t data[2] = {reg, value};
+  HAL_I2C_Master_Transmit(&hi2c1, I2C1_ADDRESS, data, 2, HAL_MAX_DELAY);
 }
+
+int stm32_i2c_read_reg(uint8_t reg, uint8_t *data, uint8_t size) {
+  HAL_I2C_Master_Transmit(&hi2c1, I2C1_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+  return HAL_I2C_Master_Receive(&hi2c1, I2C1_ADDRESS, data, size, HAL_MAX_DELAY);
+}
+

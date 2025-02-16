@@ -4,23 +4,43 @@
 #include "../Inc/usart.h"
 #include "../Inc/gpio.h"
 #include "../Inc/board_config.h"
+#include "../../../../inc/mpu6050_i2c.h"
+#include "../../../../inc/mpu6050.h"
 
 static void SystemClock_Config(void);
 
-int main(void)
+/* Init MPU6050 for STM32 mcu related */
+void mpu6050_init(void)
 {
+  mpu6050_i2c_ops_t ops = {
+      .i2c_write = stm32_i2c_write_reg,
+      .i2c_read = stm32_i2c_read_reg};
+  mpu6050_set_i2c_spec(&ops);
+}
+
+static void peripheral_init(void)
+{
+  /* STM32 related */
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
 
+  /* Application related*/
+  mpu6050_init();
+}
+
+int main(void)
+{
+  peripheral_init();
+
   uint8_t data[] = {0xA0, 0xB1, 0xC2}; // Example data to send
 
   while (1)
   {
     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
-    I2C_Send_Data(data, sizeof(data));
+    mpu6050_get_chip_id();
     HAL_Delay(LED_BLINK_DELAY);
   }
 }

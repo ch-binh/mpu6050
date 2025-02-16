@@ -1,6 +1,7 @@
 #ifndef MPU6050_REGISTERS_H
 #define MPU6050_REGISTERS_H
 
-
+#define REG_1 0x00
+#define REG_WHO_AM_I 0x75
 
 #endif // MPU6050_REGISTERS_H

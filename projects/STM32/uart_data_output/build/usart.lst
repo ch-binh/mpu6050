@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
   30:Src/usart.c   **** 
   31:Src/usart.c   **** void MX_USART1_UART_Init(void)
   32:Src/usart.c   **** {
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 2
 
 
   27              		.loc 1 32 1 view -0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
   49:Src/usart.c   ****   if (HAL_UART_Init(&huart1) != HAL_OK)
   65              		.loc 1 49 3 is_stmt 1 view .LVU17
   66              		.loc 1 49 7 is_stmt 0 view .LVU18
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 3
 
 
   67 001e FFF7FEFF 		bl	HAL_UART_Init
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  111              		.cfi_def_cfa_offset 40
   61:Src/usart.c   **** 
   62:Src/usart.c   ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 4
 
 
  112              		.loc 1 62 3 is_stmt 1 view .LVU25
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  135              	.LVL4:
  136              	.L10:
  137              	.LCFI4:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 5
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 5
 
 
  138              		.cfi_restore_state
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  176 0048 0223     		movs	r3, #2
  177 004a 0393     		str	r3, [sp, #12]
   78:Src/usart.c   ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 6
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 6
 
 
  178              		.loc 1 78 5 is_stmt 1 view .LVU47
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  220              	.L11:
  221 0080 00380140 		.word	1073821696
  222 0084 00080140 		.word	1073809408
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 7
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 7
 
 
  223              		.cfi_endproc
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  118:Src/usart.c   **** }
  255              		.loc 1 118 1 view .LVU66
  256 000a 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 8
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 8
 
 
  257              	.LVL12:
@@ -474,22 +474,22 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 1
  302              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h"
  303              		.file 10 "Inc/usart.h"
  304              		.file 11 "Inc/main.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s 			page 9
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccloNick.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usart.c
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:19     .text.MX_USART1_UART_Init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:25     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:83     .text.MX_USART1_UART_Init:0000002c $d
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:291    .bss.huart1:00000000 huart1
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:89     .text.HAL_UART_MspInit:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:95     .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:221    .text.HAL_UART_MspInit:00000080 $d
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:227    .text.HAL_UART_MspDeInit:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:233    .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:280    .text.HAL_UART_MspDeInit:00000028 $d
-C:\Users\binhp\AppData\Local\Temp\ccXOmSQO.s:288    .bss.huart1:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:19     .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:25     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:83     .text.MX_USART1_UART_Init:0000002c $d
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:291    .bss.huart1:00000000 huart1
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:89     .text.HAL_UART_MspInit:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:95     .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:221    .text.HAL_UART_MspInit:00000080 $d
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:227    .text.HAL_UART_MspDeInit:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:233    .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:280    .text.HAL_UART_MspDeInit:00000028 $d
+C:\Users\binhp\AppData\Local\Temp\ccloNick.s:288    .bss.huart1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Init

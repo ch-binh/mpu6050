@@ -58,7 +58,8 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c \
 Src/system_stm32f1xx.c \
 Src/sysmem.c \
 Src/syscalls.c  \
-../../../src/mpu6050.c
+../../../src/mpu6050.c	\
+../../../src/mpu6050_i2c.c
 
 # ASM sources
 ASM_SOURCES =  \
