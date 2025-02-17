@@ -38,6 +38,16 @@ C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.
                               C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (_fflush_r)
 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
                               C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o) (_sbrk_r)
+C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+                              build/mpu6050.o (__aeabi_fmul)
+C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                              build/mpu6050.o (__aeabi_dadd)
+C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+                              build/mpu6050.o (__aeabi_d2f)
+C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                              build/mpu6050.o (__aeabi_fadd)
+C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+                              build/mpu6050.o (__aeabi_fdiv)
 
 Discarded input sections
 
@@ -75,6 +85,9 @@ Discarded input sections
  .text          0x00000000        0x0 build/stm32f1xx_hal_msp.o
  .data          0x00000000        0x0 build/stm32f1xx_hal_msp.o
  .bss           0x00000000        0x0 build/stm32f1xx_hal_msp.o
+ .text          0x00000000        0x0 build/sysconfig.o
+ .data          0x00000000        0x0 build/sysconfig.o
+ .bss           0x00000000        0x0 build/sysconfig.o
  .text          0x00000000        0x0 build/stm32f1xx_hal_gpio_ex.o
  .data          0x00000000        0x0 build/stm32f1xx_hal_gpio_ex.o
  .bss           0x00000000        0x0 build/stm32f1xx_hal_gpio_ex.o
@@ -673,11 +686,21 @@ Discarded input sections
  .text          0x00000000        0x0 build/mpu6050.o
  .data          0x00000000        0x0 build/mpu6050.o
  .bss           0x00000000        0x0 build/mpu6050.o
+ .text.mpu6050_get_data
+                0x00000000       0xe4 build/mpu6050.o
+ .text.mpu6050_cfg_set_mot_thr
+                0x00000000        0xc build/mpu6050.o
+ .text.mpu6050_cfg_en_fifo
+                0x00000000        0xc build/mpu6050.o
+ .text.mpu6050_get_int_sts
+                0x00000000       0x18 build/mpu6050.o
+ .text.mpu6050_get_temp
+                0x00000000       0x54 build/mpu6050.o
+ .text.mpu6050_get_chip_id
+                0x00000000       0x18 build/mpu6050.o
  .text          0x00000000        0x0 build/mpu6050_i2c.o
  .data          0x00000000        0x0 build/mpu6050_i2c.o
  .bss           0x00000000        0x0 build/mpu6050_i2c.o
- .text.mpu6050_i2c_write_reg
-                0x00000000       0x18 build/mpu6050_i2c.o
  .text          0x00000000       0x14 build/startup_stm32f103xb.o
  .data          0x00000000        0x0 build/startup_stm32f103xb.o
  .bss           0x00000000        0x0 build/startup_stm32f103xb.o
@@ -894,6 +917,36 @@ Discarded input sections
  .debug_frame   0x00000000       0x2c C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
  .ARM.attributes
                 0x00000000       0x2d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .text          0x00000000      0x168 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .debug_frame   0x00000000       0x24 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .ARM.attributes
+                0x00000000       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .text          0x00000000      0x378 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00000000       0xac C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x00000000       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .text          0x00000000       0xa0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00000000       0x24 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x00000000       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .text          0x00000000      0x21c C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x00000000       0x4c C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x00000000       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .text          0x00000000      0x2a0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_frame   0x00000000       0x38 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x00000000       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
  .text          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtend.o
  .data          0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtend.o
  .bss           0x00000000        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtend.o
@@ -923,6 +976,7 @@ LOAD build/i2c.o
 LOAD build/usart.o
 LOAD build/stm32f1xx_it.o
 LOAD build/stm32f1xx_hal_msp.o
+LOAD build/sysconfig.o
 LOAD build/stm32f1xx_hal_gpio_ex.o
 LOAD build/stm32f1xx_hal_i2c.o
 LOAD build/stm32f1xx_hal.o
@@ -966,7 +1020,7 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x0800010c     0x310c
+.text           0x0800010c     0x3244
                 0x0800010c                        . = ALIGN (0x4)
  *(.text)
  .text          0x0800010c       0x40 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
@@ -974,75 +1028,77 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .text.mpu6050_init
                 0x0800014c       0x20 build/main.o
                 0x0800014c                mpu6050_init
- .text.Error_Handler
-                0x0800016c        0x4 build/main.o
-                0x0800016c                Error_Handler
- .text.SystemClock_Config
-                0x08000170       0x64 build/main.o
  .text.peripheral_init
-                0x080001d4       0x1c build/main.o
- .text.main     0x080001f0       0x38 build/main.o
-                0x080001f0                main
+                0x0800016c       0x26 build/main.o
+ *fill*         0x08000192        0x2 
+ .text.main     0x08000194       0x28 build/main.o
+                0x08000194                main
+ .text.Error_Handler
+                0x080001bc        0x4 build/main.o
+                0x080001bc                Error_Handler
  .text.MX_GPIO_Init
-                0x08000228       0xa0 build/gpio.o
-                0x08000228                MX_GPIO_Init
+                0x080001c0       0xa0 build/gpio.o
+                0x080001c0                MX_GPIO_Init
  .text.MX_I2C1_Init
-                0x080002c8       0x3c build/i2c.o
-                0x080002c8                MX_I2C1_Init
+                0x08000260       0x3c build/i2c.o
+                0x08000260                MX_I2C1_Init
  .text.HAL_I2C_MspInit
-                0x08000304       0x84 build/i2c.o
-                0x08000304                HAL_I2C_MspInit
+                0x0800029c       0x84 build/i2c.o
+                0x0800029c                HAL_I2C_MspInit
  .text.stm32_i2c_write_reg
-                0x08000388       0x28 build/i2c.o
-                0x08000388                stm32_i2c_write_reg
+                0x08000320       0x28 build/i2c.o
+                0x08000320                stm32_i2c_write_reg
  .text.stm32_i2c_read_reg
-                0x080003b0       0x38 build/i2c.o
-                0x080003b0                stm32_i2c_read_reg
+                0x08000348       0x38 build/i2c.o
+                0x08000348                stm32_i2c_read_reg
  .text.MX_USART1_UART_Init
-                0x080003e8       0x34 build/usart.o
-                0x080003e8                MX_USART1_UART_Init
+                0x08000380       0x34 build/usart.o
+                0x08000380                MX_USART1_UART_Init
  .text.HAL_UART_MspInit
-                0x0800041c       0x88 build/usart.o
-                0x0800041c                HAL_UART_MspInit
+                0x080003b4       0x88 build/usart.o
+                0x080003b4                HAL_UART_MspInit
  .text.NMI_Handler
-                0x080004a4        0x2 build/stm32f1xx_it.o
-                0x080004a4                NMI_Handler
+                0x0800043c        0x2 build/stm32f1xx_it.o
+                0x0800043c                NMI_Handler
  .text.HardFault_Handler
-                0x080004a6        0x2 build/stm32f1xx_it.o
-                0x080004a6                HardFault_Handler
+                0x0800043e        0x2 build/stm32f1xx_it.o
+                0x0800043e                HardFault_Handler
  .text.MemManage_Handler
-                0x080004a8        0x2 build/stm32f1xx_it.o
-                0x080004a8                MemManage_Handler
+                0x08000440        0x2 build/stm32f1xx_it.o
+                0x08000440                MemManage_Handler
  .text.BusFault_Handler
-                0x080004aa        0x2 build/stm32f1xx_it.o
-                0x080004aa                BusFault_Handler
+                0x08000442        0x2 build/stm32f1xx_it.o
+                0x08000442                BusFault_Handler
  .text.UsageFault_Handler
-                0x080004ac        0x2 build/stm32f1xx_it.o
-                0x080004ac                UsageFault_Handler
+                0x08000444        0x2 build/stm32f1xx_it.o
+                0x08000444                UsageFault_Handler
  .text.SVC_Handler
-                0x080004ae        0x2 build/stm32f1xx_it.o
-                0x080004ae                SVC_Handler
+                0x08000446        0x2 build/stm32f1xx_it.o
+                0x08000446                SVC_Handler
  .text.DebugMon_Handler
-                0x080004b0        0x2 build/stm32f1xx_it.o
-                0x080004b0                DebugMon_Handler
+                0x08000448        0x2 build/stm32f1xx_it.o
+                0x08000448                DebugMon_Handler
  .text.PendSV_Handler
-                0x080004b2        0x2 build/stm32f1xx_it.o
-                0x080004b2                PendSV_Handler
+                0x0800044a        0x2 build/stm32f1xx_it.o
+                0x0800044a                PendSV_Handler
  .text.SysTick_Handler
-                0x080004b4        0x8 build/stm32f1xx_it.o
-                0x080004b4                SysTick_Handler
+                0x0800044c        0x8 build/stm32f1xx_it.o
+                0x0800044c                SysTick_Handler
  .text.I2C1_EV_IRQHandler
-                0x080004bc       0x10 build/stm32f1xx_it.o
-                0x080004bc                I2C1_EV_IRQHandler
+                0x08000454       0x10 build/stm32f1xx_it.o
+                0x08000454                I2C1_EV_IRQHandler
  .text.I2C1_ER_IRQHandler
-                0x080004cc       0x10 build/stm32f1xx_it.o
-                0x080004cc                I2C1_ER_IRQHandler
+                0x08000464       0x10 build/stm32f1xx_it.o
+                0x08000464                I2C1_ER_IRQHandler
  .text.USART1_IRQHandler
-                0x080004dc       0x10 build/stm32f1xx_it.o
-                0x080004dc                USART1_IRQHandler
+                0x08000474       0x10 build/stm32f1xx_it.o
+                0x08000474                USART1_IRQHandler
  .text.HAL_MspInit
-                0x080004ec       0x44 build/stm32f1xx_hal_msp.o
-                0x080004ec                HAL_MspInit
+                0x08000484       0x44 build/stm32f1xx_hal_msp.o
+                0x08000484                HAL_MspInit
+ .text.SystemClock_Config
+                0x080004c8       0x68 build/sysconfig.o
+                0x080004c8                SystemClock_Config
  .text.I2C_Flush_DR
                 0x08000530       0x10 build/stm32f1xx_hal_i2c.o
  .text.I2C_Master_SB
@@ -1251,146 +1307,171 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .text.SystemInit
                 0x0800311c        0x2 build/system_stm32f1xx.o
                 0x0800311c                SystemInit
- .text.mpu6050_get_chip_id
-                0x0800311e       0x14 build/mpu6050.o
-                0x0800311e                mpu6050_get_chip_id
- *fill*         0x08003132        0x2 
+ .text.mpu6050_cfg_set_smprt_div
+                0x0800311e        0xc build/mpu6050.o
+                0x0800311e                mpu6050_cfg_set_smprt_div
+ .text.mpu6050_cfg_set_config
+                0x0800312a       0x10 build/mpu6050.o
+                0x0800312a                mpu6050_cfg_set_config
+ .text.mpu6050_cfg_gyro
+                0x0800313a       0x16 build/mpu6050.o
+                0x0800313a                mpu6050_cfg_gyro
+ .text.mpu6050_cfg_accel
+                0x08003150       0x16 build/mpu6050.o
+                0x08003150                mpu6050_cfg_accel
+ .text.mpu6050_cfg_int_pin
+                0x08003166       0x3e build/mpu6050.o
+                0x08003166                mpu6050_cfg_int_pin
+ .text.mpu6050_cfg_int_mode
+                0x080031a4       0x1c build/mpu6050.o
+                0x080031a4                mpu6050_cfg_int_mode
+ .text.mpu6050_init_reg
+                0x080031c0       0x46 build/mpu6050.o
+                0x080031c0                mpu6050_init_reg
+ .text.mpu6050_cfg_pwr_mng
+                0x08003206        0xc build/mpu6050.o
+                0x08003206                mpu6050_cfg_pwr_mng
+ .text.mpu6050_get_accel_raw
+                0x08003212       0x40 build/mpu6050.o
+                0x08003212                mpu6050_get_accel_raw
+ *fill*         0x08003252        0x2 
  .text.mpu6050_set_i2c_spec
-                0x08003134       0x10 build/mpu6050_i2c.o
-                0x08003134                mpu6050_set_i2c_spec
+                0x08003254       0x10 build/mpu6050_i2c.o
+                0x08003254                mpu6050_set_i2c_spec
  .text.mpu6050_i2c_read_reg
-                0x08003144       0x18 build/mpu6050_i2c.o
-                0x08003144                mpu6050_i2c_read_reg
+                0x08003264       0x18 build/mpu6050_i2c.o
+                0x08003264                mpu6050_i2c_read_reg
+ .text.mpu6050_i2c_write_reg
+                0x0800327c       0x18 build/mpu6050_i2c.o
+                0x0800327c                mpu6050_i2c_write_reg
  .text.Reset_Handler
-                0x0800315c       0x48 build/startup_stm32f103xb.o
-                0x0800315c                Reset_Handler
+                0x08003294       0x48 build/startup_stm32f103xb.o
+                0x08003294                Reset_Handler
  .text.Default_Handler
-                0x080031a4        0x2 build/startup_stm32f103xb.o
-                0x080031a4                RTC_Alarm_IRQHandler
-                0x080031a4                EXTI2_IRQHandler
-                0x080031a4                TIM1_CC_IRQHandler
-                0x080031a4                PVD_IRQHandler
-                0x080031a4                EXTI3_IRQHandler
-                0x080031a4                EXTI0_IRQHandler
-                0x080031a4                I2C2_EV_IRQHandler
-                0x080031a4                ADC1_2_IRQHandler
-                0x080031a4                SPI1_IRQHandler
-                0x080031a4                TAMPER_IRQHandler
-                0x080031a4                DMA1_Channel4_IRQHandler
-                0x080031a4                USART3_IRQHandler
-                0x080031a4                RTC_IRQHandler
-                0x080031a4                DMA1_Channel7_IRQHandler
-                0x080031a4                CAN1_RX1_IRQHandler
-                0x080031a4                TIM4_IRQHandler
-                0x080031a4                DMA1_Channel6_IRQHandler
-                0x080031a4                TIM3_IRQHandler
-                0x080031a4                RCC_IRQHandler
-                0x080031a4                TIM1_TRG_COM_IRQHandler
-                0x080031a4                DMA1_Channel1_IRQHandler
-                0x080031a4                Default_Handler
-                0x080031a4                EXTI15_10_IRQHandler
-                0x080031a4                EXTI9_5_IRQHandler
-                0x080031a4                SPI2_IRQHandler
-                0x080031a4                DMA1_Channel5_IRQHandler
-                0x080031a4                EXTI4_IRQHandler
-                0x080031a4                USB_LP_CAN1_RX0_IRQHandler
-                0x080031a4                USB_HP_CAN1_TX_IRQHandler
-                0x080031a4                DMA1_Channel3_IRQHandler
-                0x080031a4                TIM1_UP_IRQHandler
-                0x080031a4                WWDG_IRQHandler
-                0x080031a4                TIM2_IRQHandler
-                0x080031a4                TIM1_BRK_IRQHandler
-                0x080031a4                EXTI1_IRQHandler
-                0x080031a4                USART2_IRQHandler
-                0x080031a4                I2C2_ER_IRQHandler
-                0x080031a4                DMA1_Channel2_IRQHandler
-                0x080031a4                CAN1_SCE_IRQHandler
-                0x080031a4                FLASH_IRQHandler
-                0x080031a4                USBWakeUp_IRQHandler
- .text.memset   0x080031a6       0x10 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
-                0x080031a6                memset
- *fill*         0x080031b6        0x2 
+                0x080032dc        0x2 build/startup_stm32f103xb.o
+                0x080032dc                RTC_Alarm_IRQHandler
+                0x080032dc                EXTI2_IRQHandler
+                0x080032dc                TIM1_CC_IRQHandler
+                0x080032dc                PVD_IRQHandler
+                0x080032dc                EXTI3_IRQHandler
+                0x080032dc                EXTI0_IRQHandler
+                0x080032dc                I2C2_EV_IRQHandler
+                0x080032dc                ADC1_2_IRQHandler
+                0x080032dc                SPI1_IRQHandler
+                0x080032dc                TAMPER_IRQHandler
+                0x080032dc                DMA1_Channel4_IRQHandler
+                0x080032dc                USART3_IRQHandler
+                0x080032dc                RTC_IRQHandler
+                0x080032dc                DMA1_Channel7_IRQHandler
+                0x080032dc                CAN1_RX1_IRQHandler
+                0x080032dc                TIM4_IRQHandler
+                0x080032dc                DMA1_Channel6_IRQHandler
+                0x080032dc                TIM3_IRQHandler
+                0x080032dc                RCC_IRQHandler
+                0x080032dc                TIM1_TRG_COM_IRQHandler
+                0x080032dc                DMA1_Channel1_IRQHandler
+                0x080032dc                Default_Handler
+                0x080032dc                EXTI15_10_IRQHandler
+                0x080032dc                EXTI9_5_IRQHandler
+                0x080032dc                SPI2_IRQHandler
+                0x080032dc                DMA1_Channel5_IRQHandler
+                0x080032dc                EXTI4_IRQHandler
+                0x080032dc                USB_LP_CAN1_RX0_IRQHandler
+                0x080032dc                USB_HP_CAN1_TX_IRQHandler
+                0x080032dc                DMA1_Channel3_IRQHandler
+                0x080032dc                TIM1_UP_IRQHandler
+                0x080032dc                WWDG_IRQHandler
+                0x080032dc                TIM2_IRQHandler
+                0x080032dc                TIM1_BRK_IRQHandler
+                0x080032dc                EXTI1_IRQHandler
+                0x080032dc                USART2_IRQHandler
+                0x080032dc                I2C2_ER_IRQHandler
+                0x080032dc                DMA1_Channel2_IRQHandler
+                0x080032dc                CAN1_SCE_IRQHandler
+                0x080032dc                FLASH_IRQHandler
+                0x080032dc                USBWakeUp_IRQHandler
+ .text.memset   0x080032de       0x10 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+                0x080032de                memset
+ *fill*         0x080032ee        0x2 
  .text.__libc_init_array
-                0x080031b8       0x48 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
-                0x080031b8                __libc_init_array
+                0x080032f0       0x48 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+                0x080032f0                __libc_init_array
  *(.glue_7)
- .glue_7        0x08003200        0x0 linker stubs
+ .glue_7        0x08003338        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08003200        0x0 linker stubs
+ .glue_7t       0x08003338        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08003200        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x08003338        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x08003200        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
-                0x08003200                _init
- .init          0x08003204        0x8 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
+ .init          0x08003338        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
+                0x08003338                _init
+ .init          0x0800333c        0x8 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x0800320c        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
-                0x0800320c                _fini
- .fini          0x08003210        0x8 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
-                0x08003218                        . = ALIGN (0x4)
-                0x08003218                        _etext = .
+ .fini          0x08003344        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
+                0x08003344                _fini
+ .fini          0x08003348        0x8 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
+                0x08003350                        . = ALIGN (0x4)
+                0x08003350                        _etext = .
 
-.vfp11_veneer   0x08003218        0x0
- .vfp11_veneer  0x08003218        0x0 linker stubs
+.vfp11_veneer   0x08003350        0x0
+ .vfp11_veneer  0x08003350        0x0 linker stubs
 
-.v4_bx          0x08003218        0x0
- .v4_bx         0x08003218        0x0 linker stubs
+.v4_bx          0x08003350        0x0
+ .v4_bx         0x08003350        0x0 linker stubs
 
-.iplt           0x08003218        0x0
- .iplt          0x08003218        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x08003350        0x0
+ .iplt          0x08003350        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x08003218       0x38
-                0x08003218                        . = ALIGN (0x4)
+.rodata         0x08003350       0x34
+                0x08003350                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08003218        0x8 build/main.o
+ .rodata        0x08003350        0x8 build/main.o
  *(.rodata*)
- .rodata.main.str1.4
-                0x08003220        0x4 build/main.o
  .rodata.aPredivFactorTable.0
-                0x08003224        0x2 build/stm32f1xx_hal_rcc.o
- *fill*         0x08003226        0x2 
+                0x08003358        0x2 build/stm32f1xx_hal_rcc.o
+ *fill*         0x0800335a        0x2 
  .rodata.aPLLMULFactorTable.1
-                0x08003228       0x10 build/stm32f1xx_hal_rcc.o
+                0x0800335c       0x10 build/stm32f1xx_hal_rcc.o
  .rodata.APBPrescTable
-                0x08003238        0x8 build/system_stm32f1xx.o
-                0x08003238                APBPrescTable
+                0x0800336c        0x8 build/system_stm32f1xx.o
+                0x0800336c                APBPrescTable
  .rodata.AHBPrescTable
-                0x08003240       0x10 build/system_stm32f1xx.o
-                0x08003240                AHBPrescTable
-                0x08003250                        . = ALIGN (0x4)
+                0x08003374       0x10 build/system_stm32f1xx.o
+                0x08003374                AHBPrescTable
+                0x08003384                        . = ALIGN (0x4)
 
-.rel.dyn        0x08003250        0x0
- .rel.iplt      0x08003250        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x08003384        0x0
+ .rel.iplt      0x08003384        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08003250        0x0
-                0x08003250                        __exidx_start = .
+.ARM            0x08003384        0x0
+                0x08003384                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08003250                        __exidx_end = .
+                0x08003384                        __exidx_end = .
 
-.preinit_array  0x08003250        0x0
-                0x08003250                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08003384        0x0
+                0x08003384                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08003250                        PROVIDE (__preinit_array_end = .)
+                0x08003384                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x08003250        0x4
-                0x08003250                        PROVIDE (__init_array_start = .)
+.init_array     0x08003384        0x4
+                0x08003384                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08003250        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
-                0x08003254                        PROVIDE (__init_array_end = .)
+ .init_array    0x08003384        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+                0x08003388                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x08003254        0x4
+.fini_array     0x08003388        0x4
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08003254        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x08003388        0x4 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08003258                        _sidata = LOADADDR (.data)
+                0x0800338c                        _sidata = LOADADDR (.data)
 
-.data           0x20000000        0xc load address 0x08003258
+.data           0x20000000        0xc load address 0x0800338c
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -1408,11 +1489,11 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
                 0x2000000c                        . = ALIGN (0x4)
                 0x2000000c                        _edata = .
 
-.igot.plt       0x2000000c        0x0 load address 0x08003264
+.igot.plt       0x2000000c        0x0 load address 0x08003398
  .igot.plt      0x2000000c        0x0 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
                 0x2000000c                        . = ALIGN (0x4)
 
-.bss            0x2000000c       0xc4 load address 0x08003264
+.bss            0x2000000c       0xc4 load address 0x08003398
                 0x2000000c                        _sbss = .
                 0x2000000c                        __bss_start__ = _sbss
  *(.bss)
@@ -1431,7 +1512,7 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
                 0x200000d0                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x200000d0      0x600 load address 0x08003264
+                0x200000d0      0x600 load address 0x08003398
                 0x200000d0                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 0x200000d0                        PROVIDE (_end = .)
@@ -1470,33 +1551,35 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .ARM.attributes
                 0x0000012b       0x2d build/stm32f1xx_hal_msp.o
  .ARM.attributes
-                0x00000158       0x2d build/stm32f1xx_hal_i2c.o
+                0x00000158       0x2d build/sysconfig.o
  .ARM.attributes
-                0x00000185       0x2d build/stm32f1xx_hal.o
+                0x00000185       0x2d build/stm32f1xx_hal_i2c.o
  .ARM.attributes
-                0x000001b2       0x2d build/stm32f1xx_hal_rcc.o
+                0x000001b2       0x2d build/stm32f1xx_hal.o
  .ARM.attributes
-                0x000001df       0x2d build/stm32f1xx_hal_gpio.o
+                0x000001df       0x2d build/stm32f1xx_hal_rcc.o
  .ARM.attributes
-                0x0000020c       0x2d build/stm32f1xx_hal_dma.o
+                0x0000020c       0x2d build/stm32f1xx_hal_gpio.o
  .ARM.attributes
-                0x00000239       0x2d build/stm32f1xx_hal_cortex.o
+                0x00000239       0x2d build/stm32f1xx_hal_dma.o
  .ARM.attributes
-                0x00000266       0x2d build/stm32f1xx_hal_uart.o
+                0x00000266       0x2d build/stm32f1xx_hal_cortex.o
  .ARM.attributes
-                0x00000293       0x2d build/system_stm32f1xx.o
+                0x00000293       0x2d build/stm32f1xx_hal_uart.o
  .ARM.attributes
-                0x000002c0       0x2d build/mpu6050.o
+                0x000002c0       0x2d build/system_stm32f1xx.o
  .ARM.attributes
-                0x000002ed       0x2d build/mpu6050_i2c.o
+                0x000002ed       0x2d build/mpu6050.o
  .ARM.attributes
-                0x0000031a       0x21 build/startup_stm32f103xb.o
+                0x0000031a       0x2d build/mpu6050_i2c.o
  .ARM.attributes
-                0x0000033b       0x2d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+                0x00000347       0x21 build/startup_stm32f103xb.o
  .ARM.attributes
-                0x00000368       0x2d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+                0x00000368       0x2d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
  .ARM.attributes
-                0x00000395       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
+                0x00000395       0x2d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .ARM.attributes
+                0x000003c2       0x1d C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 build/main.o
@@ -1506,6 +1589,7 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .comment       0x00000043       0x44 build/usart.o
  .comment       0x00000043       0x44 build/stm32f1xx_it.o
  .comment       0x00000043       0x44 build/stm32f1xx_hal_msp.o
+ .comment       0x00000043       0x44 build/sysconfig.o
  .comment       0x00000043       0x44 build/stm32f1xx_hal_i2c.o
  .comment       0x00000043       0x44 build/stm32f1xx_hal.o
  .comment       0x00000043       0x44 build/stm32f1xx_hal_rcc.o
@@ -1517,51 +1601,54 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .comment       0x00000043       0x44 build/mpu6050.o
  .comment       0x00000043       0x44 build/mpu6050_i2c.o
 
-.debug_info     0x00000000     0xe573
- .debug_info    0x00000000      0x61e build/main.o
- .debug_info    0x0000061e      0x398 build/gpio.o
- .debug_info    0x000009b6      0xd59 build/i2c.o
- .debug_info    0x0000170f      0xb26 build/usart.o
- .debug_info    0x00002235      0xa6d build/stm32f1xx_it.o
- .debug_info    0x00002ca2      0x238 build/stm32f1xx_hal_msp.o
- .debug_info    0x00002eda     0x3cdf build/stm32f1xx_hal_i2c.o
- .debug_info    0x00006bb9      0x880 build/stm32f1xx_hal.o
- .debug_info    0x00007439      0xb10 build/stm32f1xx_hal_rcc.o
- .debug_info    0x00007f49      0x6d7 build/stm32f1xx_hal_gpio.o
- .debug_info    0x00008620      0x8bd build/stm32f1xx_hal_dma.o
- .debug_info    0x00008edd      0xe13 build/stm32f1xx_hal_cortex.o
- .debug_info    0x00009cf0     0x42de build/stm32f1xx_hal_uart.o
- .debug_info    0x0000dfce      0x26e build/system_stm32f1xx.o
- .debug_info    0x0000e23c      0x116 build/mpu6050.o
- .debug_info    0x0000e352      0x1f1 build/mpu6050_i2c.o
- .debug_info    0x0000e543       0x30 build/startup_stm32f103xb.o
+.debug_info     0x00000000     0xf04f
+ .debug_info    0x00000000      0x516 build/main.o
+ .debug_info    0x00000516      0x398 build/gpio.o
+ .debug_info    0x000008ae      0xd59 build/i2c.o
+ .debug_info    0x00001607      0xb26 build/usart.o
+ .debug_info    0x0000212d      0xa6d build/stm32f1xx_it.o
+ .debug_info    0x00002b9a      0x238 build/stm32f1xx_hal_msp.o
+ .debug_info    0x00002dd2      0x2ec build/sysconfig.o
+ .debug_info    0x000030be     0x3cdf build/stm32f1xx_hal_i2c.o
+ .debug_info    0x00006d9d      0x880 build/stm32f1xx_hal.o
+ .debug_info    0x0000761d      0xb10 build/stm32f1xx_hal_rcc.o
+ .debug_info    0x0000812d      0x6d7 build/stm32f1xx_hal_gpio.o
+ .debug_info    0x00008804      0x8bd build/stm32f1xx_hal_dma.o
+ .debug_info    0x000090c1      0xe13 build/stm32f1xx_hal_cortex.o
+ .debug_info    0x00009ed4     0x42de build/stm32f1xx_hal_uart.o
+ .debug_info    0x0000e1b2      0x26e build/system_stm32f1xx.o
+ .debug_info    0x0000e420      0xa0e build/mpu6050.o
+ .debug_info    0x0000ee2e      0x1f1 build/mpu6050_i2c.o
+ .debug_info    0x0000f01f       0x30 build/startup_stm32f103xb.o
 
-.debug_abbrev   0x00000000     0x2197
- .debug_abbrev  0x00000000      0x27f build/main.o
- .debug_abbrev  0x0000027f      0x14e build/gpio.o
- .debug_abbrev  0x000003cd      0x258 build/i2c.o
- .debug_abbrev  0x00000625      0x21b build/usart.o
- .debug_abbrev  0x00000840      0x172 build/stm32f1xx_it.o
- .debug_abbrev  0x000009b2       0xe7 build/stm32f1xx_hal_msp.o
- .debug_abbrev  0x00000a99      0x31e build/stm32f1xx_hal_i2c.o
- .debug_abbrev  0x00000db7      0x232 build/stm32f1xx_hal.o
- .debug_abbrev  0x00000fe9      0x2d6 build/stm32f1xx_hal_rcc.o
- .debug_abbrev  0x000012bf      0x222 build/stm32f1xx_hal_gpio.o
- .debug_abbrev  0x000014e1      0x261 build/stm32f1xx_hal_dma.o
- .debug_abbrev  0x00001742      0x3aa build/stm32f1xx_hal_cortex.o
- .debug_abbrev  0x00001aec      0x35f build/stm32f1xx_hal_uart.o
- .debug_abbrev  0x00001e4b      0x140 build/system_stm32f1xx.o
- .debug_abbrev  0x00001f8b       0xca build/mpu6050.o
- .debug_abbrev  0x00002055      0x125 build/mpu6050_i2c.o
- .debug_abbrev  0x0000217a       0x1d build/startup_stm32f103xb.o
+.debug_abbrev   0x00000000     0x236e
+ .debug_abbrev  0x00000000      0x244 build/main.o
+ .debug_abbrev  0x00000244      0x14e build/gpio.o
+ .debug_abbrev  0x00000392      0x258 build/i2c.o
+ .debug_abbrev  0x000005ea      0x21b build/usart.o
+ .debug_abbrev  0x00000805      0x172 build/stm32f1xx_it.o
+ .debug_abbrev  0x00000977       0xe7 build/stm32f1xx_hal_msp.o
+ .debug_abbrev  0x00000a5e      0x134 build/sysconfig.o
+ .debug_abbrev  0x00000b92      0x31e build/stm32f1xx_hal_i2c.o
+ .debug_abbrev  0x00000eb0      0x232 build/stm32f1xx_hal.o
+ .debug_abbrev  0x000010e2      0x2d6 build/stm32f1xx_hal_rcc.o
+ .debug_abbrev  0x000013b8      0x222 build/stm32f1xx_hal_gpio.o
+ .debug_abbrev  0x000015da      0x261 build/stm32f1xx_hal_dma.o
+ .debug_abbrev  0x0000183b      0x3aa build/stm32f1xx_hal_cortex.o
+ .debug_abbrev  0x00001be5      0x35f build/stm32f1xx_hal_uart.o
+ .debug_abbrev  0x00001f44      0x140 build/system_stm32f1xx.o
+ .debug_abbrev  0x00002084      0x1a8 build/mpu6050.o
+ .debug_abbrev  0x0000222c      0x125 build/mpu6050_i2c.o
+ .debug_abbrev  0x00002351       0x1d build/startup_stm32f103xb.o
 
-.debug_loc      0x00000000     0xc23b
- .debug_loc     0x00000000       0xca build/main.o
- .debug_loc     0x000000ca       0x38 build/gpio.o
- .debug_loc     0x00000102      0x23b build/i2c.o
- .debug_loc     0x0000033d      0x108 build/usart.o
- .debug_loc     0x00000445       0x80 build/stm32f1xx_it.o
- .debug_loc     0x000004c5       0x41 build/stm32f1xx_hal_msp.o
+.debug_loc      0x00000000     0xc8a9
+ .debug_loc     0x00000000       0x84 build/main.o
+ .debug_loc     0x00000084       0x38 build/gpio.o
+ .debug_loc     0x000000bc      0x23b build/i2c.o
+ .debug_loc     0x000002f7      0x108 build/usart.o
+ .debug_loc     0x000003ff       0x80 build/stm32f1xx_it.o
+ .debug_loc     0x0000047f       0x41 build/stm32f1xx_hal_msp.o
+ .debug_loc     0x000004c0       0x46 build/sysconfig.o
  .debug_loc     0x00000506     0x4df1 build/stm32f1xx_hal_i2c.o
  .debug_loc     0x000052f7      0x1e1 build/stm32f1xx_hal.o
  .debug_loc     0x000054d8      0x790 build/stm32f1xx_hal_rcc.o
@@ -1570,138 +1657,145 @@ LOAD C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/
  .debug_loc     0x00006a9f      0x782 build/stm32f1xx_hal_cortex.o
  .debug_loc     0x00007221     0x4d32 build/stm32f1xx_hal_uart.o
  .debug_loc     0x0000bf53       0xff build/system_stm32f1xx.o
- .debug_loc     0x0000c052       0x6a build/mpu6050.o
- .debug_loc     0x0000c0bc      0x17f build/mpu6050_i2c.o
+ .debug_loc     0x0000c052      0x6d8 build/mpu6050.o
+ .debug_loc     0x0000c72a      0x17f build/mpu6050_i2c.o
 
-.debug_aranges  0x00000000      0x9c0
+.debug_aranges  0x00000000      0xa48
  .debug_aranges
-                0x00000000       0x40 build/main.o
+                0x00000000       0x38 build/main.o
  .debug_aranges
-                0x00000040       0x20 build/gpio.o
+                0x00000038       0x20 build/gpio.o
  .debug_aranges
-                0x00000060       0x40 build/i2c.o
+                0x00000058       0x40 build/i2c.o
  .debug_aranges
-                0x000000a0       0x30 build/usart.o
+                0x00000098       0x30 build/usart.o
  .debug_aranges
-                0x000000d0       0x78 build/stm32f1xx_it.o
+                0x000000c8       0x78 build/stm32f1xx_it.o
  .debug_aranges
-                0x00000148       0x20 build/stm32f1xx_hal_msp.o
+                0x00000140       0x20 build/stm32f1xx_hal_msp.o
  .debug_aranges
-                0x00000168      0x2a8 build/stm32f1xx_hal_i2c.o
+                0x00000160       0x20 build/sysconfig.o
  .debug_aranges
-                0x00000410       0xe0 build/stm32f1xx_hal.o
+                0x00000180      0x2a8 build/stm32f1xx_hal_i2c.o
  .debug_aranges
-                0x000004f0       0x90 build/stm32f1xx_hal_rcc.o
+                0x00000428       0xe0 build/stm32f1xx_hal.o
  .debug_aranges
-                0x00000580       0x58 build/stm32f1xx_hal_gpio.o
+                0x00000508       0x90 build/stm32f1xx_hal_rcc.o
  .debug_aranges
-                0x000005d8       0x80 build/stm32f1xx_hal_dma.o
+                0x00000598       0x58 build/stm32f1xx_hal_gpio.o
  .debug_aranges
-                0x00000658       0xc0 build/stm32f1xx_hal_cortex.o
+                0x000005f0       0x80 build/stm32f1xx_hal_dma.o
  .debug_aranges
-                0x00000718      0x208 build/stm32f1xx_hal_uart.o
+                0x00000670       0xc0 build/stm32f1xx_hal_cortex.o
  .debug_aranges
-                0x00000920       0x28 build/system_stm32f1xx.o
+                0x00000730      0x208 build/stm32f1xx_hal_uart.o
  .debug_aranges
-                0x00000948       0x20 build/mpu6050.o
+                0x00000938       0x28 build/system_stm32f1xx.o
  .debug_aranges
-                0x00000968       0x30 build/mpu6050_i2c.o
+                0x00000960       0x90 build/mpu6050.o
  .debug_aranges
-                0x00000998       0x28 build/startup_stm32f103xb.o
+                0x000009f0       0x30 build/mpu6050_i2c.o
+ .debug_aranges
+                0x00000a20       0x28 build/startup_stm32f103xb.o
 
-.debug_ranges   0x00000000      0x908
- .debug_ranges  0x00000000       0x30 build/main.o
- .debug_ranges  0x00000030       0x10 build/gpio.o
- .debug_ranges  0x00000040       0x30 build/i2c.o
- .debug_ranges  0x00000070       0x20 build/usart.o
- .debug_ranges  0x00000090       0x68 build/stm32f1xx_it.o
- .debug_ranges  0x000000f8       0x10 build/stm32f1xx_hal_msp.o
- .debug_ranges  0x00000108      0x2b0 build/stm32f1xx_hal_i2c.o
- .debug_ranges  0x000003b8       0xd0 build/stm32f1xx_hal.o
- .debug_ranges  0x00000488       0xa0 build/stm32f1xx_hal_rcc.o
- .debug_ranges  0x00000528       0x48 build/stm32f1xx_hal_gpio.o
- .debug_ranges  0x00000570       0x70 build/stm32f1xx_hal_dma.o
- .debug_ranges  0x000005e0       0xb0 build/stm32f1xx_hal_cortex.o
- .debug_ranges  0x00000690      0x210 build/stm32f1xx_hal_uart.o
- .debug_ranges  0x000008a0       0x18 build/system_stm32f1xx.o
- .debug_ranges  0x000008b8       0x10 build/mpu6050.o
- .debug_ranges  0x000008c8       0x20 build/mpu6050_i2c.o
- .debug_ranges  0x000008e8       0x20 build/startup_stm32f103xb.o
+.debug_ranges   0x00000000      0x980
+ .debug_ranges  0x00000000       0x28 build/main.o
+ .debug_ranges  0x00000028       0x10 build/gpio.o
+ .debug_ranges  0x00000038       0x30 build/i2c.o
+ .debug_ranges  0x00000068       0x20 build/usart.o
+ .debug_ranges  0x00000088       0x68 build/stm32f1xx_it.o
+ .debug_ranges  0x000000f0       0x10 build/stm32f1xx_hal_msp.o
+ .debug_ranges  0x00000100       0x10 build/sysconfig.o
+ .debug_ranges  0x00000110      0x2b0 build/stm32f1xx_hal_i2c.o
+ .debug_ranges  0x000003c0       0xd0 build/stm32f1xx_hal.o
+ .debug_ranges  0x00000490       0xa0 build/stm32f1xx_hal_rcc.o
+ .debug_ranges  0x00000530       0x48 build/stm32f1xx_hal_gpio.o
+ .debug_ranges  0x00000578       0x70 build/stm32f1xx_hal_dma.o
+ .debug_ranges  0x000005e8       0xb0 build/stm32f1xx_hal_cortex.o
+ .debug_ranges  0x00000698      0x210 build/stm32f1xx_hal_uart.o
+ .debug_ranges  0x000008a8       0x18 build/system_stm32f1xx.o
+ .debug_ranges  0x000008c0       0x80 build/mpu6050.o
+ .debug_ranges  0x00000940       0x20 build/mpu6050_i2c.o
+ .debug_ranges  0x00000960       0x20 build/startup_stm32f103xb.o
 
-.debug_line     0x00000000     0xdb31
- .debug_line    0x00000000      0x3e2 build/main.o
- .debug_line    0x000003e2      0x226 build/gpio.o
- .debug_line    0x00000608      0x378 build/i2c.o
- .debug_line    0x00000980      0x342 build/usart.o
- .debug_line    0x00000cc2      0x36c build/stm32f1xx_it.o
- .debug_line    0x0000102e      0x1b1 build/stm32f1xx_hal_msp.o
- .debug_line    0x000011df     0x56d3 build/stm32f1xx_hal_i2c.o
- .debug_line    0x000068b2      0x568 build/stm32f1xx_hal.o
- .debug_line    0x00006e1a      0xc50 build/stm32f1xx_hal_rcc.o
- .debug_line    0x00007a6a      0x5e5 build/stm32f1xx_hal_gpio.o
- .debug_line    0x0000804f      0xa94 build/stm32f1xx_hal_dma.o
- .debug_line    0x00008ae3      0x70b build/stm32f1xx_hal_cortex.o
- .debug_line    0x000091ee     0x42da build/stm32f1xx_hal_uart.o
- .debug_line    0x0000d4c8      0x27b build/system_stm32f1xx.o
- .debug_line    0x0000d743      0x18e build/mpu6050.o
- .debug_line    0x0000d8d1      0x1ec build/mpu6050_i2c.o
- .debug_line    0x0000dabd       0x74 build/startup_stm32f103xb.o
+.debug_line     0x00000000     0xdf96
+ .debug_line    0x00000000      0x309 build/main.o
+ .debug_line    0x00000309      0x226 build/gpio.o
+ .debug_line    0x0000052f      0x378 build/i2c.o
+ .debug_line    0x000008a7      0x342 build/usart.o
+ .debug_line    0x00000be9      0x36c build/stm32f1xx_it.o
+ .debug_line    0x00000f55      0x1b1 build/stm32f1xx_hal_msp.o
+ .debug_line    0x00001106      0x26e build/sysconfig.o
+ .debug_line    0x00001374     0x56d3 build/stm32f1xx_hal_i2c.o
+ .debug_line    0x00006a47      0x568 build/stm32f1xx_hal.o
+ .debug_line    0x00006faf      0xc50 build/stm32f1xx_hal_rcc.o
+ .debug_line    0x00007bff      0x5e5 build/stm32f1xx_hal_gpio.o
+ .debug_line    0x000081e4      0xa94 build/stm32f1xx_hal_dma.o
+ .debug_line    0x00008c78      0x70b build/stm32f1xx_hal_cortex.o
+ .debug_line    0x00009383     0x42da build/stm32f1xx_hal_uart.o
+ .debug_line    0x0000d65d      0x27b build/system_stm32f1xx.o
+ .debug_line    0x0000d8d8      0x45e build/mpu6050.o
+ .debug_line    0x0000dd36      0x1ec build/mpu6050_i2c.o
+ .debug_line    0x0000df22       0x74 build/startup_stm32f103xb.o
 
-.debug_str      0x00000000     0x2b0a
- .debug_str     0x00000000      0x401 build/main.o
-                                0x45b (size before relaxing)
- .debug_str     0x00000401       0xc1 build/gpio.o
+.debug_str      0x00000000     0x2d9d
+ .debug_str     0x00000000      0x319 build/main.o
+                                0x379 (size before relaxing)
+ .debug_str     0x00000319       0xc1 build/gpio.o
                                 0x272 (size before relaxing)
- .debug_str     0x000004c2      0x7aa build/i2c.o
+ .debug_str     0x000003da      0x7aa build/i2c.o
                                 0xaae (size before relaxing)
- .debug_str     0x00000c6c      0x220 build/usart.o
+ .debug_str     0x00000b84      0x220 build/usart.o
                                 0x9d4 (size before relaxing)
- .debug_str     0x00000e8c      0x127 build/stm32f1xx_it.o
+ .debug_str     0x00000da4      0x127 build/stm32f1xx_it.o
                                 0x90d (size before relaxing)
- .debug_str     0x00000fb3       0x52 build/stm32f1xx_hal_msp.o
+ .debug_str     0x00000ecb       0x52 build/stm32f1xx_hal_msp.o
                                 0x206 (size before relaxing)
- .debug_str     0x00001005      0x8cf build/stm32f1xx_hal_i2c.o
+ .debug_str     0x00000f1d      0x157 build/sysconfig.o
+                                0x325 (size before relaxing)
+ .debug_str     0x00001074      0x8cf build/stm32f1xx_hal_i2c.o
                                 0xfb1 (size before relaxing)
- .debug_str     0x000018d4      0x2d9 build/stm32f1xx_hal.o
+ .debug_str     0x00001943      0x2d9 build/stm32f1xx_hal.o
                                 0x81a (size before relaxing)
- .debug_str     0x00001bad      0x1ed build/stm32f1xx_hal_rcc.o
+ .debug_str     0x00001c1c      0x1ed build/stm32f1xx_hal_rcc.o
                                 0x617 (size before relaxing)
- .debug_str     0x00001d9a       0xf6 build/stm32f1xx_hal_gpio.o
+ .debug_str     0x00001e09       0xf1 build/stm32f1xx_hal_gpio.o
                                 0x3ec (size before relaxing)
- .debug_str     0x00001e90      0x204 build/stm32f1xx_hal_dma.o
+ .debug_str     0x00001efa      0x204 build/stm32f1xx_hal_dma.o
                                 0x5e9 (size before relaxing)
- .debug_str     0x00002094      0x391 build/stm32f1xx_hal_cortex.o
+ .debug_str     0x000020fe      0x391 build/stm32f1xx_hal_cortex.o
                                 0x8bf (size before relaxing)
- .debug_str     0x00002425      0x5fd build/stm32f1xx_hal_uart.o
+ .debug_str     0x0000248f      0x5fd build/stm32f1xx_hal_uart.o
                                 0xce0 (size before relaxing)
- .debug_str     0x00002a22       0x4a build/system_stm32f1xx.o
+ .debug_str     0x00002a8c       0x4a build/system_stm32f1xx.o
                                 0x23b (size before relaxing)
- .debug_str     0x00002a6c       0x33 build/mpu6050.o
-                                0x1ac (size before relaxing)
- .debug_str     0x00002a9f       0x39 build/mpu6050_i2c.o
+ .debug_str     0x00002ad6      0x272 build/mpu6050.o
+                                0x48a (size before relaxing)
+ .debug_str     0x00002d48       0x23 build/mpu6050_i2c.o
                                 0x1f8 (size before relaxing)
- .debug_str     0x00002ad8       0x32 build/startup_stm32f103xb.o
+ .debug_str     0x00002d6b       0x32 build/startup_stm32f103xb.o
                                  0x77 (size before relaxing)
 
-.debug_frame    0x00000000     0x1a48
- .debug_frame   0x00000000       0x8c build/main.o
- .debug_frame   0x0000008c       0x30 build/gpio.o
- .debug_frame   0x000000bc       0xa0 build/i2c.o
- .debug_frame   0x0000015c       0x64 build/usart.o
- .debug_frame   0x000001c0       0xf0 build/stm32f1xx_it.o
- .debug_frame   0x000002b0       0x28 build/stm32f1xx_hal_msp.o
- .debug_frame   0x000002d8      0x988 build/stm32f1xx_hal_i2c.o
- .debug_frame   0x00000c60      0x1cc build/stm32f1xx_hal.o
- .debug_frame   0x00000e2c      0x184 build/stm32f1xx_hal_rcc.o
- .debug_frame   0x00000fb0       0xe4 build/stm32f1xx_hal_gpio.o
- .debug_frame   0x00001094      0x144 build/stm32f1xx_hal_dma.o
- .debug_frame   0x000011d8      0x19c build/stm32f1xx_hal_cortex.o
- .debug_frame   0x00001374      0x5dc build/stm32f1xx_hal_uart.o
- .debug_frame   0x00001950       0x30 build/system_stm32f1xx.o
- .debug_frame   0x00001980       0x2c build/mpu6050.o
- .debug_frame   0x000019ac       0x50 build/mpu6050_i2c.o
- .debug_frame   0x000019fc       0x20 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
- .debug_frame   0x00001a1c       0x2c C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+.debug_frame    0x00000000     0x1bcc
+ .debug_frame   0x00000000       0x6c build/main.o
+ .debug_frame   0x0000006c       0x30 build/gpio.o
+ .debug_frame   0x0000009c       0xa0 build/i2c.o
+ .debug_frame   0x0000013c       0x64 build/usart.o
+ .debug_frame   0x000001a0       0xf0 build/stm32f1xx_it.o
+ .debug_frame   0x00000290       0x28 build/stm32f1xx_hal_msp.o
+ .debug_frame   0x000002b8       0x30 build/sysconfig.o
+ .debug_frame   0x000002e8      0x988 build/stm32f1xx_hal_i2c.o
+ .debug_frame   0x00000c70      0x1cc build/stm32f1xx_hal.o
+ .debug_frame   0x00000e3c      0x184 build/stm32f1xx_hal_rcc.o
+ .debug_frame   0x00000fc0       0xe4 build/stm32f1xx_hal_gpio.o
+ .debug_frame   0x000010a4      0x144 build/stm32f1xx_hal_dma.o
+ .debug_frame   0x000011e8      0x19c build/stm32f1xx_hal_cortex.o
+ .debug_frame   0x00001384      0x5dc build/stm32f1xx_hal_uart.o
+ .debug_frame   0x00001960       0x30 build/system_stm32f1xx.o
+ .debug_frame   0x00001990      0x1a0 build/mpu6050.o
+ .debug_frame   0x00001b30       0x50 build/mpu6050_i2c.o
+ .debug_frame   0x00001b80       0x20 C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x00001ba0       0x2c C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
 
 Cross Reference Table
 
@@ -1731,6 +1825,7 @@ EXTI3_IRQHandler                                  build/startup_stm32f103xb.o
 EXTI4_IRQHandler                                  build/startup_stm32f103xb.o
 EXTI9_5_IRQHandler                                build/startup_stm32f103xb.o
 Error_Handler                                     build/main.o
+                                                  build/sysconfig.o
                                                   build/usart.o
                                                   build/i2c.o
 FLASH_IRQHandler                                  build/startup_stm32f103xb.o
@@ -1938,7 +2033,7 @@ HAL_RCCEx_GetPeriphCLKFreq                        build/stm32f1xx_hal_rcc_ex.o
 HAL_RCCEx_PeriphCLKConfig                         build/stm32f1xx_hal_rcc_ex.o
 HAL_RCC_CSSCallback                               build/stm32f1xx_hal_rcc.o
 HAL_RCC_ClockConfig                               build/stm32f1xx_hal_rcc.o
-                                                  build/main.o
+                                                  build/sysconfig.o
 HAL_RCC_DeInit                                    build/stm32f1xx_hal_rcc.o
 HAL_RCC_DisableCSS                                build/stm32f1xx_hal_rcc.o
 HAL_RCC_EnableCSS                                 build/stm32f1xx_hal_rcc.o
@@ -1955,7 +2050,7 @@ HAL_RCC_GetSysClockFreq                           build/stm32f1xx_hal_rcc.o
 HAL_RCC_MCOConfig                                 build/stm32f1xx_hal_rcc.o
 HAL_RCC_NMI_IRQHandler                            build/stm32f1xx_hal_rcc.o
 HAL_RCC_OscConfig                                 build/stm32f1xx_hal_rcc.o
-                                                  build/main.o
+                                                  build/sysconfig.o
 HAL_ResumeTick                                    build/stm32f1xx_hal.o
 HAL_SYSTICK_CLKSourceConfig                       build/stm32f1xx_hal_cortex.o
 HAL_SYSTICK_Callback                              build/stm32f1xx_hal_cortex.o
@@ -2024,6 +2119,8 @@ SPI1_IRQHandler                                   build/startup_stm32f103xb.o
 SPI2_IRQHandler                                   build/startup_stm32f103xb.o
 SVC_Handler                                       build/stm32f1xx_it.o
 SysTick_Handler                                   build/stm32f1xx_it.o
+SystemClock_Config                                build/sysconfig.o
+                                                  build/main.o
 SystemCoreClock                                   build/system_stm32f1xx.o
                                                   build/stm32f1xx_hal_rcc.o
                                                   build/stm32f1xx_hal.o
@@ -2050,15 +2147,54 @@ USB_LP_CAN1_RX0_IRQHandler                        build/startup_stm32f103xb.o
 UsageFault_Handler                                build/stm32f1xx_it.o
 WWDG_IRQHandler                                   build/startup_stm32f103xb.o
 _Min_Stack_Size                                   build/sysmem.o
+__adddf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__addsf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__aeabi_d2f                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+                                                  build/mpu6050.o
+__aeabi_dadd                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                                                  build/mpu6050.o
+__aeabi_drsub                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_dsub                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_f2d                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                                                  build/mpu6050.o
+__aeabi_fadd                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                                                  build/mpu6050.o
+__aeabi_fdiv                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+                                                  build/mpu6050.o
+__aeabi_fmul                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+                                                  C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+                                                  build/mpu6050.o
+__aeabi_frsub                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__aeabi_fsub                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__aeabi_i2d                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_i2f                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                                                  build/mpu6050.o
+__aeabi_l2d                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_l2f                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__aeabi_ui2d                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_ui2f                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                                                  build/mpu6050.o
+__aeabi_ul2d                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__aeabi_ul2f                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
 __bss_end__                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 __bss_start__                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 __call_exitprocs                                  C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
 __deregister_frame_info                           C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+__divsf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
 __dso_handle                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
 __env                                             build/syscalls.o
 __errno                                           C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
                                                   build/syscalls.o
                                                   build/sysmem.o
+__extendsfdf2                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__floatdidf                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__floatdisf                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__floatsidf                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__floatsisf                                       C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__floatundidf                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__floatundisf                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+__floatunsidf                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__floatunsisf                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
 __fp_lock_all                                     C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
 __fp_unlock_all                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
 __init_array_end                                  C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
@@ -2088,6 +2224,8 @@ __malloc_sbrk_start                               C:/ST/STM32CubeCLT_1.17.0/GNU-
 __malloc_unlock                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+__mulsf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
+                                                  C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
 __preinit_array_end                               C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
 __preinit_array_start                             C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
 __register_frame_info                             C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
@@ -2128,8 +2266,11 @@ __sseek                                           C:/ST/STM32CubeCLT_1.17.0/GNU-
 __stack                                           C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 __stdio_exit_handler                              C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+__subdf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
+__subsf3                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
 __swrite                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+__truncdfsf2                                      C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
 _close                                            build/syscalls.o
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
 _close_r                                          C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
@@ -2219,14 +2360,31 @@ main                                              build/main.o
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 memset                                            C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
-                                                  build/main.o
+                                                  build/sysconfig.o
                                                   C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
-mpu6050_get_chip_id                               build/mpu6050.o
+mpu6050_cfg_accel                                 build/mpu6050.o
+mpu6050_cfg_en_fifo                               build/mpu6050.o
+mpu6050_cfg_gyro                                  build/mpu6050.o
+mpu6050_cfg_int_mode                              build/mpu6050.o
+mpu6050_cfg_int_pin                               build/mpu6050.o
+mpu6050_cfg_pwr_mng                               build/mpu6050.o
                                                   build/main.o
+mpu6050_cfg_set_config                            build/mpu6050.o
+mpu6050_cfg_set_mot_thr                           build/mpu6050.o
+mpu6050_cfg_set_smprt_div                         build/mpu6050.o
+mpu6050_get_accel_raw                             build/mpu6050.o
+                                                  build/main.o
+mpu6050_get_chip_id                               build/mpu6050.o
+mpu6050_get_data                                  build/mpu6050.o
+mpu6050_get_int_sts                               build/mpu6050.o
+mpu6050_get_temp                                  build/mpu6050.o
 mpu6050_i2c_read_reg                              build/mpu6050_i2c.o
                                                   build/mpu6050.o
 mpu6050_i2c_write_reg                             build/mpu6050_i2c.o
+                                                  build/mpu6050.o
 mpu6050_init                                      build/main.o
+mpu6050_init_reg                                  build/mpu6050.o
+                                                  build/main.o
 mpu6050_set_i2c_spec                              build/mpu6050_i2c.o
                                                   build/main.o
 pFlash                                            build/stm32f1xx_hal_flash.o

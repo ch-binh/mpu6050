@@ -42,6 +42,7 @@ Src/i2c.c \
 Src/usart.c \
 Src/stm32f1xx_it.c \
 Src/stm32f1xx_hal_msp.c \
+Src/sysconfig.c	\
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c \

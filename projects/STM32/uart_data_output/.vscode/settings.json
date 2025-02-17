@@ -9,7 +9,8 @@
         "board_config.h": "c",
         "mpu6050_i2c.h": "c",
         "mpu6050_registers.h": "c",
-        "mpu6050.h": "c"
+        "mpu6050.h": "c",
+        "type_traits": "c"
     },
     "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
     "C_Cpp.default.includePath": [
