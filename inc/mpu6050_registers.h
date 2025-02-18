@@ -57,6 +57,13 @@ mechanical and electrical portions of the gyroscope and the accelerometer
 #define REG_TEMP_MSB 0x41
 #define REG_TEMP_LSB 0x42
 
+#define REG_GYRO_XOUT_MSB 0x43
+#define REG_GYRO_XOUT_LSB 0x44
+#define REG_GYRO_YOUT_MSB 0x45
+#define REG_GYRO_YOUT_LSB 0x46
+#define REG_GYRO_ZOUT_MSB 0x47
+#define REG_GYRO_ZOUT_LSB 0x48
+
 #define REG_PWR_MGMT_1 0x6B
 #define REG_PWR_MGMT_2 0x69
 

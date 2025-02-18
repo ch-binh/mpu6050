@@ -2,6 +2,8 @@
 #include "../inc/mpu6050_registers.h"
 #include "../inc/mpu6050_i2c.h"
 
+
+static mpu_cfg_t sys_cfg;
 /*======================== HANDY FUNCTIONS ===========================*/
 
 void mpu6050_init_reg(void)
@@ -20,27 +22,40 @@ void mpu6050_init_reg(void)
 #endif
 }
 
-int mpu6050_get_data(mpu_data_t *data)
+int mpu6050_get_raw_data(mpu_rawdata_t *r_data)
 {
-    uint8_t rawData[14]; // 14 bytes (6 accel, 2 temp, 6 gyro)
-
-    uint8_t size = 1;
-    uint8_t values[size];
-
-    mpu6050_i2c_read_reg(REG_INT_STS, values, size);
-
-    // Convert raw data (Assuming default sensitivity settings)
-    data->accel.x = (int16_t)(rawData[0] << 8 | rawData[1]) / 16384.0f; // ±2g range
-    data->accel.y = (int16_t)(rawData[2] << 8 | rawData[3]) / 16384.0f;
-    data->accel.z = (int16_t)(rawData[4] << 8 | rawData[5]) / 16384.0f;
-
-    data->tempt = (int16_t)(rawData[6] << 8 | rawData[7]) / 340.0f + 36.53f;
-
-    data->gyro.x = (int16_t)(rawData[8] << 8 | rawData[9]) / 131.0f; // ±250°/s range
-    data->gyro.y = (int16_t)(rawData[10] << 8 | rawData[11]) / 131.0f;
-    data->gyro.z = (int16_t)(rawData[12] << 8 | rawData[13]) / 131.0f;
+    mpu6050_get_accel_raw(&r_data);
+    mpu6050_get_temp_raw(&r_data);
+    mpu6050_get_gyro_raw(&r_data);
 
     return 0;
+}
+
+int mpu6050_raw_data_to_readable_data(mpu_data_t *data, mpu_rawdata_t *r_data)
+{
+    if (!data || !r_data)
+    {
+        return -1; // Return error if NULL pointers are passed
+    }
+
+    mpu_cfg_t mpu_cfg;
+
+    mpu6050_get_fs(&mpu_cfg);
+
+    // Convert acceleration raw values to g (gravity)
+    data->accel.x = r_data->accel_raw.x / mpu_cfg.fs_range.accel;
+    data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+    data->accel.z = r_data->accel_raw.z / mpu_cfg.fs_range.accel;
+
+    // Convert gyroscope raw values to degrees per second (°/s)
+    data->gyro.x = r_data->gyro_raw.x / mpu_cfg.fs_range.gyro;
+    data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+    data->gyro.z = r_data->gyro_raw.z / mpu_cfg.fs_range.gyro;
+
+    // Convert temperature raw value to degrees Celsius
+    data->tempt = (r_data->tempt_raw / 340.0f) + 36.53f;
+
+    return 0; // Success
 }
 
 /*======================== SETUP FUNCTIONS ===========================*/
@@ -121,6 +136,34 @@ void mpu6050_cfg_pwr_mng(uint8_t mode)
 }
 /*======================== GET DATA FUNCTIONS ===========================*/
 
+int mpu6050_get_fs(mpu_cfg_t *mpu_cfg)
+{
+    uint8_t size = 2;
+    uint8_t val[size];
+
+    mpu6050_i2c_read_reg(REG_GYRO_CFG, val, size);
+
+    const uint8_t gyro_index = (val[0] & 0b00011000) >> 3;
+    const uint8_t accel_index = (val[1] & 0b00011000) >> 3;
+
+    const float gyro_sensitivities[] = {
+        GYRO_SENS_250,
+        GYRO_SENS_500,
+        GYRO_SENS_1000,
+        GYRO_SENS_2000};
+
+    const float accel_sensitivities[] = {
+        ACCEL_SENS_2G,
+        ACCEL_SENS_4G,
+        ACCEL_SENS_8G,
+        ACCEL_SENS_16G};
+
+    mpu_cfg->fs_range.gyro = gyro_sensitivities[gyro_index];
+    mpu_cfg->fs_range.accel = accel_sensitivities[accel_index];
+
+    return 0;
+}
+
 /* REG 0x3A */
 int mpu6050_get_int_sts(void)
 {
@@ -131,30 +174,41 @@ int mpu6050_get_int_sts(void)
     return val[1];
 }
 
-/* REG 0x3B to 0x48 */
-float mpu6050_get_temp(void)
-{
-    uint8_t size = 1;
-    uint8_t val[size];
-    uint16_t temp;
-    mpu6050_i2c_read_reg(REG_TEMP_MSB, val, size);
-    temp |= val[1] << 8;
-    mpu6050_i2c_read_reg(REG_TEMP_LSB, val, size);
-    temp |= val[1];
-
-    return ((float)temp) / 340 + 36.53;
-}
-
 uint8_t mpu6050_get_accel_raw(mpu_rawdata_t *r_data)
 {
     uint8_t size = 6;
-    uint8_t rawData[size];                                   // Buffer for all 6 accelerometer bytes
-    mpu6050_i2c_read_reg(REG_ACCEL_XOUT_MSB, rawData, size); // Read all at once
+    uint8_t val[size];                                   // Buffer for all 6 accelerometer bytes
+    mpu6050_i2c_read_reg(REG_ACCEL_XOUT_MSB, val, size); // Read all at once
 
     // Convert raw data to 16-bit signed values
-    r_data->accel_raw.x = (int16_t)((rawData[0] << 8) | rawData[1]);
-    r_data->accel_raw.y = (int16_t)((rawData[2] << 8) | rawData[3]);
-    r_data->accel_raw.z = (int16_t)((rawData[4] << 8) | rawData[5]);
+    r_data->accel_raw.x = (int16_t)((val[0] << 8) | val[1]);
+    r_data->accel_raw.y = (int16_t)((val[2] << 8) | val[3]);
+    r_data->accel_raw.z = (int16_t)((val[4] << 8) | val[5]);
+
+    return 0;
+}
+/* REG 0x41 to 0x42 */
+uint8_t mpu6050_get_temp_raw(mpu_rawdata_t *r_data)
+{
+    uint8_t size = 2;
+    uint8_t val[size];
+    mpu6050_i2c_read_reg(REG_TEMP_MSB, val, size);
+    r_data->tempt_raw = val[0] << 8 | val[1];
+    //((float)temp) / 340 + 36.53
+    return 0;
+}
+
+/* REG 0x43 to 0x48*/
+uint8_t mpu6050_get_gyro_raw(mpu_rawdata_t *r_data)
+{
+    uint8_t size = 6;
+    uint8_t val[size];                                  // Buffer for all 6 accelerometer bytes
+    mpu6050_i2c_read_reg(REG_GYRO_XOUT_MSB, val, size); // Read all at once
+
+    // Convert raw data to 16-bit signed values
+    r_data->gyro_raw.x = (int16_t)((val[0] << 8) | val[1]);
+    r_data->gyro_raw.y = (int16_t)((val[2] << 8) | val[3]);
+    r_data->gyro_raw.z = (int16_t)((val[4] << 8) | val[5]);
 
     return 0;
 }

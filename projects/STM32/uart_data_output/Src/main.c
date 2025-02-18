@@ -9,7 +9,7 @@
 #include "../../../../inc/mpu6050.h"
 
 /* Init MPU6050 for STM32 mcu related */
-void mpu6050_init(void)
+void mpu6050_com_init(void)
 {
   mpu6050_i2c_ops_t ops = {
       .i2c_write = stm32_i2c_write_reg,
@@ -27,7 +27,7 @@ static void peripheral_init(void)
   MX_USART1_UART_Init();
 
   /* Application related*/
-  mpu6050_init();
+  mpu6050_com_init();
   mpu6050_init_reg();
   mpu6050_cfg_pwr_mng(0x00);
 }
@@ -36,14 +36,16 @@ int main(void)
 {
   peripheral_init();
 
+  mpu_cfg_t mpu_cfg;
   mpu_rawdata_t r_data;
+  mpu_data_t data;
+
 
   while (1)
   {
     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
-    if (mpu6050_get_accel_raw(&r_data) == 0)
-    {
-    }
+    mpu6050_get_accel_raw(&r_data);
+    mpu6050_raw_data_to_readable_data(&data, &r_data);
 
     HAL_Delay(LED_BLINK_DELAY);
   }

@@ -29,46 +29,70 @@
 #define DEF_DIS_I2C_MST_INT DEFAULT // off
 #define DEF_DIS_DATA_RDY DEFAULT    // off
 
-typedef struct {
-    struct {
-        int16_t x;
-        int16_t y;
-        int16_t z;
-    } accel_raw;  // Raw accelerometer data (16-bit ADC value)
+#define ACCEL_SENS_2G 16384.0f // LSB/g for ±2g range
+#define ACCEL_SENS_4G 8192.0f
+#define ACCEL_SENS_8G 4096.0f
+#define ACCEL_SENS_16G 2048.0f
 
-    struct {
+#define GYRO_SENS_250 131.0f // LSB/(°/s) for ±250°/s range
+#define GYRO_SENS_500 65.5f
+#define GYRO_SENS_1000 32.8f
+#define GYRO_SENS_2000 16.4f
+
+typedef struct
+{
+    struct
+    {
         int16_t x;
         int16_t y;
         int16_t z;
-    } gyro_raw;   // Raw gyroscope data (16-bit ADC value)
+    } accel_raw; // Raw accelerometer data (16-bit ADC value)
+
+    struct
+    {
+        int16_t x;
+        int16_t y;
+        int16_t z;
+    } gyro_raw; // Raw gyroscope data (16-bit ADC value)
 
     int16_t tempt_raw; // Raw temperature data
 } mpu_rawdata_t;
 
-typedef struct {
-    struct {
+typedef struct
+{
+    struct
+    {
         float x;
         float y;
         float z;
-    } accel;  // Accelerometer data (g)
+    } accel; // Accelerometer data (g)
 
-    struct {
+    struct
+    {
         float x;
         float y;
         float z;
-    } gyro;   // Gyroscope data (°/s)
+    } gyro; // Gyroscope data (°/s)
 
     float tempt; // Temperature data (°C)
 } mpu_data_t;
 
-
-
+typedef struct
+{
+    struct
+    {
+        float accel;
+        float gyro;
+    } fs_range;
+} mpu_cfg_t;
 
 /*======================== HANDY FUNCTIONS ===========================*/
 /**
  * @brief
  */
 void mpu6050_init_reg(void);
+int mpu6050_get_raw_data(mpu_rawdata_t *r_data);
+int mpu6050_raw_data_to_readable_data(mpu_data_t *data, mpu_rawdata_t *r_data);
 /*======================== SETUP FUNCTIONS ===========================*/
 
 /* REG 0x25*/
@@ -101,10 +125,17 @@ void mpu6050_cfg_pwr_mng(uint8_t mode);
 
 /*======================== GET DATA FUNCTIONS ===========================*/
 
+/* REG 0x1B, 0x1C */
+int mpu6050_get_fs(mpu_cfg_t *mpu_cfg);
 /* REG 0x3A */
 int mpu6050_get_int_sts(void);
 /* REG 0x3B to 0x40*/
 uint8_t mpu6050_get_accel_raw(mpu_rawdata_t *r_data);
+/* REG 0x41 to 0x42 */
+uint8_t mpu6050_get_temp_raw(mpu_rawdata_t *r_data);
+/* REG 0x43 to 0x48*/
+uint8_t mpu6050_get_gyro_raw(mpu_rawdata_t *r_data);
+
 /* REG 0x75 */
 int mpu6050_get_chip_id(void);
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
   42 0008 92E80300 		ldm	r2, {r0, r1}
   43 000c 83E80300 		stm	r3, {r0, r1}
   15:Src/main.c    ****       .i2c_write = stm32_i2c_write_reg,
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 2
 
 
   16:Src/main.c    ****       .i2c_read = stm32_i2c_read_reg};
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
   89              	.LVL4:
   27:Src/main.c    ****   MX_USART1_UART_Init();
   90              		.loc 1 27 3 view .LVU10
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 3
 
 
   91 0012 FFF7FEFF 		bl	MX_USART1_UART_Init
@@ -157,90 +157,97 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
  117              		.loc 1 36 1 is_stmt 1 view -0
  118              		.cfi_startproc
  119              		@ Volatile: function does not return.
- 120              		@ args = 0, pretend = 0, frame = 16
+ 120              		@ args = 0, pretend = 0, frame = 48
  121              		@ frame_needed = 0, uses_anonymous_args = 0
  122 0000 00B5     		push	{lr}
  123              	.LCFI4:
  124              		.cfi_def_cfa_offset 4
  125              		.cfi_offset 14, -4
- 126 0002 85B0     		sub	sp, sp, #20
+ 126 0002 8DB0     		sub	sp, sp, #52
  127              	.LCFI5:
- 128              		.cfi_def_cfa_offset 24
+ 128              		.cfi_def_cfa_offset 56
   37:Src/main.c    ****   peripheral_init();
  129              		.loc 1 37 3 view .LVU16
  130 0004 FFF7FEFF 		bl	peripheral_init
  131              	.LVL9:
  132              	.L8:
   38:Src/main.c    **** 
-  39:Src/main.c    ****   mpu_rawdata_t r_data;
- 133              		.loc 1 39 3 view .LVU17
-  40:Src/main.c    **** 
-  41:Src/main.c    ****   while (1)
- 134              		.loc 1 41 3 view .LVU18
-  42:Src/main.c    ****   {
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 4
+  39:Src/main.c    ****   mpu_cfg_t mpu_cfg;
+ 133              		.loc 1 39 3 discriminator 1 view .LVU17
+  40:Src/main.c    ****   mpu_rawdata_t r_data;
+ 134              		.loc 1 40 3 discriminator 1 view .LVU18
+  41:Src/main.c    ****   mpu_data_t data;
+ 135              		.loc 1 41 3 discriminator 1 view .LVU19
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 4
 
 
-  43:Src/main.c    ****     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
- 135              		.loc 1 43 5 view .LVU19
- 136 0008 4FF40051 		mov	r1, #8192
- 137 000c 0548     		ldr	r0, .L10
- 138 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 139              	.LVL10:
-  44:Src/main.c    ****     if (mpu6050_get_accel_raw(&r_data) == 0)
- 140              		.loc 1 44 5 view .LVU20
- 141              		.loc 1 44 9 is_stmt 0 view .LVU21
- 142 0012 6846     		mov	r0, sp
- 143 0014 FFF7FEFF 		bl	mpu6050_get_accel_raw
- 144              	.LVL11:
-  45:Src/main.c    ****     {
-  46:Src/main.c    ****     }
- 145              		.loc 1 46 5 is_stmt 1 view .LVU22
-  47:Src/main.c    **** 
-  48:Src/main.c    ****     HAL_Delay(LED_BLINK_DELAY);
- 146              		.loc 1 48 5 view .LVU23
- 147 0018 4FF47A70 		mov	r0, #1000
- 148 001c FFF7FEFF 		bl	HAL_Delay
- 149              	.LVL12:
-  41:Src/main.c    ****   {
- 150              		.loc 1 41 9 view .LVU24
- 151 0020 F2E7     		b	.L8
- 152              	.L11:
- 153 0022 00BF     		.align	2
- 154              	.L10:
- 155 0024 00100140 		.word	1073811456
- 156              		.cfi_endproc
- 157              	.LFE67:
- 159              		.section	.text.Error_Handler,"ax",%progbits
- 160              		.align	1
- 161              		.global	Error_Handler
- 162              		.syntax unified
- 163              		.thumb
- 164              		.thumb_func
- 166              	Error_Handler:
- 167              	.LFB68:
-  49:Src/main.c    ****   }
-  50:Src/main.c    **** }
-  51:Src/main.c    **** 
-  52:Src/main.c    **** void Error_Handler(void)
-  53:Src/main.c    **** {
- 168              		.loc 1 53 1 view -0
- 169              		.cfi_startproc
- 170              		@ Volatile: function does not return.
- 171              		@ args = 0, pretend = 0, frame = 0
- 172              		@ frame_needed = 0, uses_anonymous_args = 0
- 173              		@ link register save eliminated.
-  54:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
-  55:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
-  56:Src/main.c    ****   __disable_irq();
- 174              		.loc 1 56 3 view .LVU26
- 175              	.LBB4:
- 176              	.LBI4:
- 177              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+  42:Src/main.c    **** 
+  43:Src/main.c    **** 
+  44:Src/main.c    ****   while (1)
+ 136              		.loc 1 44 3 discriminator 1 view .LVU20
+  45:Src/main.c    ****   {
+  46:Src/main.c    ****     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
+ 137              		.loc 1 46 5 discriminator 1 view .LVU21
+ 138 0008 4FF40051 		mov	r1, #8192
+ 139 000c 0748     		ldr	r0, .L10
+ 140 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 141              	.LVL10:
+  47:Src/main.c    ****     mpu6050_get_accel_raw(&r_data);
+ 142              		.loc 1 47 5 discriminator 1 view .LVU22
+ 143 0012 08A8     		add	r0, sp, #32
+ 144 0014 FFF7FEFF 		bl	mpu6050_get_accel_raw
+ 145              	.LVL11:
+  48:Src/main.c    ****     mpu6050_raw_data_to_readable_data(&data, &r_data);
+ 146              		.loc 1 48 5 discriminator 1 view .LVU23
+ 147 0018 08A9     		add	r1, sp, #32
+ 148 001a 01A8     		add	r0, sp, #4
+ 149 001c FFF7FEFF 		bl	mpu6050_raw_data_to_readable_data
+ 150              	.LVL12:
+  49:Src/main.c    **** 
+  50:Src/main.c    ****     HAL_Delay(LED_BLINK_DELAY);
+ 151              		.loc 1 50 5 discriminator 1 view .LVU24
+ 152 0020 4FF47A70 		mov	r0, #1000
+ 153 0024 FFF7FEFF 		bl	HAL_Delay
+ 154              	.LVL13:
+  44:Src/main.c    ****   {
+ 155              		.loc 1 44 9 discriminator 1 view .LVU25
+ 156 0028 EEE7     		b	.L8
+ 157              	.L11:
+ 158 002a 00BF     		.align	2
+ 159              	.L10:
+ 160 002c 00100140 		.word	1073811456
+ 161              		.cfi_endproc
+ 162              	.LFE67:
+ 164              		.section	.text.Error_Handler,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	Error_Handler
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	Error_Handler:
+ 172              	.LFB68:
+  51:Src/main.c    ****   }
+  52:Src/main.c    **** }
+  53:Src/main.c    **** 
+  54:Src/main.c    **** void Error_Handler(void)
+  55:Src/main.c    **** {
+ 173              		.loc 1 55 1 view -0
+ 174              		.cfi_startproc
+ 175              		@ Volatile: function does not return.
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              		@ link register save eliminated.
+  56:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 5
+
+
+  57:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+  58:Src/main.c    ****   __disable_irq();
+ 179              		.loc 1 58 3 view .LVU27
+ 180              	.LBB4:
+ 181              	.LBI4:
+ 182              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 5
-
-
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
    4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.0.4
@@ -291,6 +298,9 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
   49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
   50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
   51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 6
+
+
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
   53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -298,9 +308,6 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
   57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 6
-
-
   59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
   60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
@@ -351,6 +358,9 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
  106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
  107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 7
+
+
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
@@ -358,9 +368,6 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
  114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
  115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 7
-
-
  116:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  117:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  118:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
@@ -386,69 +393,69 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 1
  138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 178              		.loc 2 140 27 view .LVU27
- 179              	.LBB5:
+ 183              		.loc 2 140 27 view .LVU28
+ 184              	.LBB5:
  141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 180              		.loc 2 142 3 view .LVU28
- 181              		.syntax unified
- 182              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 183 0000 72B6     		cpsid i
- 184              	@ 0 "" 2
- 185              		.thumb
+ 185              		.loc 2 142 3 view .LVU29
  186              		.syntax unified
- 187              	.L13:
- 188              	.LBE5:
- 189              	.LBE4:
-  57:Src/main.c    ****   while (1)
- 190              		.loc 1 57 3 discriminator 1 view .LVU29
-  58:Src/main.c    ****   {
-  59:Src/main.c    ****   }
- 191              		.loc 1 59 3 discriminator 1 view .LVU30
-  57:Src/main.c    ****   while (1)
- 192              		.loc 1 57 9 discriminator 1 view .LVU31
- 193 0002 FEE7     		b	.L13
- 194              		.cfi_endproc
- 195              	.LFE68:
- 197              		.section	.rodata
- 198              		.align	2
- 199              		.set	.LANCHOR0,. + 0
- 200              	.LC0:
- 201 0000 00000000 		.word	stm32_i2c_write_reg
- 202 0004 00000000 		.word	stm32_i2c_read_reg
- 203              		.text
- 204              	.Letext0:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 8
+ 187              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 188 0000 72B6     		cpsid i
+ 189              	@ 0 "" 2
+ 190              		.thumb
+ 191              		.syntax unified
+ 192              	.L13:
+ 193              	.LBE5:
+ 194              	.LBE4:
+  59:Src/main.c    ****   while (1)
+ 195              		.loc 1 59 3 discriminator 1 view .LVU30
+  60:Src/main.c    ****   {
+  61:Src/main.c    ****   }
+ 196              		.loc 1 61 3 discriminator 1 view .LVU31
+  59:Src/main.c    ****   while (1)
+ 197              		.loc 1 59 9 discriminator 1 view .LVU32
+ 198 0002 FEE7     		b	.L13
+ 199              		.cfi_endproc
+ 200              	.LFE68:
+ 202              		.section	.rodata
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 8
 
 
- 205              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
- 206              		.file 4 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
- 207              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 208              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 209              		.file 7 "Src/../../../../inc/mpu6050_i2c.h"
- 210              		.file 8 "Src/../../../../inc/mpu6050.h"
- 211              		.file 9 "Src/../Inc/usart.h"
- 212              		.file 10 "Src/../Inc/i2c.h"
- 213              		.file 11 "Src/../Inc/gpio.h"
- 214              		.file 12 "Src/../Inc/sysconfig.h"
- 215              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
- 216              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s 			page 9
+ 203              		.align	2
+ 204              		.set	.LANCHOR0,. + 0
+ 205              	.LC0:
+ 206 0000 00000000 		.word	stm32_i2c_write_reg
+ 207 0004 00000000 		.word	stm32_i2c_read_reg
+ 208              		.text
+ 209              	.Letext0:
+ 210              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 211              		.file 4 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 212              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 213              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 214              		.file 7 "Src/../../../../inc/mpu6050_i2c.h"
+ 215              		.file 8 "Src/../../../../inc/mpu6050.h"
+ 216              		.file 9 "Src/../Inc/usart.h"
+ 217              		.file 10 "Src/../Inc/i2c.h"
+ 218              		.file 11 "Src/../Inc/gpio.h"
+ 219              		.file 12 "Src/../Inc/sysconfig.h"
+ 220              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 221              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:19     .text.mpu6050_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:25     .text.mpu6050_init:00000000 mpu6050_init
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:57     .text.mpu6050_init:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:62     .text.peripheral_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:67     .text.peripheral_init:00000000 peripheral_init
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:109    .text.main:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:115    .text.main:00000000 main
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:155    .text.main:00000024 $d
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:160    .text.Error_Handler:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:166    .text.Error_Handler:00000000 Error_Handler
-C:\Users\binhp\AppData\Local\Temp\cc5rc2O2.s:198    .rodata:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:19     .text.mpu6050_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:25     .text.mpu6050_init:00000000 mpu6050_init
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:57     .text.mpu6050_init:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:62     .text.peripheral_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:67     .text.peripheral_init:00000000 peripheral_init
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:109    .text.main:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:115    .text.main:00000000 main
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:160    .text.main:0000002c $d
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:165    .text.Error_Handler:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:171    .text.Error_Handler:00000000 Error_Handler
+C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:203    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 mpu6050_set_i2c_spec
@@ -461,6 +468,7 @@ mpu6050_init_reg
 mpu6050_cfg_pwr_mng
 HAL_GPIO_TogglePin
 mpu6050_get_accel_raw
+mpu6050_raw_data_to_readable_data
 HAL_Delay
 stm32_i2c_write_reg
 stm32_i2c_read_reg
