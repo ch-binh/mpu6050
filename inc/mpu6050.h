@@ -84,6 +84,36 @@ typedef struct
         float accel;
         float gyro;
     } fs_range;
+
+    struct
+    {
+        float div;
+    } smprt;
+
+    struct
+    {
+        uint32_t smprt;
+        uint8_t is_en;
+        uint8_t op_mode;
+    } fsync;
+
+    struct
+    {
+        uint8_t dlpf;
+    } filter;
+
+    struct
+    {
+        uint8_t is_gyr_en;
+        uint8_t is_accel_en;
+    } test;
+
+    struct
+    {
+        uint8_t is_en;
+        uint8_t thr;
+    } mot;
+
 } mpu_cfg_t;
 
 /*======================== HANDY FUNCTIONS ===========================*/
@@ -93,6 +123,12 @@ typedef struct
 void mpu6050_init_reg(void);
 int mpu6050_get_raw_data(mpu_rawdata_t *r_data);
 int mpu6050_raw_data_to_readable_data(mpu_data_t *data, mpu_rawdata_t *r_data);
+
+/**
+ * @brief helper to copy an instance of system configuration
+ * @return mpu_cfg_t
+ */
+mpu_cfg_t mpu6050_get_sys_cfg(void);
 /*======================== SETUP FUNCTIONS ===========================*/
 
 /* REG 0x25*/

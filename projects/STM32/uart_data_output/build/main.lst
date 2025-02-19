@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -18,13 +18,13 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.file 1 "Src/main.c"
-  18              		.section	.text.mpu6050_init,"ax",%progbits
+  18              		.section	.text.mpu6050_com_init,"ax",%progbits
   19              		.align	1
-  20              		.global	mpu6050_init
+  20              		.global	mpu6050_com_init
   21              		.syntax unified
   22              		.thumb
   23              		.thumb_func
-  25              	mpu6050_init:
+  25              	mpu6050_com_init:
   26              	.LFB65:
    1:Src/main.c    **** 
    2:Src/main.c    **** #include "../Inc/main.h"
@@ -37,7 +37,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
    9:Src/main.c    **** #include "../../../../inc/mpu6050.h"
   10:Src/main.c    **** 
   11:Src/main.c    **** /* Init MPU6050 for STM32 mcu related */
-  12:Src/main.c    **** void mpu6050_init(void)
+  12:Src/main.c    **** void mpu6050_com_init(void)
   13:Src/main.c    **** {
   27              		.loc 1 13 1 view -0
   28              		.cfi_startproc
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
   42 0008 92E80300 		ldm	r2, {r0, r1}
   43 000c 83E80300 		stm	r3, {r0, r1}
   15:Src/main.c    ****       .i2c_write = stm32_i2c_write_reg,
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 2
 
 
   16:Src/main.c    ****       .i2c_read = stm32_i2c_read_reg};
@@ -118,16 +118,16 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
   89              	.LVL4:
   27:Src/main.c    ****   MX_USART1_UART_Init();
   90              		.loc 1 27 3 view .LVU10
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 3
 
 
   91 0012 FFF7FEFF 		bl	MX_USART1_UART_Init
   92              	.LVL5:
   28:Src/main.c    **** 
   29:Src/main.c    ****   /* Application related*/
-  30:Src/main.c    ****   mpu6050_init();
+  30:Src/main.c    ****   mpu6050_com_init();
   93              		.loc 1 30 3 view .LVU11
-  94 0016 FFF7FEFF 		bl	mpu6050_init
+  94 0016 FFF7FEFF 		bl	mpu6050_com_init
   95              	.LVL6:
   31:Src/main.c    ****   mpu6050_init_reg();
   96              		.loc 1 31 3 view .LVU12
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
  134              		.loc 1 40 3 discriminator 1 view .LVU18
   41:Src/main.c    ****   mpu_data_t data;
  135              		.loc 1 41 3 discriminator 1 view .LVU19
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 4
 
 
   42:Src/main.c    **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
  177              		@ frame_needed = 0, uses_anonymous_args = 0
  178              		@ link register save eliminated.
   56:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 5
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 5
 
 
   57:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
   49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
   50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
   51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 6
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 6
 
 
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
  106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
  107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 7
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 7
 
 
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
  199              		.cfi_endproc
  200              	.LFE68:
  202              		.section	.rodata
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 8
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 8
 
 
  203              		.align	2
@@ -440,22 +440,22 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 1
  219              		.file 12 "Src/../Inc/sysconfig.h"
  220              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
  221              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s 			page 9
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:19     .text.mpu6050_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:25     .text.mpu6050_init:00000000 mpu6050_init
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:57     .text.mpu6050_init:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:62     .text.peripheral_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:67     .text.peripheral_init:00000000 peripheral_init
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:109    .text.main:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:115    .text.main:00000000 main
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:160    .text.main:0000002c $d
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:165    .text.Error_Handler:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:171    .text.Error_Handler:00000000 Error_Handler
-C:\Users\binhp\AppData\Local\Temp\ccFjfaq0.s:203    .rodata:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:19     .text.mpu6050_com_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:25     .text.mpu6050_com_init:00000000 mpu6050_com_init
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:57     .text.mpu6050_com_init:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:62     .text.peripheral_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:67     .text.peripheral_init:00000000 peripheral_init
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:109    .text.main:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:115    .text.main:00000000 main
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:160    .text.main:0000002c $d
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:165    .text.Error_Handler:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:171    .text.Error_Handler:00000000 Error_Handler
+C:\Users\binhp\AppData\Local\Temp\ccR2yiso.s:203    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 mpu6050_set_i2c_spec

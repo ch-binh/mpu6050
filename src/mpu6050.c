@@ -2,8 +2,19 @@
 #include "../inc/mpu6050_registers.h"
 #include "../inc/mpu6050_i2c.h"
 
+static const float gyro_sens[] = {
+    GYRO_SENS_250,
+    GYRO_SENS_500,
+    GYRO_SENS_1000,
+    GYRO_SENS_2000};
 
-static mpu_cfg_t sys_cfg;
+static const float accel_sens[] = {
+    ACCEL_SENS_2G,
+    ACCEL_SENS_4G,
+    ACCEL_SENS_8G,
+    ACCEL_SENS_16G};
+
+static mpu_cfg_t _cfg;
 /*======================== HANDY FUNCTIONS ===========================*/
 
 void mpu6050_init_reg(void)
@@ -58,18 +69,26 @@ int mpu6050_raw_data_to_readable_data(mpu_data_t *data, mpu_rawdata_t *r_data)
     return 0; // Success
 }
 
+mpu_cfg_t mpu6050_get_sys_cfg(void)
+{
+    return _cfg;
+}
+
 /*======================== SETUP FUNCTIONS ===========================*/
 
 /* REG 0x19*/
 void mpu6050_cfg_set_smprt_div(uint8_t val)
 {
     mpu6050_i2c_write_reg(REG_SMPRT_DIV, val);
+
+    _cfg.smprt.div = val;
 }
 
 /* REG 0x1A*/
 void mpu6050_cfg_set_config(uint8_t fsync, uint8_t dlpf)
 {
     mpu6050_i2c_write_reg(REG_CFG, (fsync << 3) | dlpf);
+    _cfg.filter.dlpf = dlpf;
 }
 
 /* REG 0x1B */
@@ -79,6 +98,7 @@ void mpu6050_cfg_gyro(uint8_t en_gyr_test, uint8_t fs_sel)
     if (en_gyr_test)
     {
         en_gyr_test_val = 0xE0;
+        _cfg.test.is_gyr_en = 1;
     }
     mpu6050_i2c_write_reg(REG_GYRO_CFG, en_gyr_test_val | (fs_sel << 3));
 }
@@ -90,6 +110,7 @@ void mpu6050_cfg_accel(uint8_t en_acc_test, uint8_t fs_sel)
     if (en_acc_test)
     {
         en_acc_test_val = 0xE0;
+        _cfg.test.is_accel_en = 1;
     }
     mpu6050_i2c_write_reg(REG_ACCEL_CFG, en_acc_test_val | (fs_sel << 3));
 }
@@ -98,6 +119,7 @@ void mpu6050_cfg_accel(uint8_t en_acc_test, uint8_t fs_sel)
 void mpu6050_cfg_set_mot_thr(uint8_t val)
 {
     mpu6050_i2c_write_reg(REG_MOT_THR, val);
+    _cfg.mot.thr = val;
 }
 
 /* REG 0x23 */
@@ -146,20 +168,8 @@ int mpu6050_get_fs(mpu_cfg_t *mpu_cfg)
     const uint8_t gyro_index = (val[0] & 0b00011000) >> 3;
     const uint8_t accel_index = (val[1] & 0b00011000) >> 3;
 
-    const float gyro_sensitivities[] = {
-        GYRO_SENS_250,
-        GYRO_SENS_500,
-        GYRO_SENS_1000,
-        GYRO_SENS_2000};
-
-    const float accel_sensitivities[] = {
-        ACCEL_SENS_2G,
-        ACCEL_SENS_4G,
-        ACCEL_SENS_8G,
-        ACCEL_SENS_16G};
-
-    mpu_cfg->fs_range.gyro = gyro_sensitivities[gyro_index];
-    mpu_cfg->fs_range.accel = accel_sensitivities[accel_index];
+    mpu_cfg->fs_range.gyro = gyro_sens[gyro_index];
+    mpu_cfg->fs_range.accel = accel_sens[accel_index];
 
     return 0;
 }
