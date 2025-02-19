@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
   29:../../../src/mpu6050.c ****                         DEF_DIS_I2C_BYPASS);
   30:../../../src/mpu6050.c **** 
   31:../../../src/mpu6050.c ****     mpu6050_cfg_int_mode(DEF_EN_MOT_INT, DEF_DIS_FFULL_INT, DEF_DIS_I2C_MST_INT, DEF_DIS_DATA_RDY);
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 2
 
 
   32:../../../src/mpu6050.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
   39              		.loc 1 74 5 is_stmt 1 view .LVU2
   40              		.loc 1 74 12 is_stmt 0 view .LVU3
   41 0004 8446     		mov	ip, r0
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 3
 
 
   42 0006 054C     		ldr	r4, .L3
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
   83:../../../src/mpu6050.c **** 
   84:../../../src/mpu6050.c ****     _cfg.smprt.div = val;
   90              		.loc 1 84 5 is_stmt 1 view .LVU11
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 4
 
 
   91              		.loc 1 84 20 is_stmt 0 view .LVU12
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  140 0012 1C75     		strb	r4, [r3, #20]
   92:../../../src/mpu6050.c **** }
  141              		.loc 1 92 1 view .LVU21
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 5
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 5
 
 
  142 0014 10BD     		pop	{r4, pc}
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  103:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_GYRO_CFG, en_gyr_test_val | (fs_sel << 3));
  187              		.loc 1 103 5 is_stmt 1 view .LVU31
  188 000e 43EAC101 		orr	r1, r3, r1, lsl #3
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 6
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 6
 
 
  189              	.LVL15:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  235              		.loc 1 113 31 is_stmt 0 view .LVU42
  236 0006 054B     		ldr	r3, .L21
  237 0008 0122     		movs	r2, #1
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 7
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 7
 
 
  238 000a 9A75     		strb	r2, [r3, #22]
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  285 0006 1F20     		movs	r0, #31
  286              	.LVL26:
  287              		.loc 1 121 5 is_stmt 0 view .LVU51
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 8
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 8
 
 
  288 0008 FFF7FEFF 		bl	mpu6050_i2c_write_reg
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  337              		.global	mpu6050_cfg_int_pin
  338              		.syntax unified
  339              		.thumb
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 9
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 9
 
 
  340              		.thumb_func
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  382 0032 01F0FE01 		and	r1, r1, #254
  383 0036 3720     		movs	r0, #55
  384              	.LVL34:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 10
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 10
 
 
  137:../../../src/mpu6050.c ****         REG_INT_PIN_CFG,
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  429              		.loc 1 148 5 view .LVU82
  430 0016 FFF7FEFF 		bl	mpu6050_i2c_write_reg
  431              	.LVL39:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 11
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 11
 
 
  151:../../../src/mpu6050.c ****             (i2c_mst_int << 3) | (data_rdy_int));
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  480 0026 0194     		str	r4, [sp, #4]
  481 0028 0094     		str	r4, [sp]
  482 002a 2346     		mov	r3, r4
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 12
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 12
 
 
  483 002c 0122     		movs	r2, #1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  531              		.loc 1 158 1 view .LVU96
  532 000a 08BD     		pop	{r3, pc}
  533              		.cfi_endproc
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 13
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 13
 
 
  534              	.LFE12:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  579              		.loc 1 169 5 is_stmt 1 view .LVU107
  580              		.loc 1 169 37 is_stmt 0 view .LVU108
  581 0018 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 14
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 14
 
 
  582              		.loc 1 169 19 view .LVU109
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  631              		.cfi_startproc
  632              		@ args = 0, pretend = 0, frame = 32
  633              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 15
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 15
 
 
   47:../../../src/mpu6050.c ****     {
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  675 0028 B4F90200 		ldrsh	r0, [r4, #2]
  676 002c FFF7FEFF 		bl	__aeabi_i2f
  677              	.LVL64:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 16
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 16
 
 
  678 0030 2946     		mov	r1, r5
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  719              	.LVL72:
  720 0072 2946     		mov	r1, r5
  721 0074 FFF7FEFF 		bl	__aeabi_fdiv
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 17
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 17
 
 
  722              	.LVL73:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  766              		.cfi_offset 4, -16
  767              		.cfi_offset 5, -12
  768              		.cfi_offset 6, -8
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 18
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 18
 
 
  769              		.cfi_offset 14, -4
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  814              		.loc 1 184 5 is_stmt 1 view .LVU163
  185:../../../src/mpu6050.c **** }
  815              		.loc 1 185 1 is_stmt 0 view .LVU164
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 19
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 19
 
 
  816 000e 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  863 0010 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
  864              		.loc 1 194 56 view .LVU174
  865 0014 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 20
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 20
 
 
  866              		.loc 1 194 27 view .LVU175
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  914              		@ args = 0, pretend = 0, frame = 8
  915              		@ frame_needed = 0, uses_anonymous_args = 0
  916              		.loc 1 202 1 is_stmt 0 view .LVU192
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 21
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 21
 
 
  917 0000 10B5     		push	{r4, lr}
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  965              		.thumb_func
  967              	mpu6050_get_gyro_raw:
  968              	.LVL94:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 22
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 22
 
 
  969              	.LFB17:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  1012 002a 2381     		strh	r3, [r4, #8]	@ movhi
  221:../../../src/mpu6050.c ****     r_data->gyro_raw.z = (int16_t)((val[4] << 8) | val[5]);
  1013              		.loc 1 221 5 is_stmt 1 view .LVU222
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 23
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 23
 
 
  1014              		.loc 1 221 40 is_stmt 0 view .LVU223
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  1063 0008 FFF7FEFF 		bl	mpu6050_get_accel_raw
  1064              	.LVL101:
   39:../../../src/mpu6050.c ****     mpu6050_get_gyro_raw(&r_data);
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 24
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 24
 
 
  1065              		.loc 1 39 5 is_stmt 1 view .LVU235
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  1110              	.LVL105:
  1111              		.loc 1 232 5 is_stmt 0 view .LVU243
  1112 0008 7520     		movs	r0, #117
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 25
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 25
 
 
  1113 000a FFF7FEFF 		bl	mpu6050_i2c_read_reg
@@ -1484,67 +1484,67 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 1
  1154              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
  1155              		.file 4 "../../../src/../inc/mpu6050.h"
  1156              		.file 5 "../../../src/../inc/mpu6050_i2c.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 26
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mpu6050.c
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:19     .text.mpu6050_get_sys_cfg:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:25     .text.mpu6050_get_sys_cfg:00000000 mpu6050_get_sys_cfg
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:57     .text.mpu6050_get_sys_cfg:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1131   .bss._cfg:00000000 _cfg
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:63     .text.mpu6050_cfg_set_smprt_div:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:69     .text.mpu6050_cfg_set_smprt_div:00000000 mpu6050_cfg_set_smprt_div
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:102    .text.mpu6050_cfg_set_smprt_div:00000018 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:107    .text.mpu6050_cfg_set_config:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:113    .text.mpu6050_cfg_set_config:00000000 mpu6050_cfg_set_config
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:146    .text.mpu6050_cfg_set_config:00000018 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:151    .text.mpu6050_cfg_gyro:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:157    .text.mpu6050_cfg_gyro:00000000 mpu6050_cfg_gyro
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:202    .text.mpu6050_cfg_gyro:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:207    .text.mpu6050_cfg_accel:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:213    .text.mpu6050_cfg_accel:00000000 mpu6050_cfg_accel
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:258    .text.mpu6050_cfg_accel:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:263    .text.mpu6050_cfg_set_mot_thr:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:269    .text.mpu6050_cfg_set_mot_thr:00000000 mpu6050_cfg_set_mot_thr
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:299    .text.mpu6050_cfg_set_mot_thr:00000014 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:304    .text.mpu6050_cfg_en_fifo:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:310    .text.mpu6050_cfg_en_fifo:00000000 mpu6050_cfg_en_fifo
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:336    .text.mpu6050_cfg_int_pin:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:342    .text.mpu6050_cfg_int_pin:00000000 mpu6050_cfg_int_pin
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:395    .text.mpu6050_cfg_int_mode:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:401    .text.mpu6050_cfg_int_mode:00000000 mpu6050_cfg_int_mode
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:438    .text.mpu6050_init_reg:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:444    .text.mpu6050_init_reg:00000000 mpu6050_init_reg
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:505    .text.mpu6050_cfg_pwr_mng:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:511    .text.mpu6050_cfg_pwr_mng:00000000 mpu6050_cfg_pwr_mng
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:537    .text.mpu6050_get_fs:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:543    .text.mpu6050_get_fs:00000000 mpu6050_get_fs
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:612    .text.mpu6050_get_fs:00000038 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1146   .rodata.gyro_sens:00000000 gyro_sens
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1137   .rodata.accel_sens:00000000 accel_sens
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:621    .text.mpu6050_raw_data_to_readable_data:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:627    .text.mpu6050_raw_data_to_readable_data:00000000 mpu6050_raw_data_to_readable_data
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:778    .text.mpu6050_raw_data_to_readable_data:000000a4 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:784    .text.mpu6050_get_int_sts:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:790    .text.mpu6050_get_int_sts:00000000 mpu6050_get_int_sts
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:827    .text.mpu6050_get_accel_raw:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:833    .text.mpu6050_get_accel_raw:00000000 mpu6050_get_accel_raw
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:903    .text.mpu6050_get_temp_raw:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:909    .text.mpu6050_get_temp_raw:00000000 mpu6050_get_temp_raw
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:961    .text.mpu6050_get_gyro_raw:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:967    .text.mpu6050_get_gyro_raw:00000000 mpu6050_get_gyro_raw
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1037   .text.mpu6050_get_raw_data:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1043   .text.mpu6050_get_raw_data:00000000 mpu6050_get_raw_data
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1085   .text.mpu6050_get_chip_id:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1091   .text.mpu6050_get_chip_id:00000000 mpu6050_get_chip_id
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1128   .bss._cfg:00000000 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1134   .rodata.accel_sens:00000000 $d
-C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s:1143   .rodata.gyro_sens:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:19     .text.mpu6050_get_sys_cfg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:25     .text.mpu6050_get_sys_cfg:00000000 mpu6050_get_sys_cfg
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:57     .text.mpu6050_get_sys_cfg:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1131   .bss._cfg:00000000 _cfg
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:63     .text.mpu6050_cfg_set_smprt_div:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:69     .text.mpu6050_cfg_set_smprt_div:00000000 mpu6050_cfg_set_smprt_div
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:102    .text.mpu6050_cfg_set_smprt_div:00000018 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:107    .text.mpu6050_cfg_set_config:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:113    .text.mpu6050_cfg_set_config:00000000 mpu6050_cfg_set_config
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:146    .text.mpu6050_cfg_set_config:00000018 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:151    .text.mpu6050_cfg_gyro:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:157    .text.mpu6050_cfg_gyro:00000000 mpu6050_cfg_gyro
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:202    .text.mpu6050_cfg_gyro:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:207    .text.mpu6050_cfg_accel:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:213    .text.mpu6050_cfg_accel:00000000 mpu6050_cfg_accel
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:258    .text.mpu6050_cfg_accel:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:263    .text.mpu6050_cfg_set_mot_thr:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:269    .text.mpu6050_cfg_set_mot_thr:00000000 mpu6050_cfg_set_mot_thr
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:299    .text.mpu6050_cfg_set_mot_thr:00000014 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:304    .text.mpu6050_cfg_en_fifo:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:310    .text.mpu6050_cfg_en_fifo:00000000 mpu6050_cfg_en_fifo
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:336    .text.mpu6050_cfg_int_pin:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:342    .text.mpu6050_cfg_int_pin:00000000 mpu6050_cfg_int_pin
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:395    .text.mpu6050_cfg_int_mode:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:401    .text.mpu6050_cfg_int_mode:00000000 mpu6050_cfg_int_mode
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:438    .text.mpu6050_init_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:444    .text.mpu6050_init_reg:00000000 mpu6050_init_reg
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:505    .text.mpu6050_cfg_pwr_mng:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:511    .text.mpu6050_cfg_pwr_mng:00000000 mpu6050_cfg_pwr_mng
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:537    .text.mpu6050_get_fs:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:543    .text.mpu6050_get_fs:00000000 mpu6050_get_fs
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:612    .text.mpu6050_get_fs:00000038 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1146   .rodata.gyro_sens:00000000 gyro_sens
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1137   .rodata.accel_sens:00000000 accel_sens
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:621    .text.mpu6050_raw_data_to_readable_data:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:627    .text.mpu6050_raw_data_to_readable_data:00000000 mpu6050_raw_data_to_readable_data
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:778    .text.mpu6050_raw_data_to_readable_data:000000a4 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:784    .text.mpu6050_get_int_sts:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:790    .text.mpu6050_get_int_sts:00000000 mpu6050_get_int_sts
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:827    .text.mpu6050_get_accel_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:833    .text.mpu6050_get_accel_raw:00000000 mpu6050_get_accel_raw
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:903    .text.mpu6050_get_temp_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:909    .text.mpu6050_get_temp_raw:00000000 mpu6050_get_temp_raw
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:961    .text.mpu6050_get_gyro_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:967    .text.mpu6050_get_gyro_raw:00000000 mpu6050_get_gyro_raw
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1037   .text.mpu6050_get_raw_data:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1043   .text.mpu6050_get_raw_data:00000000 mpu6050_get_raw_data
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1085   .text.mpu6050_get_chip_id:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1091   .text.mpu6050_get_chip_id:00000000 mpu6050_get_chip_id
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1128   .bss._cfg:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1134   .rodata.accel_sens:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s:1143   .rodata.gyro_sens:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_ui2f
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccREWeUg.s 			page 27
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccSTGeG0.s 			page 27
 
 
 mpu6050_i2c_write_reg

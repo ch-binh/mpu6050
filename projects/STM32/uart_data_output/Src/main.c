@@ -40,13 +40,22 @@ int main(void)
   mpu_rawdata_t r_data;
   mpu_data_t data;
 
-
+  uint8_t uart_data[7];
   while (1)
   {
     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
     mpu6050_get_accel_raw(&r_data);
     mpu6050_raw_data_to_readable_data(&data, &r_data);
 
+    uart_data[0] = (uint8_t)(data.accel.x * 100);
+    uart_data[1] = (uint8_t)(data.accel.y * 100);
+    uart_data[2] = (uint8_t)(data.accel.z * 100);
+    uart_data[3] = (uint8_t)(data.gyro.x * 100);
+    uart_data[4] = (uint8_t)(data.gyro.y * 100);
+    uart_data[5] = (uint8_t)(data.gyro.z * 100);
+    uart_data[6] = (uint8_t)(data.tempt);
+
+    uart_send(uart_data, 7);
     HAL_Delay(LED_BLINK_DELAY);
   }
 }
