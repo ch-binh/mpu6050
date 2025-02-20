@@ -36,6 +36,7 @@ int main(void)
 {
   peripheral_init();
 
+  int err;
   mpu_cfg_t mpu_cfg;
   mpu_rawdata_t r_data;
   mpu_data_t data;
@@ -43,8 +44,11 @@ int main(void)
   uint8_t uart_data[7];
   while (1)
   {
-    HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
+
+    HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_RESET);
     mpu6050_get_accel_raw(&r_data);
+    mpu6050_get_gyro_raw(&r_data);
+    mpu6050_get_temp_raw(&r_data);
     mpu6050_raw_data_to_readable_data(&data, &r_data);
 
     uart_data[0] = (uint8_t)(data.accel.x * 100);
@@ -56,17 +60,14 @@ int main(void)
     uart_data[6] = (uint8_t)(data.tempt);
 
     uart_send(uart_data, 7);
-    HAL_Delay(LED_BLINK_DELAY);
+    HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_SET);
+    HAL_Delay(1000); // sampling rate is 94Hz, so make it > 10ms
   }
 }
 
 void Error_Handler(void)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
+    ;
 }

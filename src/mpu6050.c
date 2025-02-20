@@ -36,8 +36,8 @@ void mpu6050_init_reg(void)
 int mpu6050_get_raw_data(mpu_rawdata_t *r_data)
 {
     mpu6050_get_accel_raw(&r_data);
-    mpu6050_get_temp_raw(&r_data);
     mpu6050_get_gyro_raw(&r_data);
+    mpu6050_get_temp_raw(&r_data);
 
     return 0;
 }

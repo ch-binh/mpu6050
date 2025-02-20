@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
   27              		.loc 1 29 1 view -0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 2
 
 
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
   74              	.L1:
   40:Src/i2c.c     ****   {
   41:Src/i2c.c     ****     Error_Handler();
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 3
 
 
   42:Src/i2c.c     ****   }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  122              		.loc 1 49 3 is_stmt 1 view .LVU29
  123              		.loc 1 49 16 is_stmt 0 view .LVU30
  124 000e 0268     		ldr	r2, [r0]
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 4
 
 
  125              		.loc 1 49 6 view .LVU31
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
   51:Src/i2c.c     ****     /**I2C1 GPIO Configuration
  154              		.loc 1 51 5 view .LVU37
  155 002c 009B     		ldr	r3, [sp]
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 5
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 5
 
 
  156              	.LBE2:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  194 0056 1146     		mov	r1, r2
  195 0058 1F20     		movs	r0, #31
  196 005a FFF7FEFF 		bl	HAL_NVIC_SetPriority
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 6
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 6
 
 
  197              	.LVL7:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  245              	.L19:
   73:Src/i2c.c     **** 
  246              		.loc 1 73 1 view .LVU62
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 7
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 7
 
 
  247 000a 10B5     		push	{r4, lr}
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  285 0040 000C0140 		.word	1073810432
  286              		.cfi_endproc
  287              	.LFE67:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 8
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 8
 
 
  289              		.section	.text.stm32_i2c_write_reg,"ax",%progbits
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  339              	.LFE68:
  341              		.section	.text.stm32_i2c_read_reg,"ax",%progbits
  342              		.align	1
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 9
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 9
 
 
  343              		.global	stm32_i2c_read_reg
@@ -509,10 +509,10 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  367 0004 0C46     		mov	r4, r1
  368 0006 1546     		mov	r5, r2
  369 0008 8DF80F00 		strb	r0, [sp, #15]
-  99:Src/i2c.c     ****   HAL_I2C_Master_Transmit(&hi2c1, I2C1_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+  99:Src/i2c.c     ****   HAL_I2C_Master_Transmit(&hi2c1, I2C1_ADDRESS, &reg, 1, 1000);
  370              		.loc 1 99 3 is_stmt 1 view .LVU80
  371 000c 094E     		ldr	r6, .L28
- 372 000e 4FF0FF37 		mov	r7, #-1
+ 372 000e 4FF47A77 		mov	r7, #1000
  373 0012 0097     		str	r7, [sp]
  374 0014 0123     		movs	r3, #1
  375 0016 0DF10F02 		add	r2, sp, #15
@@ -526,7 +526,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  383              		.loc 1 99 3 view .LVU83
  384 001e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
  385              	.LVL25:
- 100:Src/i2c.c     ****   return HAL_I2C_Master_Receive(&hi2c1, I2C1_ADDRESS, data, size, HAL_MAX_DELAY);
+ 100:Src/i2c.c     ****   return HAL_I2C_Master_Receive(&hi2c1, I2C1_ADDRESS, data, size, 1000);
  386              		.loc 1 100 3 is_stmt 1 view .LVU84
  387              		.loc 1 100 10 is_stmt 0 view .LVU85
  388 0022 0097     		str	r7, [sp]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  394              	.LVL26:
  101:Src/i2c.c     **** }
  395              		.loc 1 101 1 view .LVU86
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 10
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 10
 
 
  396 0030 05B0     		add	sp, sp, #20
@@ -575,28 +575,28 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 1
  426              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h"
  427              		.file 10 "Src/../Inc/i2c.h"
  428              		.file 11 "Src/../Inc/main.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s 			page 11
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 i2c.c
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:19     .text.MX_I2C1_Init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:25     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:86     .text.MX_I2C1_Init:00000030 $d
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:415    .bss.hi2c1:00000000 hi2c1
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:93     .text.HAL_I2C_MspInit:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:99     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:217    .text.HAL_I2C_MspInit:00000078 $d
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:224    .text.HAL_I2C_MspDeInit:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:230    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:283    .text.HAL_I2C_MspDeInit:00000038 $d
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:290    .text.stm32_i2c_write_reg:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:296    .text.stm32_i2c_write_reg:00000000 stm32_i2c_write_reg
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:337    .text.stm32_i2c_write_reg:00000024 $d
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:342    .text.stm32_i2c_read_reg:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:348    .text.stm32_i2c_read_reg:00000000 stm32_i2c_read_reg
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:406    .text.stm32_i2c_read_reg:00000034 $d
-C:\Users\binhp\AppData\Local\Temp\ccbNRN19.s:412    .bss.hi2c1:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:19     .text.MX_I2C1_Init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:25     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:86     .text.MX_I2C1_Init:00000030 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:415    .bss.hi2c1:00000000 hi2c1
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:93     .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:99     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:217    .text.HAL_I2C_MspInit:00000078 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:224    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:230    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:283    .text.HAL_I2C_MspDeInit:00000038 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:290    .text.stm32_i2c_write_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:296    .text.stm32_i2c_write_reg:00000000 stm32_i2c_write_reg
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:337    .text.stm32_i2c_write_reg:00000024 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:342    .text.stm32_i2c_read_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:348    .text.stm32_i2c_read_reg:00000000 stm32_i2c_read_reg
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:406    .text.stm32_i2c_read_reg:00000034 $d
+C:\Users\binhp\AppData\Local\Temp\cc6VfVEh.s:412    .bss.hi2c1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Init

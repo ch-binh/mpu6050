@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
   42 0008 92E80300 		ldm	r2, {r0, r1}
   43 000c 83E80300 		stm	r3, {r0, r1}
   15:Src/main.c    ****       .i2c_write = stm32_i2c_write_reg,
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 2
 
 
   16:Src/main.c    ****       .i2c_read = stm32_i2c_read_reg};
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
   89              	.LVL4:
   27:Src/main.c    ****   MX_USART1_UART_Init();
   90              		.loc 1 27 3 view .LVU10
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 3
 
 
   91 0012 FFF7FEFF 		bl	MX_USART1_UART_Init
@@ -174,173 +174,196 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
  133              	.LVL9:
  134              	.L8:
   38:Src/main.c    **** 
-  39:Src/main.c    ****   mpu_cfg_t mpu_cfg;
+  39:Src/main.c    ****   int err;
  135              		.loc 1 39 3 discriminator 1 view .LVU17
-  40:Src/main.c    ****   mpu_rawdata_t r_data;
+  40:Src/main.c    ****   mpu_cfg_t mpu_cfg;
  136              		.loc 1 40 3 discriminator 1 view .LVU18
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 4
 
 
-  41:Src/main.c    ****   mpu_data_t data;
+  41:Src/main.c    ****   mpu_rawdata_t r_data;
  137              		.loc 1 41 3 discriminator 1 view .LVU19
-  42:Src/main.c    **** 
-  43:Src/main.c    ****   uint8_t uart_data[7];
- 138              		.loc 1 43 3 discriminator 1 view .LVU20
-  44:Src/main.c    ****   while (1)
+  42:Src/main.c    ****   mpu_data_t data;
+ 138              		.loc 1 42 3 discriminator 1 view .LVU20
+  43:Src/main.c    **** 
+  44:Src/main.c    ****   uint8_t uart_data[7];
  139              		.loc 1 44 3 discriminator 1 view .LVU21
-  45:Src/main.c    ****   {
-  46:Src/main.c    ****     HAL_GPIO_TogglePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN);
- 140              		.loc 1 46 5 discriminator 1 view .LVU22
- 141 0008 4FF40051 		mov	r1, #8192
- 142 000c 2348     		ldr	r0, .L10
- 143 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 144              	.LVL10:
-  47:Src/main.c    ****     mpu6050_get_accel_raw(&r_data);
- 145              		.loc 1 47 5 discriminator 1 view .LVU23
- 146 0012 0AA8     		add	r0, sp, #40
- 147 0014 FFF7FEFF 		bl	mpu6050_get_accel_raw
- 148              	.LVL11:
-  48:Src/main.c    ****     mpu6050_raw_data_to_readable_data(&data, &r_data);
- 149              		.loc 1 48 5 discriminator 1 view .LVU24
- 150 0018 0AA9     		add	r1, sp, #40
- 151 001a 03A8     		add	r0, sp, #12
- 152 001c FFF7FEFF 		bl	mpu6050_raw_data_to_readable_data
- 153              	.LVL12:
-  49:Src/main.c    **** 
-  50:Src/main.c    ****     uart_data[0] = (uint8_t)(data.accel.x * 100);
- 154              		.loc 1 50 5 discriminator 1 view .LVU25
- 155              		.loc 1 50 43 is_stmt 0 discriminator 1 view .LVU26
- 156 0020 1F49     		ldr	r1, .L10+4
- 157 0022 0398     		ldr	r0, [sp, #12]	@ float
- 158 0024 FFF7FEFF 		bl	__aeabi_fmul
+  45:Src/main.c    ****   while (1)
+ 140              		.loc 1 45 3 discriminator 1 view .LVU22
+  46:Src/main.c    ****   {
+  47:Src/main.c    **** 
+  48:Src/main.c    ****     HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_RESET);
+ 141              		.loc 1 48 5 discriminator 1 view .LVU23
+ 142 0008 2B4C     		ldr	r4, .L10
+ 143 000a 0022     		movs	r2, #0
+ 144 000c 4FF40051 		mov	r1, #8192
+ 145 0010 2046     		mov	r0, r4
+ 146 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 147              	.LVL10:
+  49:Src/main.c    ****     mpu6050_get_accel_raw(&r_data);
+ 148              		.loc 1 49 5 discriminator 1 view .LVU24
+ 149 0016 0AA8     		add	r0, sp, #40
+ 150 0018 FFF7FEFF 		bl	mpu6050_get_accel_raw
+ 151              	.LVL11:
+  50:Src/main.c    ****     mpu6050_get_gyro_raw(&r_data);
+ 152              		.loc 1 50 5 discriminator 1 view .LVU25
+ 153 001c 0AA8     		add	r0, sp, #40
+ 154 001e FFF7FEFF 		bl	mpu6050_get_gyro_raw
+ 155              	.LVL12:
+  51:Src/main.c    ****     mpu6050_get_temp_raw(&r_data);
+ 156              		.loc 1 51 5 discriminator 1 view .LVU26
+ 157 0022 0AA8     		add	r0, sp, #40
+ 158 0024 FFF7FEFF 		bl	mpu6050_get_temp_raw
  159              	.LVL13:
- 160              		.loc 1 50 20 discriminator 1 view .LVU27
- 161 0028 FFF7FEFF 		bl	__aeabi_f2uiz
- 162              	.LVL14:
- 163              		.loc 1 50 18 discriminator 1 view .LVU28
- 164 002c 8DF80400 		strb	r0, [sp, #4]
-  51:Src/main.c    ****     uart_data[1] = (uint8_t)(data.accel.y * 100);
- 165              		.loc 1 51 5 is_stmt 1 discriminator 1 view .LVU29
- 166              		.loc 1 51 43 is_stmt 0 discriminator 1 view .LVU30
- 167 0030 1B49     		ldr	r1, .L10+4
- 168 0032 0498     		ldr	r0, [sp, #16]	@ float
+  52:Src/main.c    ****     mpu6050_raw_data_to_readable_data(&data, &r_data);
+ 160              		.loc 1 52 5 discriminator 1 view .LVU27
+ 161 0028 0AA9     		add	r1, sp, #40
+ 162 002a 03A8     		add	r0, sp, #12
+ 163 002c FFF7FEFF 		bl	mpu6050_raw_data_to_readable_data
+ 164              	.LVL14:
+  53:Src/main.c    **** 
+  54:Src/main.c    ****     uart_data[0] = (uint8_t)(data.accel.x * 100);
+ 165              		.loc 1 54 5 discriminator 1 view .LVU28
+ 166              		.loc 1 54 43 is_stmt 0 discriminator 1 view .LVU29
+ 167 0030 2249     		ldr	r1, .L10+4
+ 168 0032 0398     		ldr	r0, [sp, #12]	@ float
  169 0034 FFF7FEFF 		bl	__aeabi_fmul
  170              	.LVL15:
- 171              		.loc 1 51 20 discriminator 1 view .LVU31
+ 171              		.loc 1 54 20 discriminator 1 view .LVU30
  172 0038 FFF7FEFF 		bl	__aeabi_f2uiz
  173              	.LVL16:
- 174              		.loc 1 51 18 discriminator 1 view .LVU32
- 175 003c 8DF80500 		strb	r0, [sp, #5]
-  52:Src/main.c    ****     uart_data[2] = (uint8_t)(data.accel.z * 100);
- 176              		.loc 1 52 5 is_stmt 1 discriminator 1 view .LVU33
- 177              		.loc 1 52 43 is_stmt 0 discriminator 1 view .LVU34
- 178 0040 1749     		ldr	r1, .L10+4
- 179 0042 0598     		ldr	r0, [sp, #20]	@ float
+ 174              		.loc 1 54 18 discriminator 1 view .LVU31
+ 175 003c 8DF80400 		strb	r0, [sp, #4]
+  55:Src/main.c    ****     uart_data[1] = (uint8_t)(data.accel.y * 100);
+ 176              		.loc 1 55 5 is_stmt 1 discriminator 1 view .LVU32
+ 177              		.loc 1 55 43 is_stmt 0 discriminator 1 view .LVU33
+ 178 0040 1E49     		ldr	r1, .L10+4
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 5
+
+
+ 179 0042 0498     		ldr	r0, [sp, #16]	@ float
  180 0044 FFF7FEFF 		bl	__aeabi_fmul
  181              	.LVL17:
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 5
-
-
- 182              		.loc 1 52 20 discriminator 1 view .LVU35
+ 182              		.loc 1 55 20 discriminator 1 view .LVU34
  183 0048 FFF7FEFF 		bl	__aeabi_f2uiz
  184              	.LVL18:
- 185              		.loc 1 52 18 discriminator 1 view .LVU36
- 186 004c 8DF80600 		strb	r0, [sp, #6]
-  53:Src/main.c    ****     uart_data[3] = (uint8_t)(data.gyro.x * 100);
- 187              		.loc 1 53 5 is_stmt 1 discriminator 1 view .LVU37
- 188              		.loc 1 53 42 is_stmt 0 discriminator 1 view .LVU38
- 189 0050 1349     		ldr	r1, .L10+4
- 190 0052 0698     		ldr	r0, [sp, #24]	@ float
+ 185              		.loc 1 55 18 discriminator 1 view .LVU35
+ 186 004c 8DF80500 		strb	r0, [sp, #5]
+  56:Src/main.c    ****     uart_data[2] = (uint8_t)(data.accel.z * 100);
+ 187              		.loc 1 56 5 is_stmt 1 discriminator 1 view .LVU36
+ 188              		.loc 1 56 43 is_stmt 0 discriminator 1 view .LVU37
+ 189 0050 1A49     		ldr	r1, .L10+4
+ 190 0052 0598     		ldr	r0, [sp, #20]	@ float
  191 0054 FFF7FEFF 		bl	__aeabi_fmul
  192              	.LVL19:
- 193              		.loc 1 53 20 discriminator 1 view .LVU39
+ 193              		.loc 1 56 20 discriminator 1 view .LVU38
  194 0058 FFF7FEFF 		bl	__aeabi_f2uiz
  195              	.LVL20:
- 196              		.loc 1 53 18 discriminator 1 view .LVU40
- 197 005c 8DF80700 		strb	r0, [sp, #7]
-  54:Src/main.c    ****     uart_data[4] = (uint8_t)(data.gyro.y * 100);
- 198              		.loc 1 54 5 is_stmt 1 discriminator 1 view .LVU41
- 199              		.loc 1 54 42 is_stmt 0 discriminator 1 view .LVU42
- 200 0060 0F49     		ldr	r1, .L10+4
- 201 0062 0798     		ldr	r0, [sp, #28]	@ float
+ 196              		.loc 1 56 18 discriminator 1 view .LVU39
+ 197 005c 8DF80600 		strb	r0, [sp, #6]
+  57:Src/main.c    ****     uart_data[3] = (uint8_t)(data.gyro.x * 100);
+ 198              		.loc 1 57 5 is_stmt 1 discriminator 1 view .LVU40
+ 199              		.loc 1 57 42 is_stmt 0 discriminator 1 view .LVU41
+ 200 0060 1649     		ldr	r1, .L10+4
+ 201 0062 0698     		ldr	r0, [sp, #24]	@ float
  202 0064 FFF7FEFF 		bl	__aeabi_fmul
  203              	.LVL21:
- 204              		.loc 1 54 20 discriminator 1 view .LVU43
+ 204              		.loc 1 57 20 discriminator 1 view .LVU42
  205 0068 FFF7FEFF 		bl	__aeabi_f2uiz
  206              	.LVL22:
- 207              		.loc 1 54 18 discriminator 1 view .LVU44
- 208 006c 8DF80800 		strb	r0, [sp, #8]
-  55:Src/main.c    ****     uart_data[5] = (uint8_t)(data.gyro.z * 100);
- 209              		.loc 1 55 5 is_stmt 1 discriminator 1 view .LVU45
- 210              		.loc 1 55 42 is_stmt 0 discriminator 1 view .LVU46
- 211 0070 0B49     		ldr	r1, .L10+4
- 212 0072 0898     		ldr	r0, [sp, #32]	@ float
+ 207              		.loc 1 57 18 discriminator 1 view .LVU43
+ 208 006c 8DF80700 		strb	r0, [sp, #7]
+  58:Src/main.c    ****     uart_data[4] = (uint8_t)(data.gyro.y * 100);
+ 209              		.loc 1 58 5 is_stmt 1 discriminator 1 view .LVU44
+ 210              		.loc 1 58 42 is_stmt 0 discriminator 1 view .LVU45
+ 211 0070 1249     		ldr	r1, .L10+4
+ 212 0072 0798     		ldr	r0, [sp, #28]	@ float
  213 0074 FFF7FEFF 		bl	__aeabi_fmul
  214              	.LVL23:
- 215              		.loc 1 55 20 discriminator 1 view .LVU47
+ 215              		.loc 1 58 20 discriminator 1 view .LVU46
  216 0078 FFF7FEFF 		bl	__aeabi_f2uiz
  217              	.LVL24:
- 218              		.loc 1 55 18 discriminator 1 view .LVU48
- 219 007c 8DF80900 		strb	r0, [sp, #9]
-  56:Src/main.c    ****     uart_data[6] = (uint8_t)(data.tempt);
- 220              		.loc 1 56 5 is_stmt 1 discriminator 1 view .LVU49
- 221              		.loc 1 56 20 is_stmt 0 discriminator 1 view .LVU50
- 222 0080 0998     		ldr	r0, [sp, #36]	@ float
- 223 0082 FFF7FEFF 		bl	__aeabi_f2uiz
- 224              	.LVL25:
- 225              		.loc 1 56 18 discriminator 1 view .LVU51
- 226 0086 8DF80A00 		strb	r0, [sp, #10]
-  57:Src/main.c    **** 
-  58:Src/main.c    ****     uart_send(uart_data, 7);
- 227              		.loc 1 58 5 is_stmt 1 discriminator 1 view .LVU52
- 228 008a 0721     		movs	r1, #7
- 229 008c 01A8     		add	r0, sp, #4
- 230 008e FFF7FEFF 		bl	uart_send
- 231              	.LVL26:
-  59:Src/main.c    ****     HAL_Delay(LED_BLINK_DELAY);
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 6
+ 218              		.loc 1 58 18 discriminator 1 view .LVU47
+ 219 007c 8DF80800 		strb	r0, [sp, #8]
+  59:Src/main.c    ****     uart_data[5] = (uint8_t)(data.gyro.z * 100);
+ 220              		.loc 1 59 5 is_stmt 1 discriminator 1 view .LVU48
+ 221              		.loc 1 59 42 is_stmt 0 discriminator 1 view .LVU49
+ 222 0080 0E49     		ldr	r1, .L10+4
+ 223 0082 0898     		ldr	r0, [sp, #32]	@ float
+ 224 0084 FFF7FEFF 		bl	__aeabi_fmul
+ 225              	.LVL25:
+ 226              		.loc 1 59 20 discriminator 1 view .LVU50
+ 227 0088 FFF7FEFF 		bl	__aeabi_f2uiz
+ 228              	.LVL26:
+ 229              		.loc 1 59 18 discriminator 1 view .LVU51
+ 230 008c 8DF80900 		strb	r0, [sp, #9]
+  60:Src/main.c    ****     uart_data[6] = (uint8_t)(data.tempt);
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 6
 
 
- 232              		.loc 1 59 5 discriminator 1 view .LVU53
- 233 0092 4FF47A70 		mov	r0, #1000
- 234 0096 FFF7FEFF 		bl	HAL_Delay
+ 231              		.loc 1 60 5 is_stmt 1 discriminator 1 view .LVU52
+ 232              		.loc 1 60 20 is_stmt 0 discriminator 1 view .LVU53
+ 233 0090 0998     		ldr	r0, [sp, #36]	@ float
+ 234 0092 FFF7FEFF 		bl	__aeabi_f2uiz
  235              	.LVL27:
-  44:Src/main.c    ****   {
- 236              		.loc 1 44 9 discriminator 1 view .LVU54
- 237 009a B5E7     		b	.L8
- 238              	.L11:
- 239              		.align	2
- 240              	.L10:
- 241 009c 00100140 		.word	1073811456
- 242 00a0 0000C842 		.word	1120403456
- 243              		.cfi_endproc
- 244              	.LFE67:
- 246              		.section	.text.Error_Handler,"ax",%progbits
- 247              		.align	1
- 248              		.global	Error_Handler
- 249              		.syntax unified
- 250              		.thumb
- 251              		.thumb_func
- 253              	Error_Handler:
- 254              	.LFB68:
-  60:Src/main.c    ****   }
-  61:Src/main.c    **** }
-  62:Src/main.c    **** 
-  63:Src/main.c    **** void Error_Handler(void)
-  64:Src/main.c    **** {
- 255              		.loc 1 64 1 view -0
- 256              		.cfi_startproc
- 257              		@ Volatile: function does not return.
- 258              		@ args = 0, pretend = 0, frame = 0
- 259              		@ frame_needed = 0, uses_anonymous_args = 0
- 260              		@ link register save eliminated.
-  65:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
-  66:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
-  67:Src/main.c    ****   __disable_irq();
- 261              		.loc 1 67 3 view .LVU56
- 262              	.LBB4:
- 263              	.LBI4:
- 264              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+ 236              		.loc 1 60 18 discriminator 1 view .LVU54
+ 237 0096 8DF80A00 		strb	r0, [sp, #10]
+  61:Src/main.c    **** 
+  62:Src/main.c    ****     uart_send(uart_data, 7);
+ 238              		.loc 1 62 5 is_stmt 1 discriminator 1 view .LVU55
+ 239 009a 0721     		movs	r1, #7
+ 240 009c 01A8     		add	r0, sp, #4
+ 241 009e FFF7FEFF 		bl	uart_send
+ 242              	.LVL28:
+  63:Src/main.c    ****     HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_SET);
+ 243              		.loc 1 63 5 discriminator 1 view .LVU56
+ 244 00a2 0122     		movs	r2, #1
+ 245 00a4 4FF40051 		mov	r1, #8192
+ 246 00a8 2046     		mov	r0, r4
+ 247 00aa FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 248              	.LVL29:
+  64:Src/main.c    ****     HAL_Delay(1000); // sampling rate is 94Hz, so make it > 10ms
+ 249              		.loc 1 64 5 discriminator 1 view .LVU57
+ 250 00ae 4FF47A70 		mov	r0, #1000
+ 251 00b2 FFF7FEFF 		bl	HAL_Delay
+ 252              	.LVL30:
+  45:Src/main.c    ****   {
+ 253              		.loc 1 45 9 discriminator 1 view .LVU58
+ 254 00b6 A7E7     		b	.L8
+ 255              	.L11:
+ 256              		.align	2
+ 257              	.L10:
+ 258 00b8 00100140 		.word	1073811456
+ 259 00bc 0000C842 		.word	1120403456
+ 260              		.cfi_endproc
+ 261              	.LFE67:
+ 263              		.section	.text.Error_Handler,"ax",%progbits
+ 264              		.align	1
+ 265              		.global	Error_Handler
+ 266              		.syntax unified
+ 267              		.thumb
+ 268              		.thumb_func
+ 270              	Error_Handler:
+ 271              	.LFB68:
+  65:Src/main.c    ****   }
+  66:Src/main.c    **** }
+  67:Src/main.c    **** 
+  68:Src/main.c    **** void Error_Handler(void)
+  69:Src/main.c    **** {
+ 272              		.loc 1 69 1 view -0
+ 273              		.cfi_startproc
+ 274              		@ Volatile: function does not return.
+ 275              		@ args = 0, pretend = 0, frame = 0
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277              		@ link register save eliminated.
+  70:Src/main.c    ****   __disable_irq();
+ 278              		.loc 1 70 3 view .LVU60
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 7
+
+
+ 279              	.LBB4:
+ 280              	.LBI4:
+ 281              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -358,9 +381,6 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
   15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
   17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 7
-
-
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
   19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
   20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -398,6 +418,9 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
   53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 8
+
+
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
   57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -418,9 +441,6 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
   72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 8
-
-
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
   77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -458,6 +478,9 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 9
+
+
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
  114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
@@ -478,9 +501,6 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
  129:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
  130:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  131:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 9
-
-
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  133:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -490,66 +510,65 @@ ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 1
  138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 265              		.loc 2 140 27 view .LVU57
- 266              	.LBB5:
+ 282              		.loc 2 140 27 view .LVU61
+ 283              	.LBB5:
  141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 267              		.loc 2 142 3 view .LVU58
- 268              		.syntax unified
- 269              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 270 0000 72B6     		cpsid i
- 271              	@ 0 "" 2
- 272              		.thumb
- 273              		.syntax unified
- 274              	.L13:
- 275              	.LBE5:
- 276              	.LBE4:
-  68:Src/main.c    ****   while (1)
- 277              		.loc 1 68 3 discriminator 1 view .LVU59
-  69:Src/main.c    ****   {
-  70:Src/main.c    ****   }
- 278              		.loc 1 70 3 discriminator 1 view .LVU60
-  68:Src/main.c    ****   while (1)
- 279              		.loc 1 68 9 discriminator 1 view .LVU61
- 280 0002 FEE7     		b	.L13
- 281              		.cfi_endproc
- 282              	.LFE68:
- 284              		.section	.rodata
- 285              		.align	2
- 286              		.set	.LANCHOR0,. + 0
- 287              	.LC0:
- 288 0000 00000000 		.word	stm32_i2c_write_reg
- 289 0004 00000000 		.word	stm32_i2c_read_reg
- 290              		.text
- 291              	.Letext0:
- 292              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
- 293              		.file 4 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
- 294              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 295              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 296              		.file 7 "Src/../../../../inc/mpu6050_i2c.h"
- 297              		.file 8 "Src/../../../../inc/mpu6050.h"
- 298              		.file 9 "Src/../Inc/usart.h"
- 299              		.file 10 "Src/../Inc/i2c.h"
- 300              		.file 11 "Src/../Inc/gpio.h"
- 301              		.file 12 "Src/../Inc/sysconfig.h"
- 302              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
- 303              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
-ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s 			page 10
+ 284              		.loc 2 142 3 view .LVU62
+ 285              		.syntax unified
+ 286              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 287 0000 72B6     		cpsid i
+ 288              	@ 0 "" 2
+ 289              		.thumb
+ 290              		.syntax unified
+ 291              	.L13:
+ 292              	.LBE5:
+ 293              	.LBE4:
+  71:Src/main.c    ****   while (1)
+ 294              		.loc 1 71 3 discriminator 1 view .LVU63
+ 295              		.loc 1 71 9 discriminator 1 view .LVU64
+ 296 0002 FEE7     		b	.L13
+ 297              		.cfi_endproc
+ 298              	.LFE68:
+ 300              		.section	.rodata
+ 301              		.align	2
+ 302              		.set	.LANCHOR0,. + 0
+ 303              	.LC0:
+ 304 0000 00000000 		.word	stm32_i2c_write_reg
+ 305 0004 00000000 		.word	stm32_i2c_read_reg
+ 306              		.text
+ 307              	.Letext0:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 10
+
+
+ 308              		.file 3 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 309              		.file 4 "C:\\ST\\STM32CubeCLT_1.17.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 310              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 311              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 312              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 313              		.file 8 "Src/../../../../inc/mpu6050_i2c.h"
+ 314              		.file 9 "Src/../../../../inc/mpu6050.h"
+ 315              		.file 10 "Src/../Inc/usart.h"
+ 316              		.file 11 "Src/../Inc/i2c.h"
+ 317              		.file 12 "Src/../Inc/gpio.h"
+ 318              		.file 13 "Src/../Inc/sysconfig.h"
+ 319              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:19     .text.mpu6050_com_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:25     .text.mpu6050_com_init:00000000 mpu6050_com_init
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:57     .text.mpu6050_com_init:0000001c $d
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:62     .text.peripheral_init:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:67     .text.peripheral_init:00000000 peripheral_init
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:111    .text.main:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:117    .text.main:00000000 main
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:241    .text.main:0000009c $d
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:247    .text.Error_Handler:00000000 $t
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:253    .text.Error_Handler:00000000 Error_Handler
-C:\Users\binhp\AppData\Local\Temp\cc68SzN9.s:285    .rodata:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:19     .text.mpu6050_com_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:25     .text.mpu6050_com_init:00000000 mpu6050_com_init
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:57     .text.mpu6050_com_init:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:62     .text.peripheral_init:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:67     .text.peripheral_init:00000000 peripheral_init
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:111    .text.main:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:117    .text.main:00000000 main
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:258    .text.main:000000b8 $d
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:264    .text.Error_Handler:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:270    .text.Error_Handler:00000000 Error_Handler
+C:\Users\binhp\AppData\Local\Temp\ccYoKRLy.s:301    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 mpu6050_set_i2c_spec
@@ -562,8 +581,10 @@ mpu6050_init_reg
 mpu6050_cfg_pwr_mng
 __aeabi_fmul
 __aeabi_f2uiz
-HAL_GPIO_TogglePin
+HAL_GPIO_WritePin
 mpu6050_get_accel_raw
+mpu6050_get_gyro_raw
+mpu6050_get_temp_raw
 mpu6050_raw_data_to_readable_data
 uart_send
 HAL_Delay
