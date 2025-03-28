@@ -1,0 +1,218 @@
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"mpu6050_hw.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "../../../src/mpu6050_hw.c"
+  18              		.section	.text.mpu6050_set_i2c_spec,"ax",%progbits
+  19              		.align	1
+  20              		.global	mpu6050_set_i2c_spec
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	mpu6050_set_i2c_spec:
+  26              	.LVL0:
+  27              	.LFB0:
+   1:../../../src/mpu6050_hw.c **** // example of init ""
+   2:../../../src/mpu6050_hw.c **** /*
+   3:../../../src/mpu6050_hw.c **** 
+   4:../../../src/mpu6050_hw.c **** void mpu6050_init(void) {
+   5:../../../src/mpu6050_hw.c ****   mpu6050_i2c_ops_t ops = {
+   6:../../../src/mpu6050_hw.c ****       .i2c_write = stm32_i2c_write, // replace this
+   7:../../../src/mpu6050_hw.c ****       .i2c_read = stm32_i2c_read  // replace this
+   8:../../../src/mpu6050_hw.c ****   };
+   9:../../../src/mpu6050_hw.c ****   mpu6050_set_i2c_spec(&ops);
+  10:../../../src/mpu6050_hw.c **** }
+  11:../../../src/mpu6050_hw.c **** 
+  12:../../../src/mpu6050_hw.c **** */
+  13:../../../src/mpu6050_hw.c **** 
+  14:../../../src/mpu6050_hw.c **** #include "mpu6050_hw.h"
+  15:../../../src/mpu6050_hw.c **** 
+  16:../../../src/mpu6050_hw.c **** 
+  17:../../../src/mpu6050_hw.c **** static mpu6050_i2c_ops_t i2c_ops;
+  18:../../../src/mpu6050_hw.c **** 
+  19:../../../src/mpu6050_hw.c **** void mpu6050_set_i2c_spec(mpu6050_i2c_ops_t *ops) {
+  28              		.loc 1 19 51 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  20:../../../src/mpu6050_hw.c ****     i2c_ops = *ops; // Copy the function pointers
+  33              		.loc 1 20 5 view .LVU1
+  34              		.loc 1 20 13 is_stmt 0 view .LVU2
+  35 0000 024B     		ldr	r3, .L2
+  36 0002 03C8     		ldm	r0, {r0, r1}
+  37              	.LVL1:
+  38              		.loc 1 20 13 view .LVU3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s 			page 2
+
+
+  39 0004 83E80300 		stm	r3, {r0, r1}
+  21:../../../src/mpu6050_hw.c **** }
+  40              		.loc 1 21 1 view .LVU4
+  41 0008 7047     		bx	lr
+  42              	.L3:
+  43 000a 00BF     		.align	2
+  44              	.L2:
+  45 000c 00000000 		.word	i2c_ops
+  46              		.cfi_endproc
+  47              	.LFE0:
+  49              		.section	.text.mpu6050_i2c_read_reg,"ax",%progbits
+  50              		.align	1
+  51              		.global	mpu6050_i2c_read_reg
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  56              	mpu6050_i2c_read_reg:
+  57              	.LVL2:
+  58              	.LFB1:
+  22:../../../src/mpu6050_hw.c **** 
+  23:../../../src/mpu6050_hw.c **** int mpu6050_i2c_read_reg(uint8_t reg, uint8_t *data, uint8_t size) {
+  59              		.loc 1 23 68 is_stmt 1 view -0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		.loc 1 23 68 is_stmt 0 view .LVU6
+  64 0000 08B5     		push	{r3, lr}
+  65              	.LCFI0:
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 3, -8
+  68              		.cfi_offset 14, -4
+  24:../../../src/mpu6050_hw.c ****     if (i2c_ops.i2c_read) {
+  69              		.loc 1 24 5 is_stmt 1 view .LVU7
+  70              		.loc 1 24 16 is_stmt 0 view .LVU8
+  71 0002 044B     		ldr	r3, .L8
+  72 0004 5B68     		ldr	r3, [r3, #4]
+  73              		.loc 1 24 8 view .LVU9
+  74 0006 0BB1     		cbz	r3, .L6
+  25:../../../src/mpu6050_hw.c ****         return i2c_ops.i2c_read(reg, data, size);
+  75              		.loc 1 25 9 is_stmt 1 view .LVU10
+  76              		.loc 1 25 16 is_stmt 0 view .LVU11
+  77 0008 9847     		blx	r3
+  78              	.LVL3:
+  79              	.L4:
+  26:../../../src/mpu6050_hw.c ****     }
+  27:../../../src/mpu6050_hw.c ****     return -1; // Error: function not set
+  28:../../../src/mpu6050_hw.c **** }
+  80              		.loc 1 28 1 view .LVU12
+  81 000a 08BD     		pop	{r3, pc}
+  82              	.LVL4:
+  83              	.L6:
+  27:../../../src/mpu6050_hw.c **** }
+  84              		.loc 1 27 12 view .LVU13
+  85 000c 4FF0FF30 		mov	r0, #-1
+  86              	.LVL5:
+  27:../../../src/mpu6050_hw.c **** }
+  87              		.loc 1 27 12 view .LVU14
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s 			page 3
+
+
+  88 0010 FBE7     		b	.L4
+  89              	.L9:
+  90 0012 00BF     		.align	2
+  91              	.L8:
+  92 0014 00000000 		.word	i2c_ops
+  93              		.cfi_endproc
+  94              	.LFE1:
+  96              		.section	.text.mpu6050_i2c_write_reg,"ax",%progbits
+  97              		.align	1
+  98              		.global	mpu6050_i2c_write_reg
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 103              	mpu6050_i2c_write_reg:
+ 104              	.LVL6:
+ 105              	.LFB2:
+  29:../../../src/mpu6050_hw.c **** 
+  30:../../../src/mpu6050_hw.c **** int mpu6050_i2c_write_reg(uint8_t reg, uint8_t value) {
+ 106              		.loc 1 30 55 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		.loc 1 30 55 is_stmt 0 view .LVU16
+ 111 0000 08B5     		push	{r3, lr}
+ 112              	.LCFI1:
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 3, -8
+ 115              		.cfi_offset 14, -4
+  31:../../../src/mpu6050_hw.c ****     if (i2c_ops.i2c_write) {
+ 116              		.loc 1 31 5 is_stmt 1 view .LVU17
+ 117              		.loc 1 31 16 is_stmt 0 view .LVU18
+ 118 0002 044B     		ldr	r3, .L14
+ 119 0004 1B68     		ldr	r3, [r3]
+ 120              		.loc 1 31 8 view .LVU19
+ 121 0006 13B1     		cbz	r3, .L12
+  32:../../../src/mpu6050_hw.c ****         i2c_ops.i2c_write(reg, value);
+ 122              		.loc 1 32 9 is_stmt 1 view .LVU20
+ 123 0008 9847     		blx	r3
+ 124              	.LVL7:
+  33:../../../src/mpu6050_hw.c ****         return 0;
+ 125              		.loc 1 33 9 view .LVU21
+ 126              		.loc 1 33 16 is_stmt 0 view .LVU22
+ 127 000a 0020     		movs	r0, #0
+ 128              	.L10:
+  34:../../../src/mpu6050_hw.c ****     }
+  35:../../../src/mpu6050_hw.c ****     return -1; // Error: function not set
+  36:../../../src/mpu6050_hw.c **** }
+ 129              		.loc 1 36 1 view .LVU23
+ 130 000c 08BD     		pop	{r3, pc}
+ 131              	.LVL8:
+ 132              	.L12:
+  35:../../../src/mpu6050_hw.c **** }
+ 133              		.loc 1 35 12 view .LVU24
+ 134 000e 4FF0FF30 		mov	r0, #-1
+ 135              	.LVL9:
+  35:../../../src/mpu6050_hw.c **** }
+ 136              		.loc 1 35 12 view .LVU25
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s 			page 4
+
+
+ 137 0012 FBE7     		b	.L10
+ 138              	.L15:
+ 139              		.align	2
+ 140              	.L14:
+ 141 0014 00000000 		.word	i2c_ops
+ 142              		.cfi_endproc
+ 143              	.LFE2:
+ 145              		.section	.bss.i2c_ops,"aw",%nobits
+ 146              		.align	2
+ 149              	i2c_ops:
+ 150 0000 00000000 		.space	8
+ 150      00000000 
+ 151              		.text
+ 152              	.Letext0:
+ 153              		.file 2 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+ 154              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+ 155              		.file 4 "../../../inc/mpu6050_hw.h"
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu6050_hw.c
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:19     .text.mpu6050_set_i2c_spec:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:25     .text.mpu6050_set_i2c_spec:00000000 mpu6050_set_i2c_spec
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:45     .text.mpu6050_set_i2c_spec:0000000c $d
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:149    .bss.i2c_ops:00000000 i2c_ops
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:50     .text.mpu6050_i2c_read_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:56     .text.mpu6050_i2c_read_reg:00000000 mpu6050_i2c_read_reg
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:92     .text.mpu6050_i2c_read_reg:00000014 $d
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:97     .text.mpu6050_i2c_write_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:103    .text.mpu6050_i2c_write_reg:00000000 mpu6050_i2c_write_reg
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:141    .text.mpu6050_i2c_write_reg:00000014 $d
+C:\Users\binhp\AppData\Local\Temp\cc5oJpsA.s:146    .bss.i2c_ops:00000000 $d
+
+NO UNDEFINED SYMBOLS

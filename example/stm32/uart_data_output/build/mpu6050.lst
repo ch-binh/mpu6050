@@ -1,0 +1,1559 @@
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"mpu6050.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "../../../src/mpu6050.c"
+  18              		.section	.text.mpu6050_get_sys_cfg,"ax",%progbits
+  19              		.align	1
+  20              		.global	mpu6050_get_sys_cfg
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	mpu6050_get_sys_cfg:
+  26              	.LVL0:
+  27              	.LFB3:
+   1:../../../src/mpu6050.c **** #include "mpu6050.h"
+   2:../../../src/mpu6050.c **** #include "mpu6050_registers.h"
+   3:../../../src/mpu6050.c **** 
+   4:../../../src/mpu6050.c **** static const float gyro_sens[] = {
+   5:../../../src/mpu6050.c ****     GYRO_SENS_250,
+   6:../../../src/mpu6050.c ****     GYRO_SENS_500,
+   7:../../../src/mpu6050.c ****     GYRO_SENS_1000,
+   8:../../../src/mpu6050.c ****     GYRO_SENS_2000};
+   9:../../../src/mpu6050.c **** 
+  10:../../../src/mpu6050.c **** static const float accel_sens[] = {
+  11:../../../src/mpu6050.c ****     ACCEL_SENS_2G,
+  12:../../../src/mpu6050.c ****     ACCEL_SENS_4G,
+  13:../../../src/mpu6050.c ****     ACCEL_SENS_8G,
+  14:../../../src/mpu6050.c ****     ACCEL_SENS_16G};
+  15:../../../src/mpu6050.c **** 
+  16:../../../src/mpu6050.c **** static mpu_cfg_t _cfg;
+  17:../../../src/mpu6050.c **** /*======================== HANDY FUNCTIONS ===========================*/
+  18:../../../src/mpu6050.c **** 
+  19:../../../src/mpu6050.c **** void mpu6050_init_reg(void)
+  20:../../../src/mpu6050.c **** {
+  21:../../../src/mpu6050.c ****     mpu6050_cfg_set_smprt_div(DEF_SAMPLE_RATE_DIV);
+  22:../../../src/mpu6050.c ****     mpu6050_cfg_set_config(DEF_FSYNC, DEF_DLPF);
+  23:../../../src/mpu6050.c ****     mpu6050_cfg_gyro(DEF_DISABLE_TEST, DEF_GYR_CFG);
+  24:../../../src/mpu6050.c ****     mpu6050_cfg_accel(DEF_DISABLE_TEST, DEF_ACC_CFG);
+  25:../../../src/mpu6050.c **** #if defined(USE_INT_PIN)
+  26:../../../src/mpu6050.c ****     mpu6050_cfg_int_pin(DEF_INT_LVL, DEF_INT_OP, DEF_EN_LATCH,
+  27:../../../src/mpu6050.c ****                         DEF_INT_CLR_MODE, DEF_FSYNC_LV, DEF_DIS_FSYNC_INT,
+  28:../../../src/mpu6050.c ****                         DEF_DIS_I2C_BYPASS);
+  29:../../../src/mpu6050.c **** 
+  30:../../../src/mpu6050.c ****     mpu6050_cfg_int_mode(DEF_EN_MOT_INT, DEF_DIS_FFULL_INT, DEF_DIS_I2C_MST_INT, DEF_DIS_DATA_RDY);
+  31:../../../src/mpu6050.c **** 
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 2
+
+
+  32:../../../src/mpu6050.c **** #endif
+  33:../../../src/mpu6050.c **** }
+  34:../../../src/mpu6050.c **** 
+  35:../../../src/mpu6050.c **** int mpu6050_get_raw_data(mpu_rawdata_t *r_data)
+  36:../../../src/mpu6050.c **** {
+  37:../../../src/mpu6050.c ****     mpu6050_get_accel_raw(&r_data);
+  38:../../../src/mpu6050.c ****     mpu6050_get_gyro_raw(&r_data);
+  39:../../../src/mpu6050.c ****     mpu6050_get_temp_raw(&r_data);
+  40:../../../src/mpu6050.c **** 
+  41:../../../src/mpu6050.c ****     return 0;
+  42:../../../src/mpu6050.c **** }
+  43:../../../src/mpu6050.c **** 
+  44:../../../src/mpu6050.c **** int mpu6050_raw_data_to_readable_data(mpu_data_t *data, mpu_rawdata_t *r_data)
+  45:../../../src/mpu6050.c **** {
+  46:../../../src/mpu6050.c ****     if (!data || !r_data)
+  47:../../../src/mpu6050.c ****     {
+  48:../../../src/mpu6050.c ****         return -1; // Return error if NULL pointers are passed
+  49:../../../src/mpu6050.c ****     }
+  50:../../../src/mpu6050.c **** 
+  51:../../../src/mpu6050.c ****     mpu_cfg_t mpu_cfg;
+  52:../../../src/mpu6050.c **** 
+  53:../../../src/mpu6050.c ****     mpu6050_get_fs(&mpu_cfg);
+  54:../../../src/mpu6050.c **** 
+  55:../../../src/mpu6050.c ****     // Convert acceleration raw values to g (gravity)
+  56:../../../src/mpu6050.c ****     data->accel.x = r_data->accel_raw.x / mpu_cfg.fs_range.accel;
+  57:../../../src/mpu6050.c ****     data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+  58:../../../src/mpu6050.c ****     data->accel.z = r_data->accel_raw.z / mpu_cfg.fs_range.accel;
+  59:../../../src/mpu6050.c **** 
+  60:../../../src/mpu6050.c ****     // Convert gyroscope raw values to degrees per second (°/s)
+  61:../../../src/mpu6050.c ****     data->gyro.x = r_data->gyro_raw.x / mpu_cfg.fs_range.gyro;
+  62:../../../src/mpu6050.c ****     data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+  63:../../../src/mpu6050.c ****     data->gyro.z = r_data->gyro_raw.z / mpu_cfg.fs_range.gyro;
+  64:../../../src/mpu6050.c **** 
+  65:../../../src/mpu6050.c ****     // Convert temperature raw value to degrees Celsius
+  66:../../../src/mpu6050.c ****     data->tempt = (r_data->tempt_raw / 340.0f) + 36.53f;
+  67:../../../src/mpu6050.c **** 
+  68:../../../src/mpu6050.c ****     return 0; // Success
+  69:../../../src/mpu6050.c **** }
+  70:../../../src/mpu6050.c **** 
+  71:../../../src/mpu6050.c **** mpu_cfg_t mpu6050_get_sys_cfg(void)
+  72:../../../src/mpu6050.c **** {
+  28              		.loc 1 72 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 72 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 8646     		mov	lr, r0
+  73:../../../src/mpu6050.c ****     return _cfg;
+  39              		.loc 1 73 5 is_stmt 1 view .LVU2
+  40              		.loc 1 73 12 is_stmt 0 view .LVU3
+  41 0004 8446     		mov	ip, r0
+  42 0006 054C     		ldr	r4, .L3
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 3
+
+
+  43 0008 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+  44              	.LVL1:
+  45              		.loc 1 73 12 view .LVU4
+  46 000a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+  47              	.LVL2:
+  48              		.loc 1 73 12 view .LVU5
+  49 000e 94E80700 		ldm	r4, {r0, r1, r2}
+  50 0012 8CE80700 		stm	ip, {r0, r1, r2}
+  74:../../../src/mpu6050.c **** }
+  51              		.loc 1 74 1 view .LVU6
+  52 0016 7046     		mov	r0, lr
+  53 0018 10BD     		pop	{r4, pc}
+  54              	.L4:
+  55 001a 00BF     		.align	2
+  56              	.L3:
+  57 001c 00000000 		.word	_cfg
+  58              		.cfi_endproc
+  59              	.LFE3:
+  61              		.global	__aeabi_ui2f
+  62              		.section	.text.mpu6050_cfg_set_smprt_div,"ax",%progbits
+  63              		.align	1
+  64              		.global	mpu6050_cfg_set_smprt_div
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	mpu6050_cfg_set_smprt_div:
+  70              	.LVL3:
+  71              	.LFB4:
+  75:../../../src/mpu6050.c **** 
+  76:../../../src/mpu6050.c **** /*======================== SETUP FUNCTIONS ===========================*/
+  77:../../../src/mpu6050.c **** 
+  78:../../../src/mpu6050.c **** /* REG 0x19*/
+  79:../../../src/mpu6050.c **** void mpu6050_cfg_set_smprt_div(uint8_t val)
+  80:../../../src/mpu6050.c **** {
+  72              		.loc 1 80 1 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              		.loc 1 80 1 is_stmt 0 view .LVU8
+  77 0000 10B5     		push	{r4, lr}
+  78              	.LCFI1:
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 4, -8
+  81              		.cfi_offset 14, -4
+  82 0002 0446     		mov	r4, r0
+  81:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_SMPRT_DIV, val);
+  83              		.loc 1 81 5 is_stmt 1 view .LVU9
+  84 0004 0146     		mov	r1, r0
+  85 0006 1920     		movs	r0, #25
+  86              	.LVL4:
+  87              		.loc 1 81 5 is_stmt 0 view .LVU10
+  88 0008 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+  89              	.LVL5:
+  82:../../../src/mpu6050.c **** 
+  83:../../../src/mpu6050.c ****     _cfg.smprt.div = val;
+  90              		.loc 1 83 5 is_stmt 1 view .LVU11
+  91              		.loc 1 83 20 is_stmt 0 view .LVU12
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 4
+
+
+  92 000c 2046     		mov	r0, r4
+  93 000e FFF7FEFF 		bl	__aeabi_ui2f
+  94              	.LVL6:
+  95 0012 014B     		ldr	r3, .L7
+  96 0014 9860     		str	r0, [r3, #8]	@ float
+  84:../../../src/mpu6050.c **** }
+  97              		.loc 1 84 1 view .LVU13
+  98 0016 10BD     		pop	{r4, pc}
+  99              	.LVL7:
+ 100              	.L8:
+ 101              		.loc 1 84 1 view .LVU14
+ 102              		.align	2
+ 103              	.L7:
+ 104 0018 00000000 		.word	_cfg
+ 105              		.cfi_endproc
+ 106              	.LFE4:
+ 108              		.section	.text.mpu6050_cfg_set_config,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	mpu6050_cfg_set_config
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	mpu6050_cfg_set_config:
+ 116              	.LVL8:
+ 117              	.LFB5:
+  85:../../../src/mpu6050.c **** 
+  86:../../../src/mpu6050.c **** /* REG 0x1A*/
+  87:../../../src/mpu6050.c **** void mpu6050_cfg_set_config(uint8_t fsync, uint8_t dlpf)
+  88:../../../src/mpu6050.c **** {
+ 118              		.loc 1 88 1 is_stmt 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122              		.loc 1 88 1 is_stmt 0 view .LVU16
+ 123 0000 10B5     		push	{r4, lr}
+ 124              	.LCFI2:
+ 125              		.cfi_def_cfa_offset 8
+ 126              		.cfi_offset 4, -8
+ 127              		.cfi_offset 14, -4
+ 128 0002 0C46     		mov	r4, r1
+  89:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_CFG, (fsync << 3) | dlpf);
+ 129              		.loc 1 89 5 is_stmt 1 view .LVU17
+ 130 0004 41EAC001 		orr	r1, r1, r0, lsl #3
+ 131              	.LVL9:
+ 132              		.loc 1 89 5 is_stmt 0 view .LVU18
+ 133 0008 C9B2     		uxtb	r1, r1
+ 134 000a 1A20     		movs	r0, #26
+ 135              	.LVL10:
+ 136              		.loc 1 89 5 view .LVU19
+ 137 000c FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 138              	.LVL11:
+  90:../../../src/mpu6050.c ****     _cfg.filter.dlpf = dlpf;
+ 139              		.loc 1 90 5 is_stmt 1 view .LVU20
+ 140              		.loc 1 90 22 is_stmt 0 view .LVU21
+ 141 0010 014B     		ldr	r3, .L11
+ 142 0012 1C75     		strb	r4, [r3, #20]
+  91:../../../src/mpu6050.c **** }
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 5
+
+
+ 143              		.loc 1 91 1 view .LVU22
+ 144 0014 10BD     		pop	{r4, pc}
+ 145              	.LVL12:
+ 146              	.L12:
+ 147              		.loc 1 91 1 view .LVU23
+ 148 0016 00BF     		.align	2
+ 149              	.L11:
+ 150 0018 00000000 		.word	_cfg
+ 151              		.cfi_endproc
+ 152              	.LFE5:
+ 154              		.section	.text.mpu6050_cfg_gyro,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	mpu6050_cfg_gyro
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	mpu6050_cfg_gyro:
+ 162              	.LVL13:
+ 163              	.LFB6:
+  92:../../../src/mpu6050.c **** 
+  93:../../../src/mpu6050.c **** /* REG 0x1B */
+  94:../../../src/mpu6050.c **** void mpu6050_cfg_gyro(uint8_t en_gyr_test, uint8_t fs_sel)
+  95:../../../src/mpu6050.c **** {
+ 164              		.loc 1 95 1 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              		.loc 1 95 1 is_stmt 0 view .LVU25
+ 169 0000 08B5     		push	{r3, lr}
+ 170              	.LCFI3:
+ 171              		.cfi_def_cfa_offset 8
+ 172              		.cfi_offset 3, -8
+ 173              		.cfi_offset 14, -4
+  96:../../../src/mpu6050.c ****     uint8_t en_gyr_test_val = 0;
+ 174              		.loc 1 96 5 is_stmt 1 view .LVU26
+ 175              	.LVL14:
+  97:../../../src/mpu6050.c ****     if (en_gyr_test)
+ 176              		.loc 1 97 5 view .LVU27
+ 177              		.loc 1 97 8 is_stmt 0 view .LVU28
+ 178 0002 0346     		mov	r3, r0
+ 179 0004 18B1     		cbz	r0, .L14
+  98:../../../src/mpu6050.c ****     {
+  99:../../../src/mpu6050.c ****         en_gyr_test_val = 0xE0;
+ 180              		.loc 1 99 9 is_stmt 1 view .LVU29
+ 181              	.LVL15:
+ 100:../../../src/mpu6050.c ****         _cfg.test.is_gyr_en = 1;
+ 182              		.loc 1 100 9 view .LVU30
+ 183              		.loc 1 100 29 is_stmt 0 view .LVU31
+ 184 0006 054B     		ldr	r3, .L16
+ 185 0008 0122     		movs	r2, #1
+ 186 000a 5A75     		strb	r2, [r3, #21]
+  99:../../../src/mpu6050.c ****         _cfg.test.is_gyr_en = 1;
+ 187              		.loc 1 99 25 view .LVU32
+ 188 000c E023     		movs	r3, #224
+ 189              	.LVL16:
+ 190              	.L14:
+ 101:../../../src/mpu6050.c ****     }
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 6
+
+
+ 102:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_GYRO_CFG, en_gyr_test_val | (fs_sel << 3));
+ 191              		.loc 1 102 5 is_stmt 1 view .LVU33
+ 192 000e 43EAC101 		orr	r1, r3, r1, lsl #3
+ 193              	.LVL17:
+ 194              		.loc 1 102 5 is_stmt 0 view .LVU34
+ 195 0012 C9B2     		uxtb	r1, r1
+ 196 0014 1B20     		movs	r0, #27
+ 197              	.LVL18:
+ 198              		.loc 1 102 5 view .LVU35
+ 199 0016 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 200              	.LVL19:
+ 103:../../../src/mpu6050.c **** }
+ 201              		.loc 1 103 1 view .LVU36
+ 202 001a 08BD     		pop	{r3, pc}
+ 203              	.L17:
+ 204              		.align	2
+ 205              	.L16:
+ 206 001c 00000000 		.word	_cfg
+ 207              		.cfi_endproc
+ 208              	.LFE6:
+ 210              		.section	.text.mpu6050_cfg_accel,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	mpu6050_cfg_accel
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 217              	mpu6050_cfg_accel:
+ 218              	.LVL20:
+ 219              	.LFB7:
+ 104:../../../src/mpu6050.c **** 
+ 105:../../../src/mpu6050.c **** /* REG 0x1C */
+ 106:../../../src/mpu6050.c **** void mpu6050_cfg_accel(uint8_t en_acc_test, uint8_t fs_sel)
+ 107:../../../src/mpu6050.c **** {
+ 220              		.loc 1 107 1 is_stmt 1 view -0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		.loc 1 107 1 is_stmt 0 view .LVU38
+ 225 0000 08B5     		push	{r3, lr}
+ 226              	.LCFI4:
+ 227              		.cfi_def_cfa_offset 8
+ 228              		.cfi_offset 3, -8
+ 229              		.cfi_offset 14, -4
+ 108:../../../src/mpu6050.c ****     uint8_t en_acc_test_val = 0;
+ 230              		.loc 1 108 5 is_stmt 1 view .LVU39
+ 231              	.LVL21:
+ 109:../../../src/mpu6050.c ****     if (en_acc_test)
+ 232              		.loc 1 109 5 view .LVU40
+ 233              		.loc 1 109 8 is_stmt 0 view .LVU41
+ 234 0002 0346     		mov	r3, r0
+ 235 0004 18B1     		cbz	r0, .L19
+ 110:../../../src/mpu6050.c ****     {
+ 111:../../../src/mpu6050.c ****         en_acc_test_val = 0xE0;
+ 236              		.loc 1 111 9 is_stmt 1 view .LVU42
+ 237              	.LVL22:
+ 112:../../../src/mpu6050.c ****         _cfg.test.is_accel_en = 1;
+ 238              		.loc 1 112 9 view .LVU43
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 7
+
+
+ 239              		.loc 1 112 31 is_stmt 0 view .LVU44
+ 240 0006 054B     		ldr	r3, .L21
+ 241 0008 0122     		movs	r2, #1
+ 242 000a 9A75     		strb	r2, [r3, #22]
+ 111:../../../src/mpu6050.c ****         _cfg.test.is_accel_en = 1;
+ 243              		.loc 1 111 25 view .LVU45
+ 244 000c E023     		movs	r3, #224
+ 245              	.LVL23:
+ 246              	.L19:
+ 113:../../../src/mpu6050.c ****     }
+ 114:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_ACCEL_CFG, en_acc_test_val | (fs_sel << 3));
+ 247              		.loc 1 114 5 is_stmt 1 view .LVU46
+ 248 000e 43EAC101 		orr	r1, r3, r1, lsl #3
+ 249              	.LVL24:
+ 250              		.loc 1 114 5 is_stmt 0 view .LVU47
+ 251 0012 C9B2     		uxtb	r1, r1
+ 252 0014 1C20     		movs	r0, #28
+ 253              	.LVL25:
+ 254              		.loc 1 114 5 view .LVU48
+ 255 0016 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 256              	.LVL26:
+ 115:../../../src/mpu6050.c **** }
+ 257              		.loc 1 115 1 view .LVU49
+ 258 001a 08BD     		pop	{r3, pc}
+ 259              	.L22:
+ 260              		.align	2
+ 261              	.L21:
+ 262 001c 00000000 		.word	_cfg
+ 263              		.cfi_endproc
+ 264              	.LFE7:
+ 266              		.section	.text.mpu6050_cfg_set_mot_thr,"ax",%progbits
+ 267              		.align	1
+ 268              		.global	mpu6050_cfg_set_mot_thr
+ 269              		.syntax unified
+ 270              		.thumb
+ 271              		.thumb_func
+ 273              	mpu6050_cfg_set_mot_thr:
+ 274              	.LVL27:
+ 275              	.LFB8:
+ 116:../../../src/mpu6050.c **** 
+ 117:../../../src/mpu6050.c **** /* REG 0x1F */
+ 118:../../../src/mpu6050.c **** void mpu6050_cfg_set_mot_thr(uint8_t val)
+ 119:../../../src/mpu6050.c **** {
+ 276              		.loc 1 119 1 is_stmt 1 view -0
+ 277              		.cfi_startproc
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280              		.loc 1 119 1 is_stmt 0 view .LVU51
+ 281 0000 10B5     		push	{r4, lr}
+ 282              	.LCFI5:
+ 283              		.cfi_def_cfa_offset 8
+ 284              		.cfi_offset 4, -8
+ 285              		.cfi_offset 14, -4
+ 286 0002 0446     		mov	r4, r0
+ 120:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_MOT_THR, val);
+ 287              		.loc 1 120 5 is_stmt 1 view .LVU52
+ 288 0004 0146     		mov	r1, r0
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 8
+
+
+ 289 0006 1F20     		movs	r0, #31
+ 290              	.LVL28:
+ 291              		.loc 1 120 5 is_stmt 0 view .LVU53
+ 292 0008 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 293              	.LVL29:
+ 121:../../../src/mpu6050.c ****     _cfg.mot.thr = val;
+ 294              		.loc 1 121 5 is_stmt 1 view .LVU54
+ 295              		.loc 1 121 18 is_stmt 0 view .LVU55
+ 296 000c 014B     		ldr	r3, .L25
+ 297 000e 1C76     		strb	r4, [r3, #24]
+ 122:../../../src/mpu6050.c **** }
+ 298              		.loc 1 122 1 view .LVU56
+ 299 0010 10BD     		pop	{r4, pc}
+ 300              	.LVL30:
+ 301              	.L26:
+ 302              		.loc 1 122 1 view .LVU57
+ 303 0012 00BF     		.align	2
+ 304              	.L25:
+ 305 0014 00000000 		.word	_cfg
+ 306              		.cfi_endproc
+ 307              	.LFE8:
+ 309              		.section	.text.mpu6050_cfg_en_fifo,"ax",%progbits
+ 310              		.align	1
+ 311              		.global	mpu6050_cfg_en_fifo
+ 312              		.syntax unified
+ 313              		.thumb
+ 314              		.thumb_func
+ 316              	mpu6050_cfg_en_fifo:
+ 317              	.LVL31:
+ 318              	.LFB9:
+ 123:../../../src/mpu6050.c **** 
+ 124:../../../src/mpu6050.c **** /* REG 0x23 */
+ 125:../../../src/mpu6050.c **** void mpu6050_cfg_en_fifo(uint8_t val)
+ 126:../../../src/mpu6050.c **** {
+ 319              		.loc 1 126 1 is_stmt 1 view -0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              		.loc 1 126 1 is_stmt 0 view .LVU59
+ 324 0000 08B5     		push	{r3, lr}
+ 325              	.LCFI6:
+ 326              		.cfi_def_cfa_offset 8
+ 327              		.cfi_offset 3, -8
+ 328              		.cfi_offset 14, -4
+ 329 0002 0146     		mov	r1, r0
+ 127:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_FIFO_EN, val);
+ 330              		.loc 1 127 5 is_stmt 1 view .LVU60
+ 331 0004 2320     		movs	r0, #35
+ 332              	.LVL32:
+ 333              		.loc 1 127 5 is_stmt 0 view .LVU61
+ 334 0006 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 335              	.LVL33:
+ 128:../../../src/mpu6050.c **** }
+ 336              		.loc 1 128 1 view .LVU62
+ 337 000a 08BD     		pop	{r3, pc}
+ 338              		.cfi_endproc
+ 339              	.LFE9:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 9
+
+
+ 341              		.section	.text.mpu6050_cfg_int_pin,"ax",%progbits
+ 342              		.align	1
+ 343              		.global	mpu6050_cfg_int_pin
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 348              	mpu6050_cfg_int_pin:
+ 349              	.LVL34:
+ 350              	.LFB10:
+ 129:../../../src/mpu6050.c **** 
+ 130:../../../src/mpu6050.c **** /* REG 0x37 */
+ 131:../../../src/mpu6050.c **** void mpu6050_cfg_int_pin(uint8_t int_lvl, uint8_t int_open,
+ 132:../../../src/mpu6050.c ****                          uint8_t is_latch, uint8_t int_clr_mode,
+ 133:../../../src/mpu6050.c ****                          uint8_t fsync_int_lv, uint8_t fsync_int_en,
+ 134:../../../src/mpu6050.c ****                          uint8_t i2c_bypass_en)
+ 135:../../../src/mpu6050.c **** {
+ 351              		.loc 1 135 1 is_stmt 1 view -0
+ 352              		.cfi_startproc
+ 353              		@ args = 12, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 355              		.loc 1 135 1 is_stmt 0 view .LVU64
+ 356 0000 08B5     		push	{r3, lr}
+ 357              	.LCFI7:
+ 358              		.cfi_def_cfa_offset 8
+ 359              		.cfi_offset 3, -8
+ 360              		.cfi_offset 14, -4
+ 136:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(
+ 361              		.loc 1 136 5 is_stmt 1 view .LVU65
+ 137:../../../src/mpu6050.c ****         REG_INT_PIN_CFG,
+ 138:../../../src/mpu6050.c ****         (int_lvl << 7) | (int_open << 6) |
+ 362              		.loc 1 138 24 is_stmt 0 view .LVU66
+ 363 0002 8901     		lsls	r1, r1, #6
+ 364              	.LVL35:
+ 365              		.loc 1 138 24 view .LVU67
+ 366 0004 41EAC011 		orr	r1, r1, r0, lsl #7
+ 367 0008 49B2     		sxtb	r1, r1
+ 368              		.loc 1 138 42 view .LVU68
+ 369 000a 41EA4211 		orr	r1, r1, r2, lsl #5
+ 370 000e 49B2     		sxtb	r1, r1
+ 139:../../../src/mpu6050.c ****             (is_latch << 5) | (int_clr_mode << 4) |
+ 371              		.loc 1 139 29 view .LVU69
+ 372 0010 41EA0311 		orr	r1, r1, r3, lsl #4
+ 373 0014 49B2     		sxtb	r1, r1
+ 374              		.loc 1 139 51 view .LVU70
+ 375 0016 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 376              	.LVL36:
+ 377              		.loc 1 139 51 view .LVU71
+ 378 001a 41EAC301 		orr	r1, r1, r3, lsl #3
+ 379 001e 49B2     		sxtb	r1, r1
+ 140:../../../src/mpu6050.c ****             (fsync_int_lv << 3) | (fsync_int_en << 2) |
+ 380              		.loc 1 140 33 view .LVU72
+ 381 0020 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 382 0024 41EA8301 		orr	r1, r1, r3, lsl #2
+ 383 0028 49B2     		sxtb	r1, r1
+ 384              		.loc 1 140 55 view .LVU73
+ 385 002a 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
+ 386 002e 41EA4301 		orr	r1, r1, r3, lsl #1
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 10
+
+
+ 136:../../../src/mpu6050.c ****         REG_INT_PIN_CFG,
+ 387              		.loc 1 136 5 view .LVU74
+ 388 0032 01F0FE01 		and	r1, r1, #254
+ 389 0036 3720     		movs	r0, #55
+ 390              	.LVL37:
+ 136:../../../src/mpu6050.c ****         REG_INT_PIN_CFG,
+ 391              		.loc 1 136 5 view .LVU75
+ 392 0038 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 393              	.LVL38:
+ 141:../../../src/mpu6050.c ****             (i2c_bypass_en << 1));
+ 142:../../../src/mpu6050.c **** }
+ 394              		.loc 1 142 1 view .LVU76
+ 395 003c 08BD     		pop	{r3, pc}
+ 396              		.loc 1 142 1 view .LVU77
+ 397              		.cfi_endproc
+ 398              	.LFE10:
+ 400              		.section	.text.mpu6050_cfg_int_mode,"ax",%progbits
+ 401              		.align	1
+ 402              		.global	mpu6050_cfg_int_mode
+ 403              		.syntax unified
+ 404              		.thumb
+ 405              		.thumb_func
+ 407              	mpu6050_cfg_int_mode:
+ 408              	.LVL39:
+ 409              	.LFB11:
+ 143:../../../src/mpu6050.c **** 
+ 144:../../../src/mpu6050.c **** /* REG 0x38 */
+ 145:../../../src/mpu6050.c **** void mpu6050_cfg_int_mode(uint8_t mot, uint8_t ffull, uint8_t i2c_mst_int, uint8_t data_rdy_int)
+ 146:../../../src/mpu6050.c **** {
+ 410              		.loc 1 146 1 is_stmt 1 view -0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		.loc 1 146 1 is_stmt 0 view .LVU79
+ 415 0000 08B5     		push	{r3, lr}
+ 416              	.LCFI8:
+ 417              		.cfi_def_cfa_offset 8
+ 418              		.cfi_offset 3, -8
+ 419              		.cfi_offset 14, -4
+ 147:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(
+ 420              		.loc 1 147 5 is_stmt 1 view .LVU80
+ 148:../../../src/mpu6050.c ****         REG_INT_EN,
+ 149:../../../src/mpu6050.c ****         (mot << 6) | (ffull << 4) |
+ 421              		.loc 1 149 20 is_stmt 0 view .LVU81
+ 422 0002 0901     		lsls	r1, r1, #4
+ 423              	.LVL40:
+ 424              		.loc 1 149 20 view .LVU82
+ 425 0004 41EA8011 		orr	r1, r1, r0, lsl #6
+ 426 0008 49B2     		sxtb	r1, r1
+ 427              		.loc 1 149 35 view .LVU83
+ 428 000a 41EAC201 		orr	r1, r1, r2, lsl #3
+ 429 000e 49B2     		sxtb	r1, r1
+ 147:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(
+ 430              		.loc 1 147 5 view .LVU84
+ 431 0010 1943     		orrs	r1, r1, r3
+ 432 0012 C9B2     		uxtb	r1, r1
+ 433 0014 3820     		movs	r0, #56
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 11
+
+
+ 434              	.LVL41:
+ 147:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(
+ 435              		.loc 1 147 5 view .LVU85
+ 436 0016 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ 437              	.LVL42:
+ 150:../../../src/mpu6050.c ****             (i2c_mst_int << 3) | (data_rdy_int));
+ 151:../../../src/mpu6050.c **** }
+ 438              		.loc 1 151 1 view .LVU86
+ 439 001a 08BD     		pop	{r3, pc}
+ 440              		.cfi_endproc
+ 441              	.LFE11:
+ 443              		.section	.text.mpu6050_init_reg,"ax",%progbits
+ 444              		.align	1
+ 445              		.global	mpu6050_init_reg
+ 446              		.syntax unified
+ 447              		.thumb
+ 448              		.thumb_func
+ 450              	mpu6050_init_reg:
+ 451              	.LFB0:
+  20:../../../src/mpu6050.c ****     mpu6050_cfg_set_smprt_div(DEF_SAMPLE_RATE_DIV);
+ 452              		.loc 1 20 1 is_stmt 1 view -0
+ 453              		.cfi_startproc
+ 454              		@ args = 0, pretend = 0, frame = 0
+ 455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456 0000 10B5     		push	{r4, lr}
+ 457              	.LCFI9:
+ 458              		.cfi_def_cfa_offset 8
+ 459              		.cfi_offset 4, -8
+ 460              		.cfi_offset 14, -4
+ 461 0002 84B0     		sub	sp, sp, #16
+ 462              	.LCFI10:
+ 463              		.cfi_def_cfa_offset 24
+  21:../../../src/mpu6050.c ****     mpu6050_cfg_set_config(DEF_FSYNC, DEF_DLPF);
+ 464              		.loc 1 21 5 view .LVU88
+ 465 0004 0020     		movs	r0, #0
+ 466 0006 FFF7FEFF 		bl	mpu6050_cfg_set_smprt_div
+ 467              	.LVL43:
+  22:../../../src/mpu6050.c ****     mpu6050_cfg_gyro(DEF_DISABLE_TEST, DEF_GYR_CFG);
+ 468              		.loc 1 22 5 view .LVU89
+ 469 000a 0221     		movs	r1, #2
+ 470 000c 0020     		movs	r0, #0
+ 471 000e FFF7FEFF 		bl	mpu6050_cfg_set_config
+ 472              	.LVL44:
+  23:../../../src/mpu6050.c ****     mpu6050_cfg_accel(DEF_DISABLE_TEST, DEF_ACC_CFG);
+ 473              		.loc 1 23 5 view .LVU90
+ 474 0012 0121     		movs	r1, #1
+ 475 0014 0020     		movs	r0, #0
+ 476 0016 FFF7FEFF 		bl	mpu6050_cfg_gyro
+ 477              	.LVL45:
+  24:../../../src/mpu6050.c **** #if defined(USE_INT_PIN)
+ 478              		.loc 1 24 5 view .LVU91
+ 479 001a 0021     		movs	r1, #0
+ 480 001c 0846     		mov	r0, r1
+ 481 001e FFF7FEFF 		bl	mpu6050_cfg_accel
+ 482              	.LVL46:
+  26:../../../src/mpu6050.c ****                         DEF_INT_CLR_MODE, DEF_FSYNC_LV, DEF_DIS_FSYNC_INT,
+ 483              		.loc 1 26 5 view .LVU92
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 12
+
+
+ 484 0022 0024     		movs	r4, #0
+ 485 0024 0294     		str	r4, [sp, #8]
+ 486 0026 0194     		str	r4, [sp, #4]
+ 487 0028 0094     		str	r4, [sp]
+ 488 002a 2346     		mov	r3, r4
+ 489 002c 0122     		movs	r2, #1
+ 490 002e 2146     		mov	r1, r4
+ 491 0030 2046     		mov	r0, r4
+ 492 0032 FFF7FEFF 		bl	mpu6050_cfg_int_pin
+ 493              	.LVL47:
+  30:../../../src/mpu6050.c **** 
+ 494              		.loc 1 30 5 view .LVU93
+ 495 0036 2346     		mov	r3, r4
+ 496 0038 2246     		mov	r2, r4
+ 497 003a 2146     		mov	r1, r4
+ 498 003c 0120     		movs	r0, #1
+ 499 003e FFF7FEFF 		bl	mpu6050_cfg_int_mode
+ 500              	.LVL48:
+  33:../../../src/mpu6050.c **** 
+ 501              		.loc 1 33 1 is_stmt 0 view .LVU94
+ 502 0042 04B0     		add	sp, sp, #16
+ 503              	.LCFI11:
+ 504              		.cfi_def_cfa_offset 8
+ 505              		@ sp needed
+ 506 0044 10BD     		pop	{r4, pc}
+ 507              		.cfi_endproc
+ 508              	.LFE0:
+ 510              		.section	.text.mpu6050_cfg_pwr_mng,"ax",%progbits
+ 511              		.align	1
+ 512              		.global	mpu6050_cfg_pwr_mng
+ 513              		.syntax unified
+ 514              		.thumb
+ 515              		.thumb_func
+ 517              	mpu6050_cfg_pwr_mng:
+ 518              	.LVL49:
+ 519              	.LFB12:
+ 152:../../../src/mpu6050.c **** 
+ 153:../../../src/mpu6050.c **** /* REG 0x6B*/
+ 154:../../../src/mpu6050.c **** void mpu6050_cfg_pwr_mng(uint8_t mode)
+ 155:../../../src/mpu6050.c **** {
+ 520              		.loc 1 155 1 is_stmt 1 view -0
+ 521              		.cfi_startproc
+ 522              		@ args = 0, pretend = 0, frame = 0
+ 523              		@ frame_needed = 0, uses_anonymous_args = 0
+ 524              		.loc 1 155 1 is_stmt 0 view .LVU96
+ 525 0000 08B5     		push	{r3, lr}
+ 526              	.LCFI12:
+ 527              		.cfi_def_cfa_offset 8
+ 528              		.cfi_offset 3, -8
+ 529              		.cfi_offset 14, -4
+ 530 0002 0146     		mov	r1, r0
+ 156:../../../src/mpu6050.c ****     mpu6050_i2c_write_reg(REG_PWR_MGMT_1, mode);
+ 531              		.loc 1 156 5 is_stmt 1 view .LVU97
+ 532 0004 6B20     		movs	r0, #107
+ 533              	.LVL50:
+ 534              		.loc 1 156 5 is_stmt 0 view .LVU98
+ 535 0006 FFF7FEFF 		bl	mpu6050_i2c_write_reg
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 13
+
+
+ 536              	.LVL51:
+ 157:../../../src/mpu6050.c **** }
+ 537              		.loc 1 157 1 view .LVU99
+ 538 000a 08BD     		pop	{r3, pc}
+ 539              		.cfi_endproc
+ 540              	.LFE12:
+ 542              		.section	.text.mpu6050_get_fs,"ax",%progbits
+ 543              		.align	1
+ 544              		.global	mpu6050_get_fs
+ 545              		.syntax unified
+ 546              		.thumb
+ 547              		.thumb_func
+ 549              	mpu6050_get_fs:
+ 550              	.LVL52:
+ 551              	.LFB13:
+ 158:../../../src/mpu6050.c **** /*======================== GET DATA FUNCTIONS ===========================*/
+ 159:../../../src/mpu6050.c **** 
+ 160:../../../src/mpu6050.c **** int mpu6050_get_fs(mpu_cfg_t *mpu_cfg)
+ 161:../../../src/mpu6050.c **** {
+ 552              		.loc 1 161 1 is_stmt 1 view -0
+ 553              		.cfi_startproc
+ 554              		@ args = 0, pretend = 0, frame = 8
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556              		.loc 1 161 1 is_stmt 0 view .LVU101
+ 557 0000 10B5     		push	{r4, lr}
+ 558              	.LCFI13:
+ 559              		.cfi_def_cfa_offset 8
+ 560              		.cfi_offset 4, -8
+ 561              		.cfi_offset 14, -4
+ 562 0002 82B0     		sub	sp, sp, #8
+ 563              	.LCFI14:
+ 564              		.cfi_def_cfa_offset 16
+ 565 0004 0446     		mov	r4, r0
+ 162:../../../src/mpu6050.c ****     uint8_t size = 2;
+ 566              		.loc 1 162 5 is_stmt 1 view .LVU102
+ 567              	.LVL53:
+ 163:../../../src/mpu6050.c ****     uint8_t val[size];
+ 568              		.loc 1 163 5 view .LVU103
+ 164:../../../src/mpu6050.c **** 
+ 165:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_GYRO_CFG, val, size);
+ 569              		.loc 1 165 5 view .LVU104
+ 570 0006 0222     		movs	r2, #2
+ 571 0008 01A9     		add	r1, sp, #4
+ 572              	.LVL54:
+ 573              		.loc 1 165 5 is_stmt 0 view .LVU105
+ 574 000a 1B20     		movs	r0, #27
+ 575              	.LVL55:
+ 576              		.loc 1 165 5 view .LVU106
+ 577 000c FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ 578              	.LVL56:
+ 166:../../../src/mpu6050.c **** 
+ 167:../../../src/mpu6050.c ****     const uint8_t gyro_index = (val[0] & 0b00011000) >> 3;
+ 579              		.loc 1 167 5 is_stmt 1 view .LVU107
+ 580              		.loc 1 167 36 is_stmt 0 view .LVU108
+ 581 0010 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 582              		.loc 1 167 19 view .LVU109
+ 583 0014 C2F3C102 		ubfx	r2, r2, #3, #2
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 14
+
+
+ 584              	.LVL57:
+ 168:../../../src/mpu6050.c ****     const uint8_t accel_index = (val[1] & 0b00011000) >> 3;
+ 585              		.loc 1 168 5 is_stmt 1 view .LVU110
+ 586              		.loc 1 168 37 is_stmt 0 view .LVU111
+ 587 0018 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 588              		.loc 1 168 19 view .LVU112
+ 589 001c C3F3C103 		ubfx	r3, r3, #3, #2
+ 590              	.LVL58:
+ 169:../../../src/mpu6050.c **** 
+ 170:../../../src/mpu6050.c ****     mpu_cfg->fs_range.gyro = gyro_sens[gyro_index];
+ 591              		.loc 1 170 5 is_stmt 1 view .LVU113
+ 592              		.loc 1 170 39 is_stmt 0 view .LVU114
+ 593 0020 0549     		ldr	r1, .L39
+ 594 0022 51F82220 		ldr	r2, [r1, r2, lsl #2]	@ float
+ 595              	.LVL59:
+ 596              		.loc 1 170 28 view .LVU115
+ 597 0026 6260     		str	r2, [r4, #4]	@ float
+ 171:../../../src/mpu6050.c ****     mpu_cfg->fs_range.accel = accel_sens[accel_index];
+ 598              		.loc 1 171 5 is_stmt 1 view .LVU116
+ 599              		.loc 1 171 41 is_stmt 0 view .LVU117
+ 600 0028 044A     		ldr	r2, .L39+4
+ 601 002a 52F82330 		ldr	r3, [r2, r3, lsl #2]	@ float
+ 602              	.LVL60:
+ 603              		.loc 1 171 29 view .LVU118
+ 604 002e 2360     		str	r3, [r4]	@ float
+ 172:../../../src/mpu6050.c **** 
+ 173:../../../src/mpu6050.c ****     return 0;
+ 605              		.loc 1 173 5 is_stmt 1 view .LVU119
+ 174:../../../src/mpu6050.c **** }
+ 606              		.loc 1 174 1 is_stmt 0 view .LVU120
+ 607 0030 0020     		movs	r0, #0
+ 608 0032 02B0     		add	sp, sp, #8
+ 609              	.LCFI15:
+ 610              		.cfi_def_cfa_offset 8
+ 611              		@ sp needed
+ 612 0034 10BD     		pop	{r4, pc}
+ 613              	.LVL61:
+ 614              	.L40:
+ 615              		.loc 1 174 1 view .LVU121
+ 616 0036 00BF     		.align	2
+ 617              	.L39:
+ 618 0038 00000000 		.word	gyro_sens
+ 619 003c 00000000 		.word	accel_sens
+ 620              		.cfi_endproc
+ 621              	.LFE13:
+ 623              		.global	__aeabi_i2f
+ 624              		.global	__aeabi_fdiv
+ 625              		.global	__aeabi_fadd
+ 626              		.section	.text.mpu6050_raw_data_to_readable_data,"ax",%progbits
+ 627              		.align	1
+ 628              		.global	mpu6050_raw_data_to_readable_data
+ 629              		.syntax unified
+ 630              		.thumb
+ 631              		.thumb_func
+ 633              	mpu6050_raw_data_to_readable_data:
+ 634              	.LVL62:
+ 635              	.LFB2:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 15
+
+
+  45:../../../src/mpu6050.c ****     if (!data || !r_data)
+ 636              		.loc 1 45 1 is_stmt 1 view -0
+ 637              		.cfi_startproc
+ 638              		@ args = 0, pretend = 0, frame = 32
+ 639              		@ frame_needed = 0, uses_anonymous_args = 0
+  46:../../../src/mpu6050.c ****     {
+ 640              		.loc 1 46 5 view .LVU123
+  46:../../../src/mpu6050.c ****     {
+ 641              		.loc 1 46 8 is_stmt 0 view .LVU124
+ 642 0000 0028     		cmp	r0, #0
+ 643 0002 48D0     		beq	.L43
+  45:../../../src/mpu6050.c ****     if (!data || !r_data)
+ 644              		.loc 1 45 1 view .LVU125
+ 645 0004 70B5     		push	{r4, r5, r6, lr}
+ 646              	.LCFI16:
+ 647              		.cfi_def_cfa_offset 16
+ 648              		.cfi_offset 4, -16
+ 649              		.cfi_offset 5, -12
+ 650              		.cfi_offset 6, -8
+ 651              		.cfi_offset 14, -4
+ 652 0006 88B0     		sub	sp, sp, #32
+ 653              	.LCFI17:
+ 654              		.cfi_def_cfa_offset 48
+ 655 0008 0C46     		mov	r4, r1
+ 656 000a 0646     		mov	r6, r0
+  46:../../../src/mpu6050.c ****     {
+ 657              		.loc 1 46 15 discriminator 1 view .LVU126
+ 658 000c 0029     		cmp	r1, #0
+ 659 000e 45D0     		beq	.L44
+  51:../../../src/mpu6050.c **** 
+ 660              		.loc 1 51 5 is_stmt 1 view .LVU127
+  53:../../../src/mpu6050.c **** 
+ 661              		.loc 1 53 5 view .LVU128
+ 662 0010 01A8     		add	r0, sp, #4
+ 663              	.LVL63:
+  53:../../../src/mpu6050.c **** 
+ 664              		.loc 1 53 5 is_stmt 0 view .LVU129
+ 665 0012 FFF7FEFF 		bl	mpu6050_get_fs
+ 666              	.LVL64:
+  56:../../../src/mpu6050.c ****     data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+ 667              		.loc 1 56 5 is_stmt 1 view .LVU130
+  56:../../../src/mpu6050.c ****     data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+ 668              		.loc 1 56 59 is_stmt 0 view .LVU131
+ 669 0016 019D     		ldr	r5, [sp, #4]	@ float
+  56:../../../src/mpu6050.c ****     data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+ 670              		.loc 1 56 41 view .LVU132
+ 671 0018 B4F90000 		ldrsh	r0, [r4]
+ 672 001c FFF7FEFF 		bl	__aeabi_i2f
+ 673              	.LVL65:
+ 674 0020 2946     		mov	r1, r5
+ 675 0022 FFF7FEFF 		bl	__aeabi_fdiv
+ 676              	.LVL66:
+  56:../../../src/mpu6050.c ****     data->accel.y = r_data->accel_raw.y / mpu_cfg.fs_range.accel;
+ 677              		.loc 1 56 19 view .LVU133
+ 678 0026 3060     		str	r0, [r6]	@ float
+  57:../../../src/mpu6050.c ****     data->accel.z = r_data->accel_raw.z / mpu_cfg.fs_range.accel;
+ 679              		.loc 1 57 5 is_stmt 1 view .LVU134
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 16
+
+
+  57:../../../src/mpu6050.c ****     data->accel.z = r_data->accel_raw.z / mpu_cfg.fs_range.accel;
+ 680              		.loc 1 57 41 is_stmt 0 view .LVU135
+ 681 0028 B4F90200 		ldrsh	r0, [r4, #2]
+ 682 002c FFF7FEFF 		bl	__aeabi_i2f
+ 683              	.LVL67:
+ 684 0030 2946     		mov	r1, r5
+ 685 0032 FFF7FEFF 		bl	__aeabi_fdiv
+ 686              	.LVL68:
+  57:../../../src/mpu6050.c ****     data->accel.z = r_data->accel_raw.z / mpu_cfg.fs_range.accel;
+ 687              		.loc 1 57 19 view .LVU136
+ 688 0036 7060     		str	r0, [r6, #4]	@ float
+  58:../../../src/mpu6050.c **** 
+ 689              		.loc 1 58 5 is_stmt 1 view .LVU137
+  58:../../../src/mpu6050.c **** 
+ 690              		.loc 1 58 41 is_stmt 0 view .LVU138
+ 691 0038 B4F90400 		ldrsh	r0, [r4, #4]
+ 692 003c FFF7FEFF 		bl	__aeabi_i2f
+ 693              	.LVL69:
+ 694 0040 2946     		mov	r1, r5
+ 695 0042 FFF7FEFF 		bl	__aeabi_fdiv
+ 696              	.LVL70:
+  58:../../../src/mpu6050.c **** 
+ 697              		.loc 1 58 19 view .LVU139
+ 698 0046 B060     		str	r0, [r6, #8]	@ float
+  61:../../../src/mpu6050.c ****     data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+ 699              		.loc 1 61 5 is_stmt 1 view .LVU140
+  61:../../../src/mpu6050.c ****     data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+ 700              		.loc 1 61 57 is_stmt 0 view .LVU141
+ 701 0048 029D     		ldr	r5, [sp, #8]	@ float
+  61:../../../src/mpu6050.c ****     data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+ 702              		.loc 1 61 39 view .LVU142
+ 703 004a B4F90600 		ldrsh	r0, [r4, #6]
+ 704 004e FFF7FEFF 		bl	__aeabi_i2f
+ 705              	.LVL71:
+ 706 0052 2946     		mov	r1, r5
+ 707 0054 FFF7FEFF 		bl	__aeabi_fdiv
+ 708              	.LVL72:
+  61:../../../src/mpu6050.c ****     data->gyro.y = r_data->gyro_raw.y / mpu_cfg.fs_range.gyro;
+ 709              		.loc 1 61 18 view .LVU143
+ 710 0058 F060     		str	r0, [r6, #12]	@ float
+  62:../../../src/mpu6050.c ****     data->gyro.z = r_data->gyro_raw.z / mpu_cfg.fs_range.gyro;
+ 711              		.loc 1 62 5 is_stmt 1 view .LVU144
+  62:../../../src/mpu6050.c ****     data->gyro.z = r_data->gyro_raw.z / mpu_cfg.fs_range.gyro;
+ 712              		.loc 1 62 39 is_stmt 0 view .LVU145
+ 713 005a B4F90800 		ldrsh	r0, [r4, #8]
+ 714 005e FFF7FEFF 		bl	__aeabi_i2f
+ 715              	.LVL73:
+ 716 0062 2946     		mov	r1, r5
+ 717 0064 FFF7FEFF 		bl	__aeabi_fdiv
+ 718              	.LVL74:
+  62:../../../src/mpu6050.c ****     data->gyro.z = r_data->gyro_raw.z / mpu_cfg.fs_range.gyro;
+ 719              		.loc 1 62 18 view .LVU146
+ 720 0068 3061     		str	r0, [r6, #16]	@ float
+  63:../../../src/mpu6050.c **** 
+ 721              		.loc 1 63 5 is_stmt 1 view .LVU147
+  63:../../../src/mpu6050.c **** 
+ 722              		.loc 1 63 39 is_stmt 0 view .LVU148
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 17
+
+
+ 723 006a B4F90A00 		ldrsh	r0, [r4, #10]
+ 724 006e FFF7FEFF 		bl	__aeabi_i2f
+ 725              	.LVL75:
+ 726 0072 2946     		mov	r1, r5
+ 727 0074 FFF7FEFF 		bl	__aeabi_fdiv
+ 728              	.LVL76:
+  63:../../../src/mpu6050.c **** 
+ 729              		.loc 1 63 18 view .LVU149
+ 730 0078 7061     		str	r0, [r6, #20]	@ float
+  66:../../../src/mpu6050.c **** 
+ 731              		.loc 1 66 5 is_stmt 1 view .LVU150
+  66:../../../src/mpu6050.c **** 
+ 732              		.loc 1 66 38 is_stmt 0 view .LVU151
+ 733 007a B4F90C00 		ldrsh	r0, [r4, #12]
+ 734 007e FFF7FEFF 		bl	__aeabi_i2f
+ 735              	.LVL77:
+ 736 0082 0849     		ldr	r1, .L49
+ 737 0084 FFF7FEFF 		bl	__aeabi_fdiv
+ 738              	.LVL78:
+  66:../../../src/mpu6050.c **** 
+ 739              		.loc 1 66 48 view .LVU152
+ 740 0088 0749     		ldr	r1, .L49+4
+ 741 008a FFF7FEFF 		bl	__aeabi_fadd
+ 742              	.LVL79:
+  66:../../../src/mpu6050.c **** 
+ 743              		.loc 1 66 17 view .LVU153
+ 744 008e B061     		str	r0, [r6, #24]	@ float
+  68:../../../src/mpu6050.c **** }
+ 745              		.loc 1 68 5 is_stmt 1 view .LVU154
+  68:../../../src/mpu6050.c **** }
+ 746              		.loc 1 68 12 is_stmt 0 view .LVU155
+ 747 0090 0020     		movs	r0, #0
+ 748              	.L41:
+  69:../../../src/mpu6050.c **** 
+ 749              		.loc 1 69 1 view .LVU156
+ 750 0092 08B0     		add	sp, sp, #32
+ 751              	.LCFI18:
+ 752              		.cfi_def_cfa_offset 16
+ 753              		@ sp needed
+ 754 0094 70BD     		pop	{r4, r5, r6, pc}
+ 755              	.LVL80:
+ 756              	.L43:
+ 757              	.LCFI19:
+ 758              		.cfi_def_cfa_offset 0
+ 759              		.cfi_restore 4
+ 760              		.cfi_restore 5
+ 761              		.cfi_restore 6
+ 762              		.cfi_restore 14
+  48:../../../src/mpu6050.c ****     }
+ 763              		.loc 1 48 16 view .LVU157
+ 764 0096 4FF0FF30 		mov	r0, #-1
+ 765              	.LVL81:
+  69:../../../src/mpu6050.c **** 
+ 766              		.loc 1 69 1 view .LVU158
+ 767 009a 7047     		bx	lr
+ 768              	.LVL82:
+ 769              	.L44:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 18
+
+
+ 770              	.LCFI20:
+ 771              		.cfi_def_cfa_offset 48
+ 772              		.cfi_offset 4, -16
+ 773              		.cfi_offset 5, -12
+ 774              		.cfi_offset 6, -8
+ 775              		.cfi_offset 14, -4
+  48:../../../src/mpu6050.c ****     }
+ 776              		.loc 1 48 16 view .LVU159
+ 777 009c 4FF0FF30 		mov	r0, #-1
+ 778              	.LVL83:
+  48:../../../src/mpu6050.c ****     }
+ 779              		.loc 1 48 16 view .LVU160
+ 780 00a0 F7E7     		b	.L41
+ 781              	.L50:
+ 782 00a2 00BF     		.align	2
+ 783              	.L49:
+ 784 00a4 0000AA43 		.word	1135214592
+ 785 00a8 B81E1242 		.word	1108483768
+ 786              		.cfi_endproc
+ 787              	.LFE2:
+ 789              		.section	.text.mpu6050_get_int_sts,"ax",%progbits
+ 790              		.align	1
+ 791              		.global	mpu6050_get_int_sts
+ 792              		.syntax unified
+ 793              		.thumb
+ 794              		.thumb_func
+ 796              	mpu6050_get_int_sts:
+ 797              	.LFB14:
+ 175:../../../src/mpu6050.c **** 
+ 176:../../../src/mpu6050.c **** /* REG 0x3A */
+ 177:../../../src/mpu6050.c **** int mpu6050_get_int_sts(void)
+ 178:../../../src/mpu6050.c **** {
+ 798              		.loc 1 178 1 is_stmt 1 view -0
+ 799              		.cfi_startproc
+ 800              		@ args = 0, pretend = 0, frame = 8
+ 801              		@ frame_needed = 0, uses_anonymous_args = 0
+ 802 0000 00B5     		push	{lr}
+ 803              	.LCFI21:
+ 804              		.cfi_def_cfa_offset 4
+ 805              		.cfi_offset 14, -4
+ 806 0002 83B0     		sub	sp, sp, #12
+ 807              	.LCFI22:
+ 808              		.cfi_def_cfa_offset 16
+ 179:../../../src/mpu6050.c ****     uint8_t size = 1;
+ 809              		.loc 1 179 5 view .LVU162
+ 810              	.LVL84:
+ 180:../../../src/mpu6050.c ****     uint8_t val[size];
+ 811              		.loc 1 180 5 view .LVU163
+ 181:../../../src/mpu6050.c **** 
+ 182:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_INT_STS, val, size);
+ 812              		.loc 1 182 5 view .LVU164
+ 813 0004 0122     		movs	r2, #1
+ 814 0006 01A9     		add	r1, sp, #4
+ 815              	.LVL85:
+ 816              		.loc 1 182 5 is_stmt 0 view .LVU165
+ 817 0008 3920     		movs	r0, #57
+ 818 000a FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 19
+
+
+ 819              	.LVL86:
+ 183:../../../src/mpu6050.c ****     return val[1];
+ 820              		.loc 1 183 5 is_stmt 1 view .LVU166
+ 184:../../../src/mpu6050.c **** }
+ 821              		.loc 1 184 1 is_stmt 0 view .LVU167
+ 822 000e 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
+ 823 0012 03B0     		add	sp, sp, #12
+ 824              	.LCFI23:
+ 825              		.cfi_def_cfa_offset 4
+ 826              		@ sp needed
+ 827 0014 5DF804FB 		ldr	pc, [sp], #4
+ 828              		.loc 1 184 1 view .LVU168
+ 829              		.cfi_endproc
+ 830              	.LFE14:
+ 832              		.section	.text.mpu6050_get_accel_raw,"ax",%progbits
+ 833              		.align	1
+ 834              		.global	mpu6050_get_accel_raw
+ 835              		.syntax unified
+ 836              		.thumb
+ 837              		.thumb_func
+ 839              	mpu6050_get_accel_raw:
+ 840              	.LVL87:
+ 841              	.LFB15:
+ 185:../../../src/mpu6050.c **** 
+ 186:../../../src/mpu6050.c **** uint8_t mpu6050_get_accel_raw(mpu_rawdata_t *r_data)
+ 187:../../../src/mpu6050.c **** {
+ 842              		.loc 1 187 1 is_stmt 1 view -0
+ 843              		.cfi_startproc
+ 844              		@ args = 0, pretend = 0, frame = 8
+ 845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 846              		.loc 1 187 1 is_stmt 0 view .LVU170
+ 847 0000 10B5     		push	{r4, lr}
+ 848              	.LCFI24:
+ 849              		.cfi_def_cfa_offset 8
+ 850              		.cfi_offset 4, -8
+ 851              		.cfi_offset 14, -4
+ 852 0002 82B0     		sub	sp, sp, #8
+ 853              	.LCFI25:
+ 854              		.cfi_def_cfa_offset 16
+ 855 0004 0446     		mov	r4, r0
+ 188:../../../src/mpu6050.c ****     uint8_t size = 6;
+ 856              		.loc 1 188 5 is_stmt 1 view .LVU171
+ 857              	.LVL88:
+ 189:../../../src/mpu6050.c ****     uint8_t val[size];                                   // Buffer for all 6 accelerometer bytes
+ 858              		.loc 1 189 5 view .LVU172
+ 190:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_ACCEL_XOUT_MSB, val, size); // Read all at once
+ 859              		.loc 1 190 5 view .LVU173
+ 860 0006 0622     		movs	r2, #6
+ 861 0008 6946     		mov	r1, sp
+ 862 000a 3B20     		movs	r0, #59
+ 863              	.LVL89:
+ 864              		.loc 1 190 5 is_stmt 0 view .LVU174
+ 865 000c FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ 866              	.LVL90:
+ 191:../../../src/mpu6050.c **** 
+ 192:../../../src/mpu6050.c ****     // Convert raw data to 16-bit signed values
+ 193:../../../src/mpu6050.c ****     r_data->accel_raw.x = (int16_t)((val[0] << 8) | val[1]);
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 20
+
+
+ 867              		.loc 1 193 5 is_stmt 1 view .LVU175
+ 868              		.loc 1 193 41 is_stmt 0 view .LVU176
+ 869 0010 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
+ 870              		.loc 1 193 56 view .LVU177
+ 871 0014 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 872              		.loc 1 193 27 view .LVU178
+ 873 0018 43EA0223 		orr	r3, r3, r2, lsl #8
+ 874              		.loc 1 193 25 view .LVU179
+ 875 001c 2380     		strh	r3, [r4]	@ movhi
+ 194:../../../src/mpu6050.c ****     r_data->accel_raw.y = (int16_t)((val[2] << 8) | val[3]);
+ 876              		.loc 1 194 5 is_stmt 1 view .LVU180
+ 877              		.loc 1 194 41 is_stmt 0 view .LVU181
+ 878 001e 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 879              		.loc 1 194 56 view .LVU182
+ 880 0022 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 881              		.loc 1 194 27 view .LVU183
+ 882 0026 43EA0223 		orr	r3, r3, r2, lsl #8
+ 883              		.loc 1 194 25 view .LVU184
+ 884 002a 6380     		strh	r3, [r4, #2]	@ movhi
+ 195:../../../src/mpu6050.c ****     r_data->accel_raw.z = (int16_t)((val[4] << 8) | val[5]);
+ 885              		.loc 1 195 5 is_stmt 1 view .LVU185
+ 886              		.loc 1 195 41 is_stmt 0 view .LVU186
+ 887 002c 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 888              		.loc 1 195 56 view .LVU187
+ 889 0030 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 890              		.loc 1 195 27 view .LVU188
+ 891 0034 43EA0223 		orr	r3, r3, r2, lsl #8
+ 892              		.loc 1 195 25 view .LVU189
+ 893 0038 A380     		strh	r3, [r4, #4]	@ movhi
+ 196:../../../src/mpu6050.c **** 
+ 197:../../../src/mpu6050.c ****     return 0;
+ 894              		.loc 1 197 5 is_stmt 1 view .LVU190
+ 198:../../../src/mpu6050.c **** }
+ 895              		.loc 1 198 1 is_stmt 0 view .LVU191
+ 896 003a 0020     		movs	r0, #0
+ 897 003c 02B0     		add	sp, sp, #8
+ 898              	.LCFI26:
+ 899              		.cfi_def_cfa_offset 8
+ 900              	.LVL91:
+ 901              		.loc 1 198 1 view .LVU192
+ 902              		@ sp needed
+ 903 003e 10BD     		pop	{r4, pc}
+ 904              		.loc 1 198 1 view .LVU193
+ 905              		.cfi_endproc
+ 906              	.LFE15:
+ 908              		.section	.text.mpu6050_get_temp_raw,"ax",%progbits
+ 909              		.align	1
+ 910              		.global	mpu6050_get_temp_raw
+ 911              		.syntax unified
+ 912              		.thumb
+ 913              		.thumb_func
+ 915              	mpu6050_get_temp_raw:
+ 916              	.LVL92:
+ 917              	.LFB16:
+ 199:../../../src/mpu6050.c **** /* REG 0x41 to 0x42 */
+ 200:../../../src/mpu6050.c **** uint8_t mpu6050_get_temp_raw(mpu_rawdata_t *r_data)
+ 201:../../../src/mpu6050.c **** {
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 21
+
+
+ 918              		.loc 1 201 1 is_stmt 1 view -0
+ 919              		.cfi_startproc
+ 920              		@ args = 0, pretend = 0, frame = 8
+ 921              		@ frame_needed = 0, uses_anonymous_args = 0
+ 922              		.loc 1 201 1 is_stmt 0 view .LVU195
+ 923 0000 10B5     		push	{r4, lr}
+ 924              	.LCFI27:
+ 925              		.cfi_def_cfa_offset 8
+ 926              		.cfi_offset 4, -8
+ 927              		.cfi_offset 14, -4
+ 928 0002 82B0     		sub	sp, sp, #8
+ 929              	.LCFI28:
+ 930              		.cfi_def_cfa_offset 16
+ 931 0004 0446     		mov	r4, r0
+ 202:../../../src/mpu6050.c ****     uint8_t size = 2;
+ 932              		.loc 1 202 5 is_stmt 1 view .LVU196
+ 933              	.LVL93:
+ 203:../../../src/mpu6050.c ****     uint8_t val[size];
+ 934              		.loc 1 203 5 view .LVU197
+ 204:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_TEMP_MSB, val, size);
+ 935              		.loc 1 204 5 view .LVU198
+ 936 0006 0222     		movs	r2, #2
+ 937 0008 01A9     		add	r1, sp, #4
+ 938              	.LVL94:
+ 939              		.loc 1 204 5 is_stmt 0 view .LVU199
+ 940 000a 4120     		movs	r0, #65
+ 941              	.LVL95:
+ 942              		.loc 1 204 5 view .LVU200
+ 943 000c FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ 944              	.LVL96:
+ 205:../../../src/mpu6050.c ****     r_data->tempt_raw = val[0] << 8 | val[1];
+ 945              		.loc 1 205 5 is_stmt 1 view .LVU201
+ 946              		.loc 1 205 28 is_stmt 0 view .LVU202
+ 947 0010 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 948              		.loc 1 205 42 view .LVU203
+ 949 0014 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 950              		.loc 1 205 37 view .LVU204
+ 951 0018 43EA0223 		orr	r3, r3, r2, lsl #8
+ 952              		.loc 1 205 23 view .LVU205
+ 953 001c A381     		strh	r3, [r4, #12]	@ movhi
+ 206:../../../src/mpu6050.c ****     //((float)temp) / 340 + 36.53
+ 207:../../../src/mpu6050.c ****     return 0;
+ 954              		.loc 1 207 5 is_stmt 1 view .LVU206
+ 208:../../../src/mpu6050.c **** }
+ 955              		.loc 1 208 1 is_stmt 0 view .LVU207
+ 956 001e 0020     		movs	r0, #0
+ 957 0020 02B0     		add	sp, sp, #8
+ 958              	.LCFI29:
+ 959              		.cfi_def_cfa_offset 8
+ 960              		@ sp needed
+ 961 0022 10BD     		pop	{r4, pc}
+ 962              		.loc 1 208 1 view .LVU208
+ 963              		.cfi_endproc
+ 964              	.LFE16:
+ 966              		.section	.text.mpu6050_get_gyro_raw,"ax",%progbits
+ 967              		.align	1
+ 968              		.global	mpu6050_get_gyro_raw
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 22
+
+
+ 969              		.syntax unified
+ 970              		.thumb
+ 971              		.thumb_func
+ 973              	mpu6050_get_gyro_raw:
+ 974              	.LVL97:
+ 975              	.LFB17:
+ 209:../../../src/mpu6050.c **** 
+ 210:../../../src/mpu6050.c **** /* REG 0x43 to 0x48*/
+ 211:../../../src/mpu6050.c **** uint8_t mpu6050_get_gyro_raw(mpu_rawdata_t *r_data)
+ 212:../../../src/mpu6050.c **** {
+ 976              		.loc 1 212 1 is_stmt 1 view -0
+ 977              		.cfi_startproc
+ 978              		@ args = 0, pretend = 0, frame = 8
+ 979              		@ frame_needed = 0, uses_anonymous_args = 0
+ 980              		.loc 1 212 1 is_stmt 0 view .LVU210
+ 981 0000 10B5     		push	{r4, lr}
+ 982              	.LCFI30:
+ 983              		.cfi_def_cfa_offset 8
+ 984              		.cfi_offset 4, -8
+ 985              		.cfi_offset 14, -4
+ 986 0002 82B0     		sub	sp, sp, #8
+ 987              	.LCFI31:
+ 988              		.cfi_def_cfa_offset 16
+ 989 0004 0446     		mov	r4, r0
+ 213:../../../src/mpu6050.c ****     uint8_t size = 6;
+ 990              		.loc 1 213 5 is_stmt 1 view .LVU211
+ 991              	.LVL98:
+ 214:../../../src/mpu6050.c ****     uint8_t val[size];                                  // Buffer for all 6 accelerometer bytes
+ 992              		.loc 1 214 5 view .LVU212
+ 215:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_GYRO_XOUT_MSB, val, size); // Read all at once
+ 993              		.loc 1 215 5 view .LVU213
+ 994 0006 0622     		movs	r2, #6
+ 995 0008 6946     		mov	r1, sp
+ 996 000a 4320     		movs	r0, #67
+ 997              	.LVL99:
+ 998              		.loc 1 215 5 is_stmt 0 view .LVU214
+ 999 000c FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ 1000              	.LVL100:
+ 216:../../../src/mpu6050.c **** 
+ 217:../../../src/mpu6050.c ****     // Convert raw data to 16-bit signed values
+ 218:../../../src/mpu6050.c ****     r_data->gyro_raw.x = (int16_t)((val[0] << 8) | val[1]);
+ 1001              		.loc 1 218 5 is_stmt 1 view .LVU215
+ 1002              		.loc 1 218 40 is_stmt 0 view .LVU216
+ 1003 0010 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
+ 1004              		.loc 1 218 55 view .LVU217
+ 1005 0014 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 1006              		.loc 1 218 26 view .LVU218
+ 1007 0018 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1008              		.loc 1 218 24 view .LVU219
+ 1009 001c E380     		strh	r3, [r4, #6]	@ movhi
+ 219:../../../src/mpu6050.c ****     r_data->gyro_raw.y = (int16_t)((val[2] << 8) | val[3]);
+ 1010              		.loc 1 219 5 is_stmt 1 view .LVU220
+ 1011              		.loc 1 219 40 is_stmt 0 view .LVU221
+ 1012 001e 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 1013              		.loc 1 219 55 view .LVU222
+ 1014 0022 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 1015              		.loc 1 219 26 view .LVU223
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 23
+
+
+ 1016 0026 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1017              		.loc 1 219 24 view .LVU224
+ 1018 002a 2381     		strh	r3, [r4, #8]	@ movhi
+ 220:../../../src/mpu6050.c ****     r_data->gyro_raw.z = (int16_t)((val[4] << 8) | val[5]);
+ 1019              		.loc 1 220 5 is_stmt 1 view .LVU225
+ 1020              		.loc 1 220 40 is_stmt 0 view .LVU226
+ 1021 002c 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 1022              		.loc 1 220 55 view .LVU227
+ 1023 0030 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 1024              		.loc 1 220 26 view .LVU228
+ 1025 0034 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1026              		.loc 1 220 24 view .LVU229
+ 1027 0038 6381     		strh	r3, [r4, #10]	@ movhi
+ 221:../../../src/mpu6050.c **** 
+ 222:../../../src/mpu6050.c ****     return 0;
+ 1028              		.loc 1 222 5 is_stmt 1 view .LVU230
+ 223:../../../src/mpu6050.c **** }
+ 1029              		.loc 1 223 1 is_stmt 0 view .LVU231
+ 1030 003a 0020     		movs	r0, #0
+ 1031 003c 02B0     		add	sp, sp, #8
+ 1032              	.LCFI32:
+ 1033              		.cfi_def_cfa_offset 8
+ 1034              	.LVL101:
+ 1035              		.loc 1 223 1 view .LVU232
+ 1036              		@ sp needed
+ 1037 003e 10BD     		pop	{r4, pc}
+ 1038              		.loc 1 223 1 view .LVU233
+ 1039              		.cfi_endproc
+ 1040              	.LFE17:
+ 1042              		.section	.text.mpu6050_get_raw_data,"ax",%progbits
+ 1043              		.align	1
+ 1044              		.global	mpu6050_get_raw_data
+ 1045              		.syntax unified
+ 1046              		.thumb
+ 1047              		.thumb_func
+ 1049              	mpu6050_get_raw_data:
+ 1050              	.LVL102:
+ 1051              	.LFB1:
+  36:../../../src/mpu6050.c ****     mpu6050_get_accel_raw(&r_data);
+ 1052              		.loc 1 36 1 is_stmt 1 view -0
+ 1053              		.cfi_startproc
+ 1054              		@ args = 0, pretend = 0, frame = 8
+ 1055              		@ frame_needed = 0, uses_anonymous_args = 0
+  36:../../../src/mpu6050.c ****     mpu6050_get_accel_raw(&r_data);
+ 1056              		.loc 1 36 1 is_stmt 0 view .LVU235
+ 1057 0000 00B5     		push	{lr}
+ 1058              	.LCFI33:
+ 1059              		.cfi_def_cfa_offset 4
+ 1060              		.cfi_offset 14, -4
+ 1061 0002 83B0     		sub	sp, sp, #12
+ 1062              	.LCFI34:
+ 1063              		.cfi_def_cfa_offset 16
+ 1064 0004 0190     		str	r0, [sp, #4]
+  37:../../../src/mpu6050.c ****     mpu6050_get_gyro_raw(&r_data);
+ 1065              		.loc 1 37 5 is_stmt 1 view .LVU236
+ 1066 0006 01A8     		add	r0, sp, #4
+ 1067              	.LVL103:
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 24
+
+
+  37:../../../src/mpu6050.c ****     mpu6050_get_gyro_raw(&r_data);
+ 1068              		.loc 1 37 5 is_stmt 0 view .LVU237
+ 1069 0008 FFF7FEFF 		bl	mpu6050_get_accel_raw
+ 1070              	.LVL104:
+  38:../../../src/mpu6050.c ****     mpu6050_get_temp_raw(&r_data);
+ 1071              		.loc 1 38 5 is_stmt 1 view .LVU238
+ 1072 000c 01A8     		add	r0, sp, #4
+ 1073 000e FFF7FEFF 		bl	mpu6050_get_gyro_raw
+ 1074              	.LVL105:
+  39:../../../src/mpu6050.c **** 
+ 1075              		.loc 1 39 5 view .LVU239
+ 1076 0012 01A8     		add	r0, sp, #4
+ 1077 0014 FFF7FEFF 		bl	mpu6050_get_temp_raw
+ 1078              	.LVL106:
+  41:../../../src/mpu6050.c **** }
+ 1079              		.loc 1 41 5 view .LVU240
+  42:../../../src/mpu6050.c **** 
+ 1080              		.loc 1 42 1 is_stmt 0 view .LVU241
+ 1081 0018 0020     		movs	r0, #0
+ 1082 001a 03B0     		add	sp, sp, #12
+ 1083              	.LCFI35:
+ 1084              		.cfi_def_cfa_offset 4
+ 1085              		@ sp needed
+ 1086 001c 5DF804FB 		ldr	pc, [sp], #4
+ 1087              		.cfi_endproc
+ 1088              	.LFE1:
+ 1090              		.section	.text.mpu6050_get_chip_id,"ax",%progbits
+ 1091              		.align	1
+ 1092              		.global	mpu6050_get_chip_id
+ 1093              		.syntax unified
+ 1094              		.thumb
+ 1095              		.thumb_func
+ 1097              	mpu6050_get_chip_id:
+ 1098              	.LFB18:
+ 224:../../../src/mpu6050.c **** 
+ 225:../../../src/mpu6050.c **** /* REG 0x75 */
+ 226:../../../src/mpu6050.c **** int mpu6050_get_chip_id(void)
+ 227:../../../src/mpu6050.c **** {
+ 1099              		.loc 1 227 1 is_stmt 1 view -0
+ 1100              		.cfi_startproc
+ 1101              		@ args = 0, pretend = 0, frame = 8
+ 1102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1103 0000 00B5     		push	{lr}
+ 1104              	.LCFI36:
+ 1105              		.cfi_def_cfa_offset 4
+ 1106              		.cfi_offset 14, -4
+ 1107 0002 83B0     		sub	sp, sp, #12
+ 1108              	.LCFI37:
+ 1109              		.cfi_def_cfa_offset 16
+ 228:../../../src/mpu6050.c ****     uint8_t size = 1;
+ 1110              		.loc 1 228 5 view .LVU243
+ 1111              	.LVL107:
+ 229:../../../src/mpu6050.c ****     uint8_t values[size];
+ 1112              		.loc 1 229 5 view .LVU244
+ 230:../../../src/mpu6050.c **** 
+ 231:../../../src/mpu6050.c ****     mpu6050_i2c_read_reg(REG_WHO_AM_I, values, size);
+ 1113              		.loc 1 231 5 view .LVU245
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 25
+
+
+ 1114 0004 0122     		movs	r2, #1
+ 1115 0006 01A9     		add	r1, sp, #4
+ 1116              	.LVL108:
+ 1117              		.loc 1 231 5 is_stmt 0 view .LVU246
+ 1118 0008 7520     		movs	r0, #117
+ 1119 000a FFF7FEFF 		bl	mpu6050_i2c_read_reg
+ 1120              	.LVL109:
+ 232:../../../src/mpu6050.c ****     return values[0];
+ 1121              		.loc 1 232 5 is_stmt 1 view .LVU247
+ 233:../../../src/mpu6050.c **** }...
+ 1122              		.loc 1 233 1 is_stmt 0 view .LVU248
+ 1123 000e 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 1124 0012 03B0     		add	sp, sp, #12
+ 1125              	.LCFI38:
+ 1126              		.cfi_def_cfa_offset 4
+ 1127              		@ sp needed
+ 1128 0014 5DF804FB 		ldr	pc, [sp], #4
+ 1129              		.loc 1 233 1 view .LVU249
+ 1130              		.cfi_endproc
+ 1131              	.LFE18:
+ 1133              		.section	.bss._cfg,"aw",%nobits
+ 1134              		.align	2
+ 1137              	_cfg:
+ 1138 0000 00000000 		.space	28
+ 1138      00000000 
+ 1138      00000000 
+ 1138      00000000 
+ 1138      00000000 
+ 1139              		.section	.rodata.accel_sens,"a"
+ 1140              		.align	2
+ 1143              	accel_sens:
+ 1144 0000 00008046 		.word	1182793728
+ 1145 0004 00000046 		.word	1174405120
+ 1146 0008 00008045 		.word	1166016512
+ 1147 000c 00000045 		.word	1157627904
+ 1148              		.section	.rodata.gyro_sens,"a"
+ 1149              		.align	2
+ 1152              	gyro_sens:
+ 1153 0000 00000343 		.word	1124270080
+ 1154 0004 00008342 		.word	1115881472
+ 1155 0008 33330342 		.word	1107505971
+ 1156 000c 33338341 		.word	1099117363
+ 1157              		.text
+ 1158              	.Letext0:
+ 1159              		.file 2 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+ 1160              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+ 1161              		.file 4 "../../../inc/mpu6050.h"
+ 1162              		.file 5 "../../../inc/mpu6050_hw.h"
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu6050.c
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:19     .text.mpu6050_get_sys_cfg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:25     .text.mpu6050_get_sys_cfg:00000000 mpu6050_get_sys_cfg
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:57     .text.mpu6050_get_sys_cfg:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1137   .bss._cfg:00000000 _cfg
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:63     .text.mpu6050_cfg_set_smprt_div:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:69     .text.mpu6050_cfg_set_smprt_div:00000000 mpu6050_cfg_set_smprt_div
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:104    .text.mpu6050_cfg_set_smprt_div:00000018 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:109    .text.mpu6050_cfg_set_config:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:115    .text.mpu6050_cfg_set_config:00000000 mpu6050_cfg_set_config
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:150    .text.mpu6050_cfg_set_config:00000018 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:155    .text.mpu6050_cfg_gyro:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:161    .text.mpu6050_cfg_gyro:00000000 mpu6050_cfg_gyro
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:206    .text.mpu6050_cfg_gyro:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:211    .text.mpu6050_cfg_accel:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:217    .text.mpu6050_cfg_accel:00000000 mpu6050_cfg_accel
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:262    .text.mpu6050_cfg_accel:0000001c $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:267    .text.mpu6050_cfg_set_mot_thr:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:273    .text.mpu6050_cfg_set_mot_thr:00000000 mpu6050_cfg_set_mot_thr
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:305    .text.mpu6050_cfg_set_mot_thr:00000014 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:310    .text.mpu6050_cfg_en_fifo:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:316    .text.mpu6050_cfg_en_fifo:00000000 mpu6050_cfg_en_fifo
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:342    .text.mpu6050_cfg_int_pin:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:348    .text.mpu6050_cfg_int_pin:00000000 mpu6050_cfg_int_pin
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:401    .text.mpu6050_cfg_int_mode:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:407    .text.mpu6050_cfg_int_mode:00000000 mpu6050_cfg_int_mode
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:444    .text.mpu6050_init_reg:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:450    .text.mpu6050_init_reg:00000000 mpu6050_init_reg
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:511    .text.mpu6050_cfg_pwr_mng:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:517    .text.mpu6050_cfg_pwr_mng:00000000 mpu6050_cfg_pwr_mng
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:543    .text.mpu6050_get_fs:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:549    .text.mpu6050_get_fs:00000000 mpu6050_get_fs
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:618    .text.mpu6050_get_fs:00000038 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1152   .rodata.gyro_sens:00000000 gyro_sens
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1143   .rodata.accel_sens:00000000 accel_sens
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:627    .text.mpu6050_raw_data_to_readable_data:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:633    .text.mpu6050_raw_data_to_readable_data:00000000 mpu6050_raw_data_to_readable_data
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:784    .text.mpu6050_raw_data_to_readable_data:000000a4 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:790    .text.mpu6050_get_int_sts:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:796    .text.mpu6050_get_int_sts:00000000 mpu6050_get_int_sts
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:833    .text.mpu6050_get_accel_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:839    .text.mpu6050_get_accel_raw:00000000 mpu6050_get_accel_raw
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:909    .text.mpu6050_get_temp_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:915    .text.mpu6050_get_temp_raw:00000000 mpu6050_get_temp_raw
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:967    .text.mpu6050_get_gyro_raw:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:973    .text.mpu6050_get_gyro_raw:00000000 mpu6050_get_gyro_raw
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1043   .text.mpu6050_get_raw_data:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1049   .text.mpu6050_get_raw_data:00000000 mpu6050_get_raw_data
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1091   .text.mpu6050_get_chip_id:00000000 $t
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1097   .text.mpu6050_get_chip_id:00000000 mpu6050_get_chip_id
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1134   .bss._cfg:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1140   .rodata.accel_sens:00000000 $d
+C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s:1149   .rodata.gyro_sens:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ui2f
+ARM GAS  C:\Users\binhp\AppData\Local\Temp\cczJD6OL.s 			page 27
+
+
+mpu6050_i2c_write_reg
+mpu6050_i2c_read_reg
+__aeabi_i2f
+__aeabi_fdiv
+__aeabi_fadd
