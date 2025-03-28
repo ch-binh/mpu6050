@@ -2,6 +2,7 @@
 #define MPU6050_H
 
 #include <stdint.h>
+#include "mpu6050_hw.h"
 
 /* Recommended value */
 #define USE_INT_PIN // comment this if not use int pin

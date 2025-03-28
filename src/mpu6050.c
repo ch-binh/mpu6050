@@ -1,6 +1,5 @@
-#include "../inc/mpu6050.h"
-#include "../inc/mpu6050_registers.h"
-#include "../inc/mpu6050_i2c.h"
+#include "mpu6050.h"
+#include "mpu6050_registers.h"
 
 static const float gyro_sens[] = {
     GYRO_SENS_250,
