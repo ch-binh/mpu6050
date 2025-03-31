@@ -1,7 +1,7 @@
 
 #include "main.h"
 #include "hal_i2c.h"
-#include "hal_uart.h"
+#include "hal_usart.h"
 #include "hal_gpio.h"
 #include "board_config.h"
 #include "syscfg.h"
@@ -58,7 +58,12 @@ int main(void)
     uart_data[5] = (uint8_t)(data.gyro.z * 100);
     uart_data[6] = (uint8_t)(data.tempt);
 
-    uart_send(uart_data, 7);
+    for (int i = 0; i < 7; i++)
+    {
+      hal_uart_printf("%d ", uart_data[i]);
+    }
+    hal_uart_printf("[END] \n");
+
     HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_SET);
     HAL_Delay(1000); // sampling rate is 94Hz, so make it > 10ms
   }

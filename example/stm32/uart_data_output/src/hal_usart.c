@@ -1,4 +1,10 @@
-#include "hal_uart.h"
+
+#include <stdint.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+
+#include "hal_usart.h"
 
 UART_HandleTypeDef huart1;
 
@@ -77,15 +83,13 @@ void uart_read(void)
   HAL_UART_Receive_IT(&huart1, uart_rx_buffer, UART_BUFFER_SIZE);
 }
 
-// Callback function for UART reception complete interrupt
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+void hal_uart_printf(const char *format, ...)
 {
-  if (huart->Instance == USART1)
-  { // Ensure it's the correct UART instance
-    // Process received data (for example, send it back as an echo)
-    // uart_send(uart_rx_buffer, UART_BUFFER_SIZE);
+  char buffer[UART_BUFFER_SIZE];
+  va_list args;
+  va_start(args, format);
+  vsnprintf(buffer, sizeof(buffer), format, args);
+  va_end(args);
 
-    // Restart UART reception (needed for continuous reception)
-    HAL_UART_Receive_IT(&huart1, uart_rx_buffer, UART_BUFFER_SIZE);
-  }
+  HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
