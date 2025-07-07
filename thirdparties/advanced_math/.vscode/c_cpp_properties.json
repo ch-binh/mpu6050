@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                //"${workspaceFolder}/**"
+                "${workspaceFolder}/src/**",
+                "${workspaceFolder}/test",
+                "${workspaceFolder}/thirdparties/Unity/extras/fixture/src",
+                "${workspaceFolder}/thirdparties/Unity/src",
+                "${workspaceFolder}/thirdparties/Unity/extras/memory/src"
+            ],
+            "forcedInclude": [
+                // "${workspaceFolder}/src/adv_math.h"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            //"configurationProvider": "ms-vscode.makefile-tools", // do not enable this !!!
+            "compilerPath": "C:/TDM-GCC-64/bin/gcc.exe"
+        }
+    ],
+    "version": 4
+}

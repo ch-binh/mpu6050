@@ -1,0 +1,9 @@
+[submodule "thirdparties/file_template"]
+	path = thirdparties/file_template
+	url = https://github.com/ch-binh/file_template.git
+[submodule "thirdparties/unity"]
+	path = thirdparties/unity
+	url = https://github.com/ThrowTheSwitch/Unity.git
+[submodule "thirdparties/advanced_math"]
+	path = thirdparties/advanced_math
+	url = https://github.com/ch-binh/advanced_math.git

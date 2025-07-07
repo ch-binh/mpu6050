@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/test_all.exe",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:/TDM-GCC-64/bin/gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build test project"
+    },
+    {
+      "name": "Debug Python",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/python/main.py",
+      "console": "internalConsole"
+    }
+  ]
+}

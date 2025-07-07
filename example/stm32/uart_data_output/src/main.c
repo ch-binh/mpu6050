@@ -58,11 +58,12 @@ int main(void)
     uart_data[5] = (uint8_t)(data.gyro.z * 100);
     uart_data[6] = (uint8_t)(data.tempt);
 
-    for (int i = 0; i < 7; i++)
-    {
-      hal_uart_printf("%d ", uart_data[i]);
-    }
-    hal_uart_printf("[END] \n");
+    /* Print accel */
+    hal_uart_printf("ACCEL: x=%d, y=%d, z=%d | ", uart_data[0], uart_data[1], uart_data[2]);
+    /* Print gyro */
+    hal_uart_printf("GYRO: x=%d, y=%d, z=%d | ", uart_data[3], uart_data[4], uart_data[5]);
+    /* Print temperature */
+    hal_uart_printf("TEMP: T=%d\n", uart_data[6]);
 
     HAL_GPIO_WritePin(BUILTIN_LED_PORT, BUILTIN_LED_PIN, GPIO_PIN_SET);
     HAL_Delay(1000); // sampling rate is 94Hz, so make it > 10ms

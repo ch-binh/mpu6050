@@ -1,0 +1,41 @@
+{
+  "files.associations": {
+    "unity.h": "c",
+    "adv_math.h": "c",
+    "math.h": "c",
+    "corecrt_math.h": "c",
+    "stdint.h": "c",
+    "basetype.h": "c",
+    "float.h": "c",
+    "corecrt.h": "c",
+    "test_adv_math.h": "c",
+    "advm_num_theo.h": "c",
+    "advm_basic_op.h": "c",
+    "cmath": "c",
+    "cstdlib": "c",
+    "type_traits": "c",
+    "unity_fixture.h": "c",
+    "adv_math_application.h": "c",
+    "advm_gcd_lcm.h": "c",
+    "advm_prime.h": "c",
+    "advm_config.h": "c",
+    "advm_cli.h": "c",
+    "advm_modular.h": "c",
+    "string.h": "c",
+    "unity_memory.h": "c",
+    "compare": "c",
+    "advm_func_register.h": "c",
+    "typeinfo": "c",
+    "advm_sort.h": "c",
+    "stdio.h": "c",
+    "stdlib.h": "c"
+  },
+  "cSpell.words": [
+    "advm",
+    "CLEANDATA",
+    "libadvm"
+  ],
+  "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+  "cmake.ignoreCMakeListsMissing": true,
+  "C_Cpp.errorSquiggles": "enabled"
+}
