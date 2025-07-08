@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        ".gitmessage": "git-commit",
         "main.h": "c",
         "hal_usart.h": "c",
         "hal_gpio.h": "c",
@@ -7,7 +8,8 @@
         "stm32f1xx_hal.h": "c",
         "hal_tim.h": "c",
         "hal_uart.h": "c",
-        "board_config.h": "c"
+        "board_config.h": "c",
+        "mpu6050.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": true
 }

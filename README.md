@@ -8,13 +8,14 @@ the example, feel free to contact me and I try to make one as soon as possible.
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [MPU6050 Project](#mpu6050-project)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
 
 ## Introduction
 
@@ -54,17 +55,6 @@ The MPU6050 is a popular 6-axis motion tracking device that combines a 3-axis gy
 4. Open the serial monitor to view the sensor data.
    (I just outputed the data through UART, logic analyzer or Debugger is useful
     to see the data)
-
-## Contributing
-
-We welcome contributions! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a pull request.
 
 ## License
 

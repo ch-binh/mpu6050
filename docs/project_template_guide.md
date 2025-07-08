@@ -21,6 +21,10 @@ In the project root directory, you will find [submodules list](../.gitmodules), 
 | file_template | Template files for c, python, etc.                                        |
 | unity         | Unity unit test repo                                                      |
 
+to update the repo:
+```bash
+git submodule update --init --recursive
+```
 ### 1.2. Git message
 
 
